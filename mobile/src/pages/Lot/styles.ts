@@ -1,23 +1,8 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-    container:{
-        backgroundColor: '#14181C',
-        justifyContent: 'center',
-        flex: 1,
-        padding: 40,
-        marginTop: -40
-    },
-
-    headerColor:{
-        color: '#14181C',
-        height: 150,
-        padding: 40,
-        backgroundColor: '#F4F2DA',
-    },
-    
+       
     content:{
-        flex: 1,
         justifyContent: 'center',
     },
 
@@ -26,11 +11,20 @@ const styles = StyleSheet.create({
         color: '#FFF',
         fontSize: 32,
         lineHeight: 37,
-        marginTop:180,
+    },
+
+    bottomLancersContainer:{
+        backgroundColor: '#14181C',
+        flex: 1,
+        marginLeft: 0,
+        marginTop: -10
     },
 
     containerItens:{
         backgroundColor: '#14181C',
+        marginTop: 140,
+        marginLeft: 20,
+        marginBottom: 50
     },
 
     description:{
@@ -51,12 +45,12 @@ const styles = StyleSheet.create({
 
     buttontext:{
         fontFamily: 'Raleway_700Bold',
-        color: '#000',
+        color: '#14181C',
         fontSize: 16,
     },
 
     searchForm: {
-        marginBottom: 24,
+        marginBottom: 10,
     },
 
     label: {
@@ -83,20 +77,6 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
 
-    submitButton:{
-        backgroundColor: '#04d361',
-        height: 56,
-        borderRadius: 8,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-
-    submitButtonText:{
-        color: '#FFF',
-        fontFamily: 'Raleway_700Bold',
-        fontSize: 16
-    },
 })
 
 export default styles;

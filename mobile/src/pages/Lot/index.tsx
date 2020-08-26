@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {View, Text, ImageBackground, TextInput } from 'react-native';
-import { RectButton, ScrollView, BorderlessButton } from 'react-native-gesture-handler';
+import { RectButton, ScrollView, BorderlessButton, TouchableOpacity } from 'react-native-gesture-handler';
 import { FontAwesome, Feather } from '@expo/vector-icons';
 import styles from './styles';
 import PageHeader from '../../components/PageHeader';
@@ -23,9 +23,9 @@ function Lot (){
         <PageHeader 
             title="Lotar"
             headerRight={(
-            <BorderlessButton onPress={handleToggleFiltersVisible}>
+            <TouchableOpacity onPress={handleToggleFiltersVisible}>
                 <Feather name="filter" size={20} color="#FFF" />
-            </BorderlessButton>
+            </TouchableOpacity>
         )}
     >
        { isFilterVisible && ( 
@@ -40,7 +40,7 @@ function Lot (){
                     
                 />
             
-                <View style={styles.inputGroup}>
+                {/*<View style={styles.inputGroup}>
                     <View style={styles.inputBlock}>
                     <Text style={styles.label}>Dia da semana</Text>
                     <TextInput 
@@ -60,28 +60,31 @@ function Lot (){
                         onChangeText={text =>  setTime(text)}
                         placeholder="Qual o Horário?"
                         placeholderTextColor="#c1bccc"
-                    />
-                    </View>
-                </View>
-                <RectButton style={styles.button}>
-                    <Text style ={styles.buttontext}>Lotar</Text>
-                </RectButton>
+                    />--------------------
+                </View> 
+                </View>*/}
+                <TouchableOpacity style={styles.button}>
+                    <FontAwesome name="search" size={24} color="#14181C" />
+                    {/*<Text style ={styles.buttontext}>Lotar</Text>*/}
+                </TouchableOpacity>
             </View>
         )}
-       </PageHeader>
-        
-        <ScrollView
-            style={styles.containerItens}
-            showsHorizontalScrollIndicator= {false}
-            horizontal={true}
-        >
-        <LancerItem />
-        <LancerItem />
-        <LancerItem />
-        <LancerItem />
-        <LancerItem />
-        </ScrollView>
-        
+        </PageHeader>
+        <View style={styles.bottomLancersContainer}>
+            <ScrollView
+                style={styles.containerItens}
+                showsHorizontalScrollIndicator= {false}
+                horizontal={true}
+            >
+            <LancerItem />
+            <LancerItem />
+            <LancerItem />
+            <LancerItem />
+            <LancerItem />
+            </ScrollView>
+            
+         
+        </View>
         </>
     )
 }

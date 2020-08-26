@@ -2,7 +2,7 @@ import React from "react";
 import {View, Image, Text, Linking } from 'react-native';
 import logo from '../../../assets/logo.png';
 import styles from './styles';
-import { RectButton } from "react-native-gesture-handler";
+import { RectButton, TouchableOpacity } from "react-native-gesture-handler";
 import { FontAwesome } from '@expo/vector-icons'; 
 
 
@@ -23,7 +23,7 @@ function LancerItem ( ) {
                 <Text style={styles.subject}>Serviços Gerais</Text>
             </View>
         </View>
-        <Text style={styles.bio}>Trabalho de pedreiro, alvenaria, pintura, sou pau para toda obra.Trabalho de pedreiro, alvenaria, pintura, sou pau para toda obra.</Text>
+        <Text style={styles.bio}>Trabalho de pedreiro, alvenaria, pintura, sou pau para toda obra. Trabalho de pedreiro, alvenaria, pintura, sou pau para toda obra.</Text>
 
         <View style={styles.footer}>
             <Text style={styles.price}>
@@ -33,15 +33,15 @@ function LancerItem ( ) {
 
             <View style={styles.buttonsContainer}>
                
-                <RectButton style={[styles.favoriteButton, styles.favorited]}>
+                <TouchableOpacity style={[styles.favoriteButton, styles.favorited]}>
                 
                 <FontAwesome name="star" size={20} color="#F4F2DA" /><FontAwesome name="star" size={20} color="#F4F2DA" /><FontAwesome name="star" size={20} color="#F4F2DA" /><FontAwesome name="star" size={20} color="#F4F2DA" /><FontAwesome name="star-o" size={20} color="#F4F2DA" />
-                </RectButton>
+                </TouchableOpacity>
 
-                <RectButton onPress={handleLinkToWhatsapp} style={styles.contactButton}>
+                <TouchableOpacity onPress={handleLinkToWhatsapp} style={styles.contactButton}>
                     {/*<Text style={styles.contactButtonText}>Contato</Text>*/}
                     <FontAwesome name="whatsapp" size={24} style={styles.whatsappIcon} />
-                </RectButton>
+                </TouchableOpacity>
             </View>
         </View>
     </View>
