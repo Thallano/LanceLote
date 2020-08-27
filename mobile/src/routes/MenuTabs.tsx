@@ -1,9 +1,10 @@
 import React from 'react';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Entypo, Ionicons} from '@expo/vector-icons';
+import { Entypo, FontAwesome} from '@expo/vector-icons';
 import Lance from '../pages/Lance';
 import Lot from '../pages/Lot';
+import Lotados from '../pages/Lotados';
 
 const {Navigator, Screen} = createBottomTabNavigator ();
 
@@ -15,8 +16,8 @@ function MenuTabs() {
                 style:{
                     elevation: 0,
                     shadowOpacity: 0,
-                    height: 55,
-                    backgroundColor: '#3f322c',
+                    height: 70,
+                    backgroundColor: '#14181C',
                     BorderlessButton: 1,
                     borderTopColor: 'transparent',
                 },
@@ -30,7 +31,6 @@ function MenuTabs() {
                    flex: 0,
                    width: 40,
                    height: 40,
-                   flexDirection: 'column',
 
                 },
 
@@ -39,22 +39,20 @@ function MenuTabs() {
                     fontSize: 13,
                     marginBottom: 5
                 },
-                /*inactiveBackgroundColor: '#3f322c',*/
-                inactiveBackgroundColor: '#231b18',
-                activeBackgroundColor: '#231b18',
-                inactiveTintColor: '#4A3B35',
+              
+                inactiveTintColor: '#4e2220',
                 activeTintColor: '#F1574D',
             }}>
             <Screen 
-                name="Lançar" 
-                component={Lance}
+                name="Lotar" 
+                component={Lot}
                 options={{
-                    tabBarLabel: 'Lançar',
-                    tabBarIcon: ({ color, focused }) =>{
+                    tabBarLabel: 'Lotar',
+                    tabBarIcon: ({ color, size,  focused }) =>{
                         return(
                             <>
                             
-                            <Entypo name="bowl" size={35} color={focused ? '#F1574D' : color}/>
+                            <FontAwesome name="gears" size={size} color={focused ? '#F1574D' : color}/>
                             
                             </>
                         );
@@ -63,13 +61,13 @@ function MenuTabs() {
             />
 
             <Screen 
-                name="Lotar" 
-                component={Lot}
+                name="Lotados" 
+                component={Lotados}
                 options={{
-                    tabBarLabel: 'Favoritos',
+                    tabBarLabel: 'Lotados',
                     tabBarIcon: ({ color, size, focused }) =>{
                         return(
-                            <Ionicons name="ios-heart" size={size} color={focused ? '#8257e5' : color}/>
+                            <FontAwesome name="handshake-o" size={size} color={focused ? '#F1574D' : color}/>
                         );
                     }
                 }}

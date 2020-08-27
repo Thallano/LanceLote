@@ -8,30 +8,49 @@ const styles = StyleSheet.create({
         padding: 40
     },
 
+    headerIntro:{
+        justifyContent: 'space-between',
+        marginBottom: 20
+    },
+    
+    coffee:{ 
+        color: '#95F776',
+    },
+
+    titleBold:{
+        fontFamily: 'Poppins_600SemiBold',
+        color: '#F4F2DA',
+        fontSize: 20,
+        textAlign: 'center',
+    },
+     
+    title:{
+        fontFamily: 'Poppins_400Regular',
+        color: '#F4F2DA',
+        fontSize: 12,
+    },
+
     containerLogo:{
-        backgroundColor: '#14181C',
-        justifyContent: 'center',
-        flex: 1,
-        padding: 40,
-        marginTop: "65%"
+        padding: 20,
     },
     
     logoContainer:{
-        height: 250,
-        width: '100%',
-        resizeMode: 'contain'
+        height: 100,
+        width: '40%',
+        resizeMode: 'contain',
+        alignSelf: 'center'
     },
 
-    buttonsContainer:{
+    buttonsContainerLot:{
         flexDirection:'row',
         alignSelf: 'flex-start',
-        marginBottom: 90
+        marginBottom: 85
     },
 
-    buttonsContainer2:{
+    buttonsContainerLance:{
         flexDirection:'row',
         marginBottom: -60,
-        marginTop: 140,
+        marginTop: 110,
         alignSelf: 'flex-end'
     },
     
@@ -68,6 +87,31 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginRight: 10,
         textAlign: 'right'
+    },
+
+    logonContainer:{
+        backgroundColor: '#2b2120',
+        borderTopRightRadius: 15,
+        height: 75,
+        marginTop: -140,
+        width: "48%",
+        alignSelf: 'flex-end',
+        justifyContent: 'space-between',
+
+    },
+
+    logonButtonContainer:{
+        color: '#FF514B',
+        fontSize: 18,
+        marginRight: 10,
+    },
+
+    logonServiceTextButton:{
+        fontFamily: 'Raleway_900Black',
+        color: '#FF514B',
+        fontSize: 18,
+        marginRight: 10,
+        textAlign: 'center',
     },
 }
 )

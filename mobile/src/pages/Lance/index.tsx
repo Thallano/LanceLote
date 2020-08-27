@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {View, Text, ImageBackground, TextInput } from 'react-native';
 import { RectButton, TouchableOpacity } from 'react-native-gesture-handler';
-import { FontAwesome} from '@expo/vector-icons';
+import { FontAwesome, Feather} from '@expo/vector-icons';
 
 
 import PageHeader from '../../components/PageHeader';
@@ -55,8 +55,9 @@ function Lance (){
                         </View> 
                     </View>
             </View>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.buttonLance}>
                 <Text style={styles.buttontext}>Quero Lançar um Serviço</Text>
+                <Feather name="arrow-up-right" size={24} color="#FF514B" />
             </TouchableOpacity>
         </View>
         </>

@@ -4,8 +4,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Dashboard from '../pages/Dashboard';
 import MenuTabs from './MenuTabs';
 import Lance from '../pages/Lance';
-import Lot from '../pages/Lot';
-
+import SingUp from '../pages/SingUp';
+import SingIn from '../pages/SingIn';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -13,9 +13,11 @@ function AppStack () {
     return (
         <NavigationContainer>
             <Navigator screenOptions={{headerShown: false}}>
-                <Screen name="Dashboard" component={Dashboard}/>    
-                <Screen name="Lance" component={Lance}/> 
-                <Screen name="Lot" component={Lot}/>         
+                <Screen name="SingIn" component={SingIn} />
+                <Screen name="Dashboard" component={Dashboard}/> 
+                <Screen name="SingUp" component={SingUp} />
+                <Screen name="Lance" component={Lance}/>
+                <Screen name="MenuTabs" component={MenuTabs} />        
             </Navigator>
         </NavigationContainer>
         

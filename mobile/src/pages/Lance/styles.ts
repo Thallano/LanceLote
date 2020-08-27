@@ -17,11 +17,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
    
-    button:{
+    buttonLance:{
         width:'100%',
         backgroundColor: '#F4F2DA',
         borderRadius: 8,
         padding: 24,
+        flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
     },

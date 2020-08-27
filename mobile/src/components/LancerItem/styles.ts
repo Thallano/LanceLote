@@ -30,6 +30,13 @@ const styles = StyleSheet.create({
 
     profileInfo:{
         marginLeft: 16,
+        
+    },
+    profileRate:{
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        marginRight: 20,
+        marginTop: -10
     },
 
     name:{
@@ -77,9 +84,9 @@ const styles = StyleSheet.create({
         marginTop: 15,
     },
     
-    favoriteButton:{
-        backgroundColor: '#FF514B',
-        width: 180,
+    lotarButton:{
+        backgroundColor: '#462b2a',
+        width: 56,
         height: 56,
         borderRadius: 8,
         justifyContent: 'center',
@@ -88,21 +95,25 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
 
-    favorited:{
-        backgroundColor: '#FF514B',
+    lotado:{
+       
+    },
+
+    lotarTextButton:{
+        fontFamily: 'Raleway_700Bold',
+        fontSize: 14,
+        color: '#F4F2DA',
+        marginLeft: 10
     },
 
     contactButton:{
         backgroundColor: '#95f776',
         height: 56,
-        width: 56,
+        width: 160,
         borderRadius: 8,
         alignItems: 'center',
-        justifyContent: 'center'
-    },
-
-    whatsappIcon:{
-        color: '#14181C',
+        justifyContent: 'space-between',
+        flexDirection: 'row'
     },
 
     contactButtonText:{
@@ -111,6 +122,11 @@ const styles = StyleSheet.create({
         color: '#14181C',
         marginLeft: 10
         
+    },
+
+    whatsappIcon:{
+        color: '#14181C',
+        marginRight: 5
     },
 
 })

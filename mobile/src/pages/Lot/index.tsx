@@ -12,9 +12,7 @@ function Lot (){
     
 
     const [subject, setSubject] = useState('');
-    const [week_day, setWeekDay] = useState('');
-    const [time, setTime] = useState('');
-
+   
     function handleToggleFiltersVisible( ) {
         setIsFilterVisible(!isFilterVisible);
     }
@@ -24,7 +22,7 @@ function Lot (){
             title="Lotar"
             headerRight={(
             <TouchableOpacity onPress={handleToggleFiltersVisible}>
-                <Feather name="filter" size={20} color="#FFF" />
+                <Feather name="filter" size={20} color="#F4F2DA" />
             </TouchableOpacity>
         )}
     >
@@ -37,32 +35,8 @@ function Lot (){
                     onChangeText={text =>  setSubject(text)}
                     placeholder="Qual serviço?"
                     placeholderTextColor="#c1bccc"
-                    
                 />
             
-                {/*<View style={styles.inputGroup}>
-                    <View style={styles.inputBlock}>
-                    <Text style={styles.label}>Dia da semana</Text>
-                    <TextInput 
-                        style={styles.input}
-                        value={week_day}
-                        onChangeText={text =>  setWeekDay(text)}
-                        placeholder="Qual o dia?"
-                        placeholderTextColor="#c1bccc"
-                    />
-                    </View>
-                
-                <View style={styles.inputBlock}>
-                    <Text style={styles.label}>Horário</Text>
-                    <TextInput 
-                        style={styles.input}
-                        value={time}
-                        onChangeText={text =>  setTime(text)}
-                        placeholder="Qual o Horário?"
-                        placeholderTextColor="#c1bccc"
-                    />--------------------
-                </View> 
-                </View>*/}
                 <TouchableOpacity style={styles.button}>
                     <FontAwesome name="search" size={24} color="#14181C" />
                     {/*<Text style ={styles.buttontext}>Lotar</Text>*/}

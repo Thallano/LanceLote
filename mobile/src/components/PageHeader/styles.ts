@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
         elevation: 4,
         marginBottom: -80
     },
-
+    
     topBar:{
         flexDirection: 'row',
         alignItems: 'center',

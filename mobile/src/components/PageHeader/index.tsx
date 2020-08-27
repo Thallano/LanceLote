@@ -10,6 +10,9 @@ import { BorderlessButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
 
+import {  FontAwesome } from '@expo/vector-icons';
+
+
 interface PageHeaderProps{
     title: string;
     headerRight?: ReactNode;
@@ -27,7 +30,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, headerRight ,children })
         <View style={styles.topBar}>
                    
         </View>
-
+       
         <View style={styles.header}>
         <Text style={styles.title}>{title}</Text>
         {headerRight}

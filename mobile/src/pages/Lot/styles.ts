@@ -10,21 +10,18 @@ const styles = StyleSheet.create({
         fontFamily: 'Raleway_700Bold',
         color: '#FFF',
         fontSize: 32,
-        lineHeight: 37,
     },
 
     bottomLancersContainer:{
         backgroundColor: '#14181C',
         flex: 1,
         marginLeft: 0,
-        marginTop: -10
     },
 
     containerItens:{
         backgroundColor: '#14181C',
-        marginTop: 140,
+        marginTop: 80,
         marginLeft: 20,
-        marginBottom: 50
     },
 
     description:{
@@ -51,6 +48,7 @@ const styles = StyleSheet.create({
 
     searchForm: {
         marginBottom: 10,
+        elevation: 6,
     },
 
     label: {
