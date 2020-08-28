@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {useContext }from 'react';
+import AuthContext from '../contexts/auth';
 
-import AppRoutes from '.App'
+import AppRoutes from './AppRoutes';
+import AppStack from './AppStack';
+
+
 const Routes: React.FC = ( ) =>{
-    return ( 
-        console.log('oi');
-    );
-}
+    const { signed } = useContext(AuthContext);
+
+
+    return signed ? <AppRoutes />:  <AppStack />;
+};
 
 export default Routes;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Image, ScrollView, Text, TextInput } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -7,7 +7,12 @@ import intrologo from '../../../assets/intrologo.png';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
 
+import AuthContext from '../../contexts/auth';
+
+
 const SingIn: React.FC = () => {
+    const { signed, signIn } = useContext(AuthContext);
+    console.log(signed);
 
     const { navigate } = useNavigation();
 
@@ -20,6 +25,10 @@ const SingIn: React.FC = () => {
 
     function handleSingUp ( ) {
         navigate('SingUp');
+    };
+
+    function handleSingIn ( ) {
+        signIn();
     };
   
 return (
@@ -54,7 +63,7 @@ return (
                 </View>
             <Text  style ={styles.forgotPassword}>*Esqueceu a <Text style ={styles.forgotPasswordLink}>senha?</Text></Text>
 
-            <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+            <TouchableOpacity style={styles.loginButton} onPress={handleSingIn}>
                 <Text style ={styles.loginButtonText}>LOGAR</Text>
             </TouchableOpacity>
             

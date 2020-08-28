@@ -4,10 +4,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import SingUp from '../pages/SingUp';
 import SingIn from '../pages/SingIn';
+/*
 import AppRoutes from './AppRoutes';
 import Dashboard from '../pages/Dashboard';
 import Lance from '../pages/Lance';
-import MenuTabs from './MenuTabs';
+import MenuTabs from './MenuTabs';*/
 
 /*const { Navigator, Screen } = createStackNavigator();*/
 
@@ -19,9 +20,6 @@ const AppStack: React.FC = () =>{
             {/*<Navigator screenOptions={{headerShown: false}}>*/}
                 <AuthStack.Screen  name="SingIn" component={SingIn} />
                 <AuthStack.Screen  name="SingUp" component={SingUp} />
-                <AuthStack.Screen name="Dashboard" component={Dashboard}/> 
-                <AuthStack.Screen name="Lance" component={Lance}/>
-                <AuthStack.Screen name="MenuTabs" component={MenuTabs} />
             {/*</Navigator>*/}
         </AuthStack.Navigator>
     )

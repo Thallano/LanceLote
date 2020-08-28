@@ -1,8 +1,10 @@
 import React from 'react';
 import { AppLoading } from 'expo';
-import AppStack from './src/routes/AppStack';
+/*import AppStack from './src/routes/AppStack';*/
 import { StatusBar } from 'expo-status-bar';
 
+import Routes from './src/routes';
+import { AuthProvider } from './src/contexts/auth';
 import { NavigationContainer } from '@react-navigation/native';
 
 import { Poppins_400Regular, Poppins_600SemiBold, Poppins_900Black, useFonts } from '@expo-google-fonts/poppins';
@@ -25,8 +27,11 @@ const App: React.FC = () => {
     return (
     <>
       <StatusBar style="light"  />
+      
       <NavigationContainer>
-      <AppStack />
+        <AuthProvider>
+          <Routes />  
+        </AuthProvider>
       </NavigationContainer>
     </>
     );

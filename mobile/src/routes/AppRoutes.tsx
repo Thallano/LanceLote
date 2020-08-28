@@ -17,7 +17,7 @@ const AppRoutes: React.FC = () => (
                 <Screen name="MenuTabs" component={MenuTabs} />        
             </Navigator>
         </NavigationContainer>*/
-        <AppStack.Navigator>
+        <AppStack.Navigator screenOptions={{headerShown: false}}>
             <AppStack.Screen name="Dashboard" component={Dashboard}/> 
             <AppStack.Screen name="Lance" component={Lance}/>
             <AppStack.Screen name="MenuTabs" component={MenuTabs} />
