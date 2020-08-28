@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import styles from './styles';
 
-function SingUp (){
+const SingUp: React.FC = () => {
 
     const [users, setUsers] = useState([]);
     
@@ -15,6 +15,9 @@ function SingUp (){
 
 return (
     <>
+    <ScrollView 
+        showsVerticalScrollIndicator={false}
+    >
     <View style={styles.searchForm}>
 
         <View>
@@ -83,6 +86,7 @@ return (
                 <Text style ={styles.submitButtonText}>Criar Conta</Text>
             </TouchableOpacity>
     </View>
+    </ScrollView>
     </>
 )
 }

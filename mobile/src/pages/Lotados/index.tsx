@@ -77,7 +77,11 @@ function Lotados (){
             <LancerItem />
             </Swipeable>
 
-            <Swipeable renderRightActions={RightAction}>
+            <Swipeable
+                renderRightActions={RightAction}
+                renderLeftActions={LeftAction}
+            >
+                                
             <LancerItem />
             </Swipeable>
             </ScrollView>

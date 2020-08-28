@@ -38,20 +38,23 @@ const styles = StyleSheet.create({
         height: 100,
         width: '40%',
         resizeMode: 'contain',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        marginTop: 40
     },
 
     buttonsContainerLot:{
         flexDirection:'row',
         alignSelf: 'flex-start',
-        marginBottom: 85
+        marginBottom: 85,
+        /*transform: [{ rotate: '15deg'}],*/
     },
 
     buttonsContainerLance:{
         flexDirection:'row',
         marginBottom: -60,
         marginTop: 110,
-        alignSelf: 'flex-end'
+        alignSelf: 'flex-end',
+        /*transform: [{ rotate: '15deg'}],*/
     },
     
     button:{

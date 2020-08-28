@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Poppins_400Regular',
         color: '#F4F2DA',
         alignSelf: 'flex-start',
-        marginLeft: 90,
+        marginLeft: 45,
         textAlign: 'right',
         marginBottom: 20,
         fontSize: 12

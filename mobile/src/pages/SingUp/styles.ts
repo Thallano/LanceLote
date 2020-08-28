@@ -11,8 +11,8 @@ const styles = StyleSheet.create({
         fontFamily: 'Raleway_900Black',
         color: '#F4F2DA',
         textAlign: 'center',
-        marginTop: 65,
-        marginBottom: 30,
+        marginTop: 50,
+        marginBottom: 20,
         fontSize: 25
     },
     
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     inputGroup:{
         flexDirection: 'column',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
     },
 
     inputBlock:{
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   
     submitButton:{
         width:'65%',
-        marginTop: 40,
+        marginTop: 20,
         backgroundColor: '#F4F2DA',
         borderRadius: 8,
         padding: 24,

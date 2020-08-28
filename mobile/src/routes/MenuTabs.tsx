@@ -8,7 +8,6 @@ import Lotados from '../pages/Lotados';
 
 const {Navigator, Screen} = createBottomTabNavigator ();
 
-
 function MenuTabs() {
     return (
         <Navigator 
