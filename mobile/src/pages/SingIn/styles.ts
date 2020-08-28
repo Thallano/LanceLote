@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     },
     
     logoContainer:{
+        marginTop: 20,
         height: 120,
         width: '98%',
         resizeMode: 'contain',
@@ -46,13 +47,14 @@ const styles = StyleSheet.create({
     },
 
     loginButton:{
-        width:'65%',
-        marginTop: -40,
+        width: 54,
+        height: 54,
         backgroundColor: '#95f776',
         borderRadius: 8,
-        padding: 24,
-        marginLeft: "45%",
-      
+        padding: 15,
+        justifyContent: 'flex-end',
+        flexDirection: 'column',
+        alignSelf: 'flex-end'   
     },
 
     loginButtonText:{
@@ -65,8 +67,8 @@ const styles = StyleSheet.create({
         fontFamily: 'Poppins_400Regular',
         color: '#F4F2DA',
         textAlign: 'center',
-        marginTop: 120,
-        marginBottom: 0,
+        marginTop: 90,
+        marginBottom: 10,
         fontSize: 14
     },
 

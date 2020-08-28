@@ -1,27 +1,22 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { View, Image, ScrollView, Text, TextInput } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+import { FontAwesome } from '@expo/vector-icons'; 
 import intrologo from '../../../assets/intrologo.png';
 
 import styles from './styles';
-import { useNavigation } from '@react-navigation/native';
-
 import AuthContext from '../../contexts/auth';
 
 
 const SingIn: React.FC = () => {
     const { signed, signIn } = useContext(AuthContext);
-    console.log(signed);
-
+   
     const { navigate } = useNavigation();
 
     const [name, setName]= useState('');
     const [password, setPassword] = useState('');
-
-    function handleLogin ( ) {
-        navigate('Dashboard');
-    };
 
     function handleSingUp ( ) {
         navigate('SingUp');
@@ -56,6 +51,7 @@ return (
                     <TextInput 
                         style={styles.input}
                         value={password}
+                        secureTextEntry={true}
                         onChangeText={text =>  setPassword(text)}
                         placeholder="Senha"
                         placeholderTextColor="#c1bccc"
@@ -64,7 +60,8 @@ return (
             <Text  style ={styles.forgotPassword}>*Esqueceu a <Text style ={styles.forgotPasswordLink}>senha?</Text></Text>
 
             <TouchableOpacity style={styles.loginButton} onPress={handleSingIn}>
-                <Text style ={styles.loginButtonText}>LOGAR</Text>
+                {/*<Text style ={styles.loginButtonText}>LOGAR</Text>*/}
+                <FontAwesome name="sign-in" size={24} color="#14181C" />
             </TouchableOpacity>
             
            

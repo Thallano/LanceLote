@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
@@ -7,11 +7,13 @@ import { Ionicons, EvilIcons, FontAwesome, Feather} from '@expo/vector-icons';
 
 import styles from './styles';
 import intrologo from '../../../assets/intrologo.png';
+import AuthContext from '../../contexts/auth';
 
 
  
 function Dashboard (){
     const { navigate } = useNavigation();
+    const { signOut } = useContext(AuthContext);
 
     function handleLanceButton(){
         navigate('Lance');
@@ -21,9 +23,19 @@ function Dashboard (){
         navigate('MenuTabs');
     }
 
+    function handleLogout() {
+        signOut();
+    };
+
+
     return (
         <>
+        
         <View style={styles.container}>
+        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+                {/*<Text style ={styles.loginButtonText}>LOGAR</Text> */}
+                <FontAwesome name="sign-out" size={24} color="#FF514B" />
+        </TouchableOpacity>
             <View style={styles.containerLogo}>
                 <Image source={intrologo} style={styles.logoContainer} />
             </View>
@@ -33,9 +45,7 @@ function Dashboard (){
                         <Text style={styles.title}>A sua plataforma de serviços!</Text>
                     </Text>
             </View>   
-
-            
-            
+           
             <View style={styles.buttonsContainerLance}>
                
             <TouchableOpacity style={[styles.button, styles.lanceButtonContainer]} onPress={handleLanceButton}>

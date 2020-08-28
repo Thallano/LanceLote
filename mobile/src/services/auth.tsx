@@ -16,6 +16,6 @@ export function signIn( ): Promise<Response> {
                 email: 'cristyan@lancelot.com.br'
             }, 
         });
-        }, 1500);
+        }, 1000);
     });
 }

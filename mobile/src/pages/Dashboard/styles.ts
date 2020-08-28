@@ -8,6 +8,14 @@ const styles = StyleSheet.create({
         padding: 40
     },
 
+    logoutButton:{
+        marginTop: "35%",
+        borderRadius: 8,
+        padding: 15,
+        width: '18%',
+          
+    },
+
     headerIntro:{
         justifyContent: 'space-between',
         marginBottom: 20
@@ -64,16 +72,20 @@ const styles = StyleSheet.create({
         padding: 20,
         justifyContent: 'space-between',
         alignContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
 
     lanceButtonContainer:{
         backgroundColor: '#FF514B',
         marginTop: -60,
+        borderTopRightRadius: 40,
+        borderTopLeftRadius: 60
     },
 
     lotButtonContainer:{
-        backgroundColor: '#F4F2DA'
+        backgroundColor: '#F4F2DA',
+        borderBottomRightRadius: 60,
+        borderBottomLeftRadius: 40
     },
 
     lanceServiceTextButton:{
