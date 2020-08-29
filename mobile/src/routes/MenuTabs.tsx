@@ -15,7 +15,7 @@ function MenuTabs() {
                 style:{
                     elevation: 0,
                     shadowOpacity: 0,
-                    height: 70,
+                    /*height: 70,*/
                     backgroundColor: '#14181C',
                     BorderlessButton: 1,
                     borderTopColor: 'transparent',
@@ -39,8 +39,8 @@ function MenuTabs() {
                     marginBottom: 5
                 },
               
-                inactiveTintColor: '#4e2220',
-                activeTintColor: '#F1574D',
+                inactiveTintColor: '#474553',
+                activeTintColor: '#4b97ff',
             }}>
             <Screen 
                 name="Lotar" 
@@ -51,7 +51,7 @@ function MenuTabs() {
                         return(
                             <>
                             
-                            <FontAwesome name="gears" size={size} color={focused ? '#F1574D' : color}/>
+                            <FontAwesome name="gears" size={size} color={focused ? '#4b97ff' : color}/>
                             
                             </>
                         );
@@ -66,7 +66,7 @@ function MenuTabs() {
                     tabBarLabel: 'Lotados',
                     tabBarIcon: ({ color, size, focused }) =>{
                         return(
-                            <FontAwesome name="handshake-o" size={size} color={focused ? '#F1574D' : color}/>
+                            <FontAwesome name="handshake-o" size={size} color={focused ? '#4b97ff' : color}/>
                         );
                     }
                 }}

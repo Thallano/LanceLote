@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
 
     container:{
         padding: 40,
-        backgroundColor: '#FF514B', 
+        backgroundColor: '#4b97ff', 
         justifyContent: 'space-between',
         borderBottomRightRadius: 80,
         borderBottomLeftRadius: 80,

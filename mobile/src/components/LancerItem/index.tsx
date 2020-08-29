@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {View, Image, Text, Linking } from 'react-native';
 import logo from '../../../assets/logo.png';
 import styles from './styles';
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity, ScrollView } from "react-native-gesture-handler";
 import { FontAwesome } from '@expo/vector-icons'; 
 
 
@@ -26,8 +26,8 @@ const LancerItem: React.FC<LancerItemProps> = ({ lancer }) =>  {
 
     const [lotHandkShakeColor, setLotHandkShakeColor] = useState(0);
     const color = [
-        '#2a0f0f',
-        '#FF514B'
+        '#474553',
+        '#4b97ff'
     ];
 
     function handleLotarServicePressed ( ) {
@@ -58,13 +58,18 @@ const LancerItem: React.FC<LancerItemProps> = ({ lancer }) =>  {
         <View style={styles.profileRate}>
         <FontAwesome name="star" size={10} color="#F4F2DA" /><FontAwesome name="star" size={10} color="#F4F2DA" /><FontAwesome name="star" size={10} color="#F4F2DA" /><FontAwesome name="star" size={10} color="#F4F2DA" /><FontAwesome name="star-o" size={10} color="#F4F2DA" />
         </View>
-        
+        <ScrollView
+            showsVerticalScrollIndicator={false}    
+        >
         <Text style={styles.description}>{lancer.description}</Text>
+        </ScrollView>
         </View>
         <View style={styles.footer}>
             <View style={styles.priceContainer}>
-            <Text style={styles.price}>{lancer.modality}</Text>
-            <Text style={styles.priceValue}>R$ {lancer.cost},00</Text>
+                
+                <Text style={styles.modality}>{lancer.modality}</Text>
+               
+                <Text style={styles.priceValue}>R$ {lancer.cost},00</Text>
             </View>
 
             <View style={styles.buttonsContainer}>

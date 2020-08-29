@@ -2,7 +2,7 @@ import {StyleSheet} from "react-native";
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor: '#2b2120',
+        backgroundColor: '#474553',
         borderWidth: 1,
         height: 360,
         width: 280,
@@ -65,21 +65,23 @@ const styles = StyleSheet.create({
     },
 
     footer:{
-        backgroundColor: '#2a0f0f',
+        backgroundColor: '#393843',
         alignItems: 'center',
         padding: 15,
     },
 
     priceContainer:{
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
         flexDirection: 'row',
+
     },
 
-    price:{
+    modality:{
         fontFamily: 'Poppins_400Regular',
         color: '#b19f81',
         fontSize: 14,
-        marginLeft: -10
+        marginRight: 40,
+
     },
     
     priceValue:{
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
     },
     
     lotarButton:{
-        backgroundColor: '#462b2a',
+        backgroundColor: '#2b2a33',
         width: 56,
         height: 56,
         borderRadius: 8,

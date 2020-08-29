@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     },
 
     lanceButtonContainer:{
-        backgroundColor: '#FF514B',
+        backgroundColor: '#4b97ff',
         marginTop: -60,
         borderTopRightRadius: 40,
         borderTopLeftRadius: 60
@@ -98,14 +98,14 @@ const styles = StyleSheet.create({
 
     lotServiceTextButton:{
         fontFamily: 'Raleway_900Black',
-        color: '#FF514B',
+        color: '#4b97ff',
         fontSize: 18,
         marginRight: 10,
         textAlign: 'right'
     },
 
     logonContainer:{
-        backgroundColor: '#2b2120',
+        backgroundColor: '#474553',
         borderTopRightRadius: 15,
         height: 75,
         marginTop: -140,
@@ -116,14 +116,14 @@ const styles = StyleSheet.create({
     },
 
     logonButtonContainer:{
-        color: '#FF514B',
+        color: '#4b97ff',
         fontSize: 18,
         marginRight: 10,
     },
 
     logonServiceTextButton:{
         fontFamily: 'Raleway_900Black',
-        color: '#FF514B',
+        color: '#4b97ff',
         fontSize: 18,
         marginRight: 10,
         textAlign: 'center',

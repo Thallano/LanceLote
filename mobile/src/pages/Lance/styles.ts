@@ -54,11 +54,21 @@ const styles = StyleSheet.create({
         width: '48%',
     },
 
+    inputFocused: {
+        height: 54,
+        backgroundColor: '#FFF',
+        borderRadius:  8,
+        paddingHorizontal: 16,
+        marginTop: 4,
+        marginBottom: 16,
+        borderColor: '#4b97ff',
+        borderWidth: 2
+    },
+
     input: {
         height: 54,
         backgroundColor: '#FFF',
         borderRadius:  8,
-        justifyContent: 'center',
         paddingHorizontal: 16,
         marginTop: 4,
         marginBottom: 16,

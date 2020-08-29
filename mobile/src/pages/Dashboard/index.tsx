@@ -34,7 +34,7 @@ function Dashboard (){
         <View style={styles.container}>
         <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
                 {/*<Text style ={styles.loginButtonText}>LOGAR</Text> */}
-                <FontAwesome name="sign-out" size={24} color="#FF514B" />
+                <FontAwesome name="sign-out" size={24} color="#4b97ff" />
         </TouchableOpacity>
             <View style={styles.containerLogo}>
                 <Image source={intrologo} style={styles.logoContainer} />

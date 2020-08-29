@@ -12,6 +12,22 @@ const styles = StyleSheet.create({
         fontSize: 32,
     },
 
+    lotarLoading:{
+        marginTop: "65%",
+        elevation: 0
+    },
+
+    caseIcon:{
+       alignSelf: 'center'
+    },
+    
+    caseText:{
+        fontFamily: 'Raleway_700Bold',
+        color: '#474553',
+        fontSize: 14,
+        textAlign: 'center'
+    },
+
     bottomLancersContainer:{
         backgroundColor: '#14181C',
         flex: 1,
@@ -22,6 +38,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#14181C',
         marginTop: 80,
         marginLeft: 20,
+        elevation: 2
     },
 
     description:{

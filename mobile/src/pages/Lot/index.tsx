@@ -13,12 +13,16 @@ import api from '../../services/api';
 function Lot (){
 
     const [isFilterVisible, setIsFilterVisible] = useState(false);
-    
+    const [isCaseVisible, setIsCaseVisible] = useState(true);
+
     const [lancers, setLancers] = useState([]);
     
     const [service, setService] = useState('');
 
     function handleToggleFiltersVisible( ) {
+        setIsFilterVisible(!isFilterVisible);
+    }
+    function handleBagVisible( ) {
         setIsFilterVisible(!isFilterVisible);
     }
 
@@ -42,6 +46,7 @@ function Lot (){
         })
         
         setIsFilterVisible(false);
+        setIsCaseVisible(false);
         setLancers(response.data);
     }
 
@@ -74,6 +79,14 @@ function Lot (){
         )}
         </PageHeader>
         <View style={styles.bottomLancersContainer}>
+            
+             { isCaseVisible &&
+                <View style={styles.lotarLoading}>
+                <FontAwesome style={styles.caseIcon} name="briefcase" size={55} color="#474553" />
+                <Text style={styles.caseText}>Lote um Serviço para aparecer aqui</Text>
+                </View>
+            }
+
             <ScrollView
                 style={styles.containerItens}
                 showsHorizontalScrollIndicator= {false}
@@ -89,7 +102,7 @@ function Lot (){
             }
             )}
             </ScrollView>
-            
+
          
         </View>
         </>

@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     },
 
     removeService:{
-        backgroundColor: '#FF514B',
+        backgroundColor: '#4b97ff',
         width: 60,
         height: 130,
         alignContent: 'center',

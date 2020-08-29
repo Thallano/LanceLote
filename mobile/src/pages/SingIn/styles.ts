@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
 
     textSingUpLink:{
         fontFamily: 'Poppins_400Regular',
-        color: '#FF514B',
+        color: '#4b97ff',
         textAlign: 'center',
         marginBottom: 30,
         fontSize: 15
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
 
     forgotPasswordLink:{
         fontFamily: 'Poppins_400Regular',
-        color: '#FF514B',
+        color: '#4b97ff',
         textAlign: 'right',
         marginBottom: 20,
         fontSize: 13

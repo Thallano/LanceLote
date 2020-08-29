@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {View, Text, ImageBackground, TextInput, ScrollView } from 'react-native';
 import { RectButton, TouchableOpacity } from 'react-native-gesture-handler';
-import { FontAwesome, Feather} from '@expo/vector-icons';
+import { FontAwesome, MaterialCommunityIcons} from '@expo/vector-icons';
 
 
 import PageHeader from '../../components/PageHeader';
@@ -14,15 +14,28 @@ function Lance (){
     const [description, setDescription] = useState('');
     const [modality, setModality] = useState('');
     const [cost, setCost] = useState('');
+    /*const [inputFocus, setInputFocus ] = useState<string>('');
+
+    useEffect (( ) =>{
+        setInputFocus(styles.input)
+    },[]) 
     
+    function handleInFocus () {
+        setInputFocus(styles.inputFocused)
+    }
+    function handleOffFocus () {
+        setInputFocus(styles.input)
+    }*/
+
     return (
         <>
         <PageHeader title="Lançar"></PageHeader>
+        
+        <View style={styles.container}>
         <ScrollView 
         showsVerticalScrollIndicator={false}
         >
-        <View style={styles.container}>
-            <FontAwesome style={styles.gearIcon} name="gears" size={55} color="#FF514B" />
+            <FontAwesome style={styles.gearIcon} name="gears" size={55} color="#4b97ff" />
             <View style={styles.searchForm}>
                     <Text style={styles.label}>Serviço</Text>
                     <TextInput 
@@ -51,6 +64,7 @@ function Lance (){
                             onChangeText={text =>  setModality(text)}
                             placeholder="Tipo de trabalho?"
                             placeholderTextColor="#c1bccc"
+                         
                         />
                         </View>
                     
@@ -62,17 +76,18 @@ function Lance (){
                             onChangeText={text =>  setCost(text)}
                             placeholder="Qual o Valor?"
                             placeholderTextColor="#c1bccc"
+                           
                         />
                         </View> 
                     </View>
             </View>
             <TouchableOpacity style={styles.buttonLance}>
                 <Text style={styles.buttontext}>Quero Lançar um Serviço</Text>
-                <Feather name="arrow-up-right" size={24} color="#FF514B" />
+                <MaterialCommunityIcons name="arrow-top-right-thick" size={26} color="#4b97ff" />
             </TouchableOpacity>
-            
+         </ScrollView> 
         </View>
-        </ScrollView>
+        
         </>
     )
 }

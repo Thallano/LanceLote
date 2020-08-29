@@ -15,9 +15,7 @@ export default class ServicesController {
         const filters = request.query;
 
         const service = filters.service as string;
-        /*const modality = filters.modality as string;
-        const cost = filters.cost as string;*/
-
+        
         if (!filters.service){
             return response.status(400).json({
                 error: 'Missing filters to search services'
@@ -25,7 +23,10 @@ export default class ServicesController {
         }
 
         const services = await db('services')
-            .where('services.service', '=', service);
+            .where('services.service', '=', service)
+            .join('users', 'services.user_id', '=', 'users.id')
+            .select(['services.*', 'users.*']);
+            console.log(services)
         return response.json(services);
     } 
     
