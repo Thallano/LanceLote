@@ -15,14 +15,17 @@ const SingUp: React.FC = () => {
 
 return (
     <>
-    <ScrollView 
-        showsVerticalScrollIndicator={false}
-    >
     <View style={styles.searchForm}>
 
+    
+    
         <View>
             <Text style={styles.singUpTittleText}>CADASTRO</Text>
         </View>
+        
+        <ScrollView 
+        showsVerticalScrollIndicator={false}
+        >
             <View style={styles.inputGroup}>
 
                 <View style={styles.inputBlock}>
@@ -85,8 +88,9 @@ return (
             <TouchableOpacity style={styles.submitButton}>
                 <Text style ={styles.submitButtonText}>Criar Conta</Text>
             </TouchableOpacity>
-    </View>
+   
     </ScrollView>
+    </View>
     </>
 )
 }

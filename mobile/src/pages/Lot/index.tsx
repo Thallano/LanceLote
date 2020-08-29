@@ -1,21 +1,50 @@
-import React, { useState } from 'react';
-import {View, Text, ImageBackground, TextInput } from 'react-native';
-import { RectButton, ScrollView, BorderlessButton, TouchableOpacity } from 'react-native-gesture-handler';
+import React, { useState, useEffect } from 'react';
+import {View, Text, TextInput } from 'react-native';
+import {  ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { FontAwesome, Feather } from '@expo/vector-icons';
+
 import styles from './styles';
 import PageHeader from '../../components/PageHeader';
-import LancerItem from '../../components/LancerItem';
+import LancerItem, { Lancer } from '../../components/LancerItem';
+
+
+import api from '../../services/api';
 
 function Lot (){
 
     const [isFilterVisible, setIsFilterVisible] = useState(false);
     
+    const [lancers, setLancers] = useState([]);
+    
+    const [service, setService] = useState('');
 
-    const [subject, setSubject] = useState('');
-   
     function handleToggleFiltersVisible( ) {
         setIsFilterVisible(!isFilterVisible);
     }
+
+    /*useEffect(() => {
+        async function loadServices ( ){
+        const response = await api.get('services', {
+            params: {
+                services
+            }
+        })
+        setLancers(response.data)
+        }
+        loadServices();
+    }, []) */
+
+    async function handleFiltersSubmit( ){
+        const response = await api.get('services', {
+            params:{
+               service 
+            }
+        })
+        
+        setIsFilterVisible(false);
+        setLancers(response.data);
+    }
+
     return (
         <>
         <PageHeader 
@@ -31,13 +60,13 @@ function Lot (){
                 <Text style={styles.label}>Serviço</Text>
                 <TextInput 
                     style={styles.input}
-                    value={subject}
-                    onChangeText={text =>  setSubject(text)}
+                    value={service}
+                    onChangeText={text =>  setService(text)}
                     placeholder="Qual serviço?"
                     placeholderTextColor="#c1bccc"
                 />
             
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={handleFiltersSubmit}>
                     <FontAwesome name="search" size={24} color="#14181C" />
                     {/*<Text style ={styles.buttontext}>Lotar</Text>*/}
                 </TouchableOpacity>
@@ -50,11 +79,15 @@ function Lot (){
                 showsHorizontalScrollIndicator= {false}
                 horizontal={true}
             >
-            <LancerItem />
-            <LancerItem />
-            <LancerItem />
-            <LancerItem />
-            <LancerItem />
+            { lancers.map((lancer: Lancer) => {
+                return (
+                    <LancerItem 
+                    key={lancer.id}
+                    lancer={lancer}
+                    />  
+                )
+            }
+            )}
             </ScrollView>
             
          

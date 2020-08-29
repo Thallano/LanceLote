@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 80,
         borderBottomLeftRadius: 80,
         elevation: 4,
-        marginBottom: -80
+        marginBottom: -80,
+        marginTop: -30
     },
     
     topBar:{
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-
+        marginBottom: -5,
     },
 
     title:{

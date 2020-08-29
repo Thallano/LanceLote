@@ -6,7 +6,23 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { FontAwesome } from '@expo/vector-icons'; 
 
 
-function LancerItem ( ) {
+export interface Lancer {
+    id: number;
+    email: string;
+    description: string;
+    cost: number;
+    name: string;
+    service: string;
+    whatsapp: string;
+    modality: string;
+}
+
+interface LancerItemProps{
+    lancer: Lancer;
+}
+
+
+const LancerItem: React.FC<LancerItemProps> = ({ lancer }) =>  {
 
     const [lotHandkShakeColor, setLotHandkShakeColor] = useState(0);
     const color = [
@@ -21,32 +37,35 @@ function LancerItem ( ) {
             setLotHandkShakeColor(lotHandkShakeColor => 0)
         }
     }
+
     function handleLinkToWhatsapp ( ) {
-        const count = 1;
+        
     }
    
     return (
     <View style={styles.container}>
+        <View style={styles.upContainer}>
         <View style={styles.profile}>
             <Image
                 style={styles.avatar}
                 source={logo}
             />
             <View style={styles.profileInfo}>
-                <Text style={styles.name}>Carlos Batista</Text>
-                <Text style={styles.subject}>Serviços Gerais</Text>
+                <Text style={styles.name}>{lancer.name}</Text>
+                <Text style={styles.service}>{lancer.service}</Text>
             </View>
         </View>
         <View style={styles.profileRate}>
         <FontAwesome name="star" size={10} color="#F4F2DA" /><FontAwesome name="star" size={10} color="#F4F2DA" /><FontAwesome name="star" size={10} color="#F4F2DA" /><FontAwesome name="star" size={10} color="#F4F2DA" /><FontAwesome name="star-o" size={10} color="#F4F2DA" />
         </View>
-        <Text style={styles.bio}>Trabalho de pedreiro, alvenaria, pintura, sou pau para toda obra. Tenho mais de 5 anos de experiência, trabalhei na obra de construção da ponte estaiada</Text>
-
+        
+        <Text style={styles.description}>{lancer.description}</Text>
+        </View>
         <View style={styles.footer}>
-            <Text style={styles.price}>
-                Diária {'   '}
-                <Text style={styles.priceValue}>R$ 150,00</Text>
-            </Text>
+            <View style={styles.priceContainer}>
+            <Text style={styles.price}>{lancer.modality}</Text>
+            <Text style={styles.priceValue}>R$ {lancer.cost},00</Text>
+            </View>
 
             <View style={styles.buttonsContainer}>
                

@@ -4,14 +4,18 @@ const styles = StyleSheet.create({
     container:{
         backgroundColor: '#2b2120',
         borderWidth: 1,
-        width: 260,
+        height: 360,
+        width: 280,
         borderColor: '#1e1716',
         borderRadius: 8,
-        marginBottom: 16,
         overflow: 'hidden',
         alignSelf: 'center',
         flexDirection: 'column',
         marginRight: 20
+    },
+    
+    upContainer:{
+        flex: 1,
     },
 
     profile:{
@@ -38,20 +42,20 @@ const styles = StyleSheet.create({
         marginRight: 20,
         marginTop: -10
     },
-
+   
     name:{
         fontFamily: 'Raleway_700Bold',
         color: '#f4f2da',
         fontSize: 20,        
     },
 
-    subject:{
+    service:{
         fontFamily: 'Poppins_400Regular',
         color: '#b19f81',
         fontSize: 12,
     },
 
-    bio:{
+    description:{
         fontFamily: 'Poppins_400Regular',
         color: '#b19f81',
         fontSize: 12,
@@ -66,10 +70,16 @@ const styles = StyleSheet.create({
         padding: 15,
     },
 
+    priceContainer:{
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+    },
+
     price:{
         fontFamily: 'Poppins_400Regular',
         color: '#b19f81',
-        fontSize: 14,   
+        fontSize: 14,
+        marginLeft: -10
     },
     
     priceValue:{

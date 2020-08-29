@@ -1,18 +1,25 @@
 import express from 'express';
 
-import ClassesController from './controllers/ClasssesController';
-import ConnectionsController from './controllers/ConnectionsController';
+import ServicesController from './controllers/ServicesController';
+import LotsController from './controllers/LotsController';
 
 const routes = express.Router();
-const classesControllers = new ClassesController();
-const connectionsController = new ConnectionsController();
+const servicesControllers = new ServicesController();
+const lotsController = new LotsController();
 
 
-routes.get('/classes', classesControllers.index);
-routes.post('/classes', classesControllers.create);
+routes.get('/services', servicesControllers.index);
+routes.post('/services', servicesControllers.create);
 
-routes.get('/connections', connectionsController.index);
-routes.post('/connections', connectionsController.create);
+/*routes.post('/services', (request, response) =>{
+    const data = request.body;
+    console.log(data)
+    return response.send();
+});*/
+
+
+routes.get('/lots', lotsController.index);
+routes.post('/lots', lotsController.create);
 
 
 export default routes;

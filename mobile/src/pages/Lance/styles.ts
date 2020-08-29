@@ -64,6 +64,18 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
 
+    inputDescription:{
+        height: 108,
+        backgroundColor: '#FFF',
+        padding: 10,
+        borderRadius:  8,
+        paddingHorizontal: 16,
+        marginTop: 4,
+        marginBottom: 16,
+        textAlign: 'left',
+        textAlignVertical: 'top',
+    },
+
     submitButton:{
         backgroundColor: '#04d361',
         height: 56,
