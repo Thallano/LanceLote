@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         alignSelf: 'center',
         flexDirection: 'column',
-        marginRight: 20
+        marginRight: 20,
+        marginBottom: 20
     },
     
     upContainer:{

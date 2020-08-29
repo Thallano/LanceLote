@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import {View, Image, Text, Linking } from 'react-native';
+import {View, Image, Text, Linking, AsyncStorage } from 'react-native';
 import logo from '../../../assets/logo.png';
 import styles from './styles';
 import { TouchableOpacity, ScrollView } from "react-native-gesture-handler";
 import { FontAwesome } from '@expo/vector-icons'; 
 
+import AsyncStorate from '@react-native-community/async-storage';
 
 export interface Lancer {
     id: number;
@@ -17,13 +18,16 @@ export interface Lancer {
     modality: string;
 }
 
-interface LancerItemProps{
+export interface LancerItemProps{
     lancer: Lancer;
+    loted: boolean;
 }
 
 
-const LancerItem: React.FC<LancerItemProps> = ({ lancer }) =>  {
-
+const LancerItem: React.FC<LancerItemProps> = ({ lancer , loted}) =>  {
+    
+    const  [isLoted, setIsLoted] = useState(loted);
+    
     const [lotHandkShakeColor, setLotHandkShakeColor] = useState(0);
     const color = [
         '#474553',
@@ -38,8 +42,22 @@ const LancerItem: React.FC<LancerItemProps> = ({ lancer }) =>  {
         }
     }
 
-    function handleLinkToWhatsapp ( ) {
-        
+    async function handleContactPressed ( ) {
+        if(!isLoted) {
+            
+            const lotes = await AsyncStorage.getItem('lotados');
+
+            let lotesArray = [];
+            
+            if(lotes){
+                lotesArray = JSON.parse(lotes);
+            }
+
+            lotesArray.push(lancer);
+
+            setIsLoted(true);
+            await AsyncStorage.setItem('lotados', JSON.stringify(lotesArray));
+        }
     }
    
     return (
@@ -79,7 +97,7 @@ const LancerItem: React.FC<LancerItemProps> = ({ lancer }) =>  {
                     {/*<Text style={styles.lotarTextButton}>Lotar Serviço</Text>*/}
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={handleLinkToWhatsapp} style={styles.contactButton}>
+                <TouchableOpacity onPress={handleContactPressed} style={styles.contactButton}>
                     <Text style={styles.contactButtonText}>Entrar em contato</Text>
                     <FontAwesome name="whatsapp" size={24} style={styles.whatsappIcon} />
                 </TouchableOpacity>

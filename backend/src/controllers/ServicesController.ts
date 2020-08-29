@@ -26,7 +26,6 @@ export default class ServicesController {
             .where('services.service', '=', service)
             .join('users', 'services.user_id', '=', 'users.id')
             .select(['services.*', 'users.*']);
-            console.log(services)
         return response.json(services);
     } 
     

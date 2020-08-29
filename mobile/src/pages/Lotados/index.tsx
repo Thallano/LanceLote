@@ -1,11 +1,38 @@
 import React, { useState } from 'react';
-import {View, Text, ImageBackground, TextInput, Animated } from 'react-native';
-import { RectButton, ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import {useFocusEffect} from '@react-navigation/native';
+import {View, Animated, AsyncStorage } from 'react-native';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import styles from './styles';
+
 import PageHeader from '../../components/PageHeader';
-import LancerItem from '../../components/LancerItem';
+
+import LancerItem, {Lancer} from '../../components/LancerItem';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
+
+
+function handleRateOnPress ( ){
+
+}
+
+async function handleRemoveLoter ( ){
+    const [isLoted, setIsLoted] = useState(loted);
+    const lotados = await AsyncStorage.getItem('lotados');
+
+    let lotadosArray = [];
+
+    if (lotados){
+        lotadosArray = JSON.parse(lotados);
+    }
+
+    if (isLoted){
+        const lotadosIndex = lotadosArray.findIndex((lancerItem: Lancer) => {
+            return lancerItem.id === lancer.id;
+        });
+
+        lotadosArray.splice(lotadosIndex, 1)
+    }
+}
 
 const RightAction = ( progression: any, dragX: any ) => {
 
@@ -18,14 +45,10 @@ const scale = dragX.interpolate({
             
         <Animated.View style={{ transform: [{scale}]}}> 
                 <View style={styles.removeService}>
-                <Ionicons  name="ios-trash" size={30} color="#14181C" style={styles.iconServiceRemove} />
+                <Ionicons  name="ios-trash" size={30} color="#14181C" style={styles.iconServiceRemove} onPress={handleRemoveLoter}/>
                 </View>
         </Animated.View>    
     )
-}
-
-function handleRateOnPress ( ){
-
 }
 
 const LeftAction = ( progression: any, dragX: any ) => {
@@ -51,6 +74,20 @@ const LeftAction = ( progression: any, dragX: any ) => {
 }
 
 function Lotados (){
+   
+    const [lotados, setLotados] = useState([]);
+
+function loadLotados(){
+    AsyncStorage.getItem('lotados').then(response => {
+        if (response){
+            const lotedLancers = JSON.parse(response);
+            setLotados(lotedLancers);
+        }
+    });
+}
+    useFocusEffect(() =>{
+        loadLotados();
+})
 
     return (
         <>
@@ -70,20 +107,22 @@ function Lotados (){
                 showsVerticalScrollIndicator= {false}
                 horizontal={false}
             >
-            <Swipeable 
-            renderRightActions={RightAction}
-            renderLeftActions={LeftAction}
-            >
-           
-            </Swipeable>
-
-            <Swipeable
-                renderRightActions={RightAction}
-                renderLeftActions={LeftAction}
-            >
-                                
             
-            </Swipeable>
+            {lotados.map((lancer: Lancer) =>{
+                return(
+                    <Swipeable 
+                    renderRightActions={RightAction}
+                    renderLeftActions={LeftAction}
+                    >
+                    <LancerItem 
+                        key={lancer.id}
+                        lancer={lancer}
+                        loted
+                    />
+                    </Swipeable>
+                )
+            })}
+        
             </ScrollView>
             
          
