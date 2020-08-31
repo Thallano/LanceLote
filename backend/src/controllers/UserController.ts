@@ -1,4 +1,5 @@
 import {Request, Response} from 'express';
+const crypto = require('crypto');
 
 import db from '../database/connection';
 
@@ -25,20 +26,26 @@ export default class UserController {
 
     
     async createUser(request: Request, response: Response) {
+        
         const {
             name,
             email,
             whatsapp,
             password,
         } = request.body;
+        
         console.log(request.body)
+        
+        const id = crypto.randomBytes(3).toString('HEX');
+        
         
         const trx = await db.transaction();
     
         try {
             const insertedUsersIds = await trx('users').insert({
+                id,
                 name,
-                email,
+                email,  
                 whatsapp,
                 password,
             });
