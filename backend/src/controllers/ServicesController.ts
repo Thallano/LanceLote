@@ -2,12 +2,12 @@ import {Request, Response} from 'express';
 
 import db from '../database/connection';
 
-interface ServiceItem {
+/*interface ServiceItem {
     service: string;
     modality: string;
     cost: number;
     description: string;
-}
+} */
 
 export default class ServicesController {
     
@@ -27,21 +27,37 @@ export default class ServicesController {
             .join('users', 'services.user_id', '=', 'users.id')
             .select(['services.*', 'users.*']);
         return response.json(services);
-    } 
+    }
+    /*
+    async login(request: Request, response: Response) {
+        const login = request.query;
+
+        const email = login.email as string;
+        const password = login.password as string;
+        
+        if (!login.email || !login.password){
+            return response.status(400).json({
+                error: 'Erro ao procurar usuário'
+            });         
+        }
+
+        const users = await db('users')
+            .where('users.email', '=', email)
+            .where('users.password', '=', password)
+            .select('users.*');
+        return response.json(users);
+    }
+
     
-    async create(request: Request, response: Response) {
+    async createUser(request: Request, response: Response) {
         const {
             name,
             email,
             whatsapp,
             password,
-            service,
-            cost,
-            modality,
-            description
         } = request.body;
-        
         console.log(request.body)
+        
         const trx = await db.transaction();
     
         try {
@@ -51,18 +67,41 @@ export default class ServicesController {
                 whatsapp,
                 password,
             });
-        
-            const user_id = insertedUsersIds[0];
 
+            await trx.commit();
+        
+            return response.status(201).send();
+            
+        } catch (err) {
+            await trx.rollback();
+    
+            return response.status(400).json({
+                error: 'Unexpected error while creating new service'
+            })
+        }
+    }
+    */
+    
+    async createService(request: Request, response: Response) {
+        const {
+            service,
+            cost,
+            modality,
+            description,
+            user_id
+        } = request.body;
+        console.log(request.body)
+        const trx = await db.transaction();
+    
+        try {
+            
             const insertedServicesIds = await trx('services').insert({
                 service,
                 cost,
                 modality,
                 description,
-                user_id,
-            })
-        
-            const service_id = insertedServicesIds[0];         
+                user_id
+            })        
                  
             await trx.commit();
         

@@ -3,13 +3,14 @@ import {View, Text, ImageBackground, TextInput, ScrollView } from 'react-native'
 import { RectButton, TouchableOpacity } from 'react-native-gesture-handler';
 import { FontAwesome, MaterialCommunityIcons} from '@expo/vector-icons';
 
+import api from '../../services/api';
 
 import PageHeader from '../../components/PageHeader';
 
 import styles from './styles';
 
 function Lance (){
-    
+    const [user_id, setUser] = useState('');
     const [service, setService] = useState('');
     const [description, setDescription] = useState('');
     const [modality, setModality] = useState('');
@@ -26,6 +27,25 @@ function Lance (){
     function handleOffFocus () {
         setInputFocus(styles.input)
     }*/
+    async function handleServiceSubmit( ){
+        if( service || user_id || description || cost || modality == '' ){
+            alert('Preencha todos campos do serviço');
+        } else {
+        const response = await api.post('services', {
+                user_id,
+                service,
+                description,
+                modality,
+                cost              
+        }).then(() => {
+            alert('Serviço cadastrado com sucesso!');
+            ('/');
+            
+        }).catch(() => {
+            alert('Erro no cadastro!');
+        })
+    }
+    }
 
     return (
         <>
@@ -37,6 +57,15 @@ function Lance (){
         >
             <FontAwesome style={styles.gearIcon} name="gears" size={55} color="#4b97ff" />
             <View style={styles.searchForm}>
+                    <Text style={styles.label}>Id do Usuario</Text>
+                    <TextInput 
+                        style={styles.input}
+                        value={user_id}
+                        onChangeText={text =>  setUser(text)}
+                        placeholder="Confirme para nós o seu ID"
+                        placeholderTextColor="#c1bccc" 
+                    />
+
                     <Text style={styles.label}>Serviço</Text>
                     <TextInput 
                         style={styles.input}
@@ -53,6 +82,7 @@ function Lance (){
                         onChangeText={text =>  setDescription(text)}
                         placeholder="Conte-nos um pouco sobre seu serviço"
                         placeholderTextColor="#c1bccc"
+                        multiline
                     />
                 
                     <View style={styles.inputGroup}>
@@ -81,7 +111,7 @@ function Lance (){
                         </View> 
                     </View>
             </View>
-            <TouchableOpacity style={styles.buttonLance}>
+            <TouchableOpacity style={styles.buttonLance} onPress={handleServiceSubmit}>
                 <Text style={styles.buttontext}>Quero Lançar um Serviço</Text>
                 <MaterialCommunityIcons name="arrow-top-right-thick" size={26} color="#4b97ff" />
             </TouchableOpacity>

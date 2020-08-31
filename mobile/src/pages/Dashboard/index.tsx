@@ -42,7 +42,7 @@ function Dashboard (){
             <View style={styles.headerIntro}>
                     <Text style={styles.titleBold}>
                     <Feather name="coffee" style={styles.coffee} size={25}/>   Seja Bem-vindo!{'\n'}
-                        <Text style={styles.title}>A sua plataforma de serviços!</Text>
+                        <Text style={styles.title}>Essa é a sua plataforma de serviços</Text>
                     </Text>
             </View>   
            

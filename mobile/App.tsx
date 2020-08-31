@@ -1,6 +1,5 @@
 import React from 'react';
 import { AppLoading } from 'expo';
-/*import AppStack from './src/routes/AppStack';*/
 import { StatusBar } from 'expo-status-bar';
 
 import Routes from './src/routes';

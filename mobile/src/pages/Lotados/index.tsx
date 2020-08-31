@@ -10,12 +10,13 @@ import PageHeader from '../../components/PageHeader';
 import LancerItem, {Lancer} from '../../components/LancerItem';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
+import AsyncStorate from '@react-native-community/async-storage';
 
 function handleRateOnPress ( ){
 
 }
 
-async function handleRemoveLoter ( ){
+/*async function handleRemoveLoter ( ){
     const [isLoted, setIsLoted] = useState(loted);
     const lotados = await AsyncStorage.getItem('lotados');
 
@@ -32,7 +33,7 @@ async function handleRemoveLoter ( ){
 
         lotadosArray.splice(lotadosIndex, 1)
     }
-}
+}*/
 
 const RightAction = ( progression: any, dragX: any ) => {
 
@@ -45,7 +46,7 @@ const scale = dragX.interpolate({
             
         <Animated.View style={{ transform: [{scale}]}}> 
                 <View style={styles.removeService}>
-                <Ionicons  name="ios-trash" size={30} color="#14181C" style={styles.iconServiceRemove} onPress={handleRemoveLoter}/>
+                <Ionicons  name="ios-trash" size={30} color="#14181C" style={styles.iconServiceRemove} />
                 </View>
         </Animated.View>    
     )

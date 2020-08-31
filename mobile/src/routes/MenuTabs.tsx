@@ -46,7 +46,7 @@ function MenuTabs() {
                 name="Lotar" 
                 component={Lot}
                 options={{
-                    tabBarLabel: 'Lotar',
+                    tabBarLabel: 'Lotes',
                     tabBarIcon: ({ color, size,  focused }) =>{
                         return(
                             <>

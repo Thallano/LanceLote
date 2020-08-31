@@ -1,7 +1,7 @@
 interface Response {
     token: string;
     user: {
-        name: string;
+        password: string;
         email: string;
     };
 }
@@ -12,10 +12,10 @@ export function signIn( ): Promise<Response> {
             resolve({
             token: 'aosihdjasdmaskldmaskdasidjmasidasasdsad',
             user: {
-                name: 'Cristyan',
-                email: 'cristyan@lancelot.com.br'
+                password: '',
+                email: ''
             }, 
         });
-        }, 1000);
+        });
     });
 }

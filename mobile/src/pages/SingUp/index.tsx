@@ -1,24 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import { View, ScrollView, Text, TextInput } from 'react-native';
+import React, { useState, useEffect, FormEvent } from 'react';
+import { View, ScrollView, Text, TextInput, Alert } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
 import styles from './styles';
+
+import api from '../../services/api';
 
 const SingUp: React.FC = () => {
 
     const [users, setUsers] = useState([]);
-    
+
     const [name, setName]= useState('');
     const [password, setPassword] = useState('');
+    const [passwordCheck, setPasswordCheck] = useState('');
     const [email, setEmail] = useState('');
     const [whatsapp, setWhatsapp] = useState('');
 
+    
+
+    async function handleUserSubmit ( ) {
+        if (password != passwordCheck ) {
+            alert("Senhas não coincidem")
+        } else if( email && name && password && whatsapp != '' ){
+            const response = await api.post('users', {
+                email,
+                name,
+                password,
+                whatsapp,
+            }).then(() => {
+                alert('Cadastro realizado com sucesso!');
+                ('/');
+            }).catch(() => {
+                alert('Erro no cadastro!');
+            })
+            
+        } else {
+            alert('Preencha todos campos do cadastro!');
+            /*setUsers(response.data);*/
+        }
+        
+    }
+
 return (
     <>
-    <View style={styles.searchForm}>
+    <View style={styles.searchForm}>  
 
-    
-    
         <View>
             <Text style={styles.singUpTittleText}>CADASTRO</Text>
         </View>
@@ -33,10 +58,11 @@ return (
                 <TextInput 
                     style={styles.input}
                     value={email}
+                    autoCompleteType='email'
+                    autoCapitalize='none'
                     onChangeText={text =>  setEmail(text)}
                     placeholder="Seu E-mail"
                     placeholderTextColor="#c1bccc"
-                    
                 />
                 </View>
                                     
@@ -56,6 +82,7 @@ return (
                     <TextInput 
                         style={styles.input}
                         value={password}
+                        secureTextEntry={true}
                         onChangeText={text =>  setPassword(text)}
                         placeholder="Senha"
                         placeholderTextColor="#c1bccc"
@@ -66,8 +93,9 @@ return (
                     <Text style={styles.label}>Confirmar Senha</Text>
                     <TextInput 
                         style={styles.input}
-                        value={password}
-                        onChangeText={text =>  setPassword(text)}
+                        value={passwordCheck}
+                        secureTextEntry={true}
+                        onChangeText={text =>  setPasswordCheck(text)}
                         placeholder="Confirme a Senha"
                         placeholderTextColor="#c1bccc"
                     />
@@ -78,14 +106,16 @@ return (
                     <TextInput 
                         style={styles.input}
                         value={whatsapp}
+                        autoCompleteType="tel"
                         onChangeText={text =>  setWhatsapp(text)}
                         placeholder="DDD00000000"
                         placeholderTextColor="#c1bccc"
+                        dataDetectorTypes='phoneNumber'
                     />
                 </View>
                 </View>
                                              
-            <TouchableOpacity style={styles.submitButton}>
+            <TouchableOpacity style={styles.submitButton} onPress={handleUserSubmit}>
                 <Text style ={styles.submitButtonText}>Criar Conta</Text>
             </TouchableOpacity>
    
