@@ -5,8 +5,6 @@ import styles from './styles';
 import { TouchableOpacity, ScrollView } from "react-native-gesture-handler";
 import { FontAwesome } from '@expo/vector-icons'; 
 
-import AsyncStorate from '@react-native-community/async-storage';
-
 export interface Lancer {
     id: number;
     email: string;
@@ -87,7 +85,7 @@ const LancerItem: React.FC<LancerItemProps> = ({ lancer , loted}) =>  {
                 
                 <Text style={styles.modality}>{lancer.modality}</Text>
                
-                <Text style={styles.priceValue}>R$ {lancer.cost},00</Text>
+                <Text style={styles.cost}>R$ {lancer.cost},00</Text>
             </View>
 
             <View style={styles.buttonsContainer}>

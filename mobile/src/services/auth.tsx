@@ -1,3 +1,4 @@
+
 interface Response {
     token: string;
     user: {
@@ -12,7 +13,7 @@ export function signIn( ): Promise<Response> {
             resolve({
             token: 'aosihdjasdmaskldmaskdasidjmasidasasdsad',
             user: {
-                password: '',
+                password:'',
                 email: ''
             }, 
         });

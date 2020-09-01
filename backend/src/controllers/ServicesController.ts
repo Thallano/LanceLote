@@ -64,4 +64,18 @@ export default class ServicesController {
         }
     }
 
+    async deleteService(request: Request, response: Response) {
+        const serviceid = request.query;
+        
+        const service = serviceid.service as string;
+        
+        try{
+        await db('services').where('id', service).delete();
+        return response.status(201).send();
+        }catch (err) {   
+            return response.status(400).json({
+                error: 'Unexpected error while deleting service'
+            })
+        }
+    }  
 }

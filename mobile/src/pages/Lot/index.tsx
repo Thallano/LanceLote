@@ -9,7 +9,6 @@ import styles from './styles';
 import PageHeader from '../../components/PageHeader';
 import LancerItem, { Lancer } from '../../components/LancerItem';
 
-
 import api from '../../services/api';
 
 function Lot (){
@@ -102,7 +101,6 @@ function Lot (){
                     
                     /> 
                     
-                
                 )
             }
             )}

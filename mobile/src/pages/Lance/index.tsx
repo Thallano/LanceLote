@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import {View, Text, ImageBackground, TextInput, ScrollView } from 'react-native';
-import { RectButton, TouchableOpacity } from 'react-native-gesture-handler';
+import React, { useState } from 'react';
+import {View, Text, TextInput, ScrollView } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { FontAwesome, MaterialCommunityIcons} from '@expo/vector-icons';
 
 import api from '../../services/api';
@@ -10,25 +10,16 @@ import PageHeader from '../../components/PageHeader';
 import styles from './styles';
 
 function Lance (){
+
     const [user_id, setUser] = useState('');
     const [service, setService] = useState('');
     const [description, setDescription] = useState('');
     const [modality, setModality] = useState('');
     const [cost, setCost] = useState('');
-    /*const [inputFocus, setInputFocus ] = useState<string>('');
-
-    useEffect (( ) =>{
-        setInputFocus(styles.input)
-    },[]) 
     
-    function handleInFocus () {
-        setInputFocus(styles.inputFocused)
-    }
-    function handleOffFocus () {
-        setInputFocus(styles.input)
-    }*/
     async function handleServiceSubmit( ){
-        if( service || user_id || description || cost || modality == '' ){
+        if( service == '' || user_id == '' || description == '' || cost == '' || modality == '' ){
+            console.log(user_id, service, description, modality, cost)
             alert('Preencha todos campos do serviço');
         } else {
         const response = await api.post('services', {
@@ -46,10 +37,14 @@ function Lance (){
         })
     }
     }
-
+    
     return (
         <>
-        <PageHeader title="Lançar"></PageHeader>
+        <PageHeader 
+        title="Lançar"
+        subtitle="Aqui você vai lançar seus serviços"
+        headerRight={<Text></Text>}
+        ></PageHeader>
         
         <View style={styles.container}>
         <ScrollView 

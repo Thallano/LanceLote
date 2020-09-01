@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, Image, ScrollView, Text, TextInput, Alert } from 'react-native';
+import { View, Image, Text, TextInput, Alert } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import { FontAwesome } from '@expo/vector-icons'; 
@@ -10,6 +10,8 @@ import api from '../../services/api';
 
 import styles from './styles';
 import AuthContext from '../../contexts/auth';
+
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 const SingIn: React.FC = () => {
@@ -26,7 +28,8 @@ const SingIn: React.FC = () => {
     };
 
     
-    function handleLogin (){
+function handleLogin (){
+        
         if (email && password != ''){       
        
         api.get('users',{
@@ -36,16 +39,12 @@ const SingIn: React.FC = () => {
         }
         }).then (response => {
             setLogin(response.data)
-            console.log(response.data, 'responseData')
 
             if(response.data == login) {
-                console.log(login, 'A')
                 
             } else if (response.data != login){
-                
-                console.log(login, 'B')
+            
             } 
-            console.log(login)
         })} else {
             Alert.alert("Usuário ou Senha errados/Ou Usuário não existe")   
         }
@@ -54,7 +53,9 @@ const SingIn: React.FC = () => {
 useEffect (( ) => {
     login.map((email, password) => {
         signIn();
+        const userStorage = AsyncStorage.getItem('login')
         console.log("Fez a verificação")
+        console.log(userStorage)
     })
 },)
   
@@ -93,7 +94,6 @@ return (
             <Text  style ={styles.forgotPassword}>*Esqueceu a <Text style ={styles.forgotPasswordLink}>senha?</Text></Text>
 
             <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-                {/*<Text style ={styles.loginButtonText}>LOGAR</Text>*/}
                 <FontAwesome name="sign-in" size={24} color="#14181C" />
             </TouchableOpacity>
             

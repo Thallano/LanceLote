@@ -8,7 +8,7 @@ import SingIn from '../pages/SingIn';
 import AppRoutes from './AppRoutes';
 import Dashboard from '../pages/Dashboard';
 import Lance from '../pages/Lance';
-import MenuTabs from './MenuTabs';*/
+import MenuTabsLot from './MenuTabsLot';*/
 
 /*const { Navigator, Screen } = createStackNavigator();*/
 

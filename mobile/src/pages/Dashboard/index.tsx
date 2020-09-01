@@ -1,26 +1,26 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
-import { Ionicons, EvilIcons, FontAwesome, Feather} from '@expo/vector-icons';
+import { Ionicons, FontAwesome, Feather} from '@expo/vector-icons';
 
 import styles from './styles';
 import intrologo from '../../../assets/intrologo.png';
+
 import AuthContext from '../../contexts/auth';
 
 
- 
 function Dashboard (){
     const { navigate } = useNavigation();
     const { signOut } = useContext(AuthContext);
 
     function handleLanceButton(){
-        navigate('Lance');
+        navigate('MenuTabsLance');
     }
 
     function handleLotButton() {
-        navigate('MenuTabs');
+        navigate('MenuTabsLot');
     }
 
     function handleLogout() {
@@ -65,14 +65,6 @@ function Dashboard (){
                
             </View>
 
-           {/* <View style={styles.logonContainer}>
-                
-                <TouchableOpacity style={[styles.button, styles.logonButtonContainer]} onPress={handleLotButton}>
-                    <Text style={styles.logonServiceTextButton}>LOGAR</Text>
-                    <Ionicons name="ios-log-in" size={32} color="#14181C" />
-                </TouchableOpacity>
-               
-            </View>*/}
         </View>
         </>
     )

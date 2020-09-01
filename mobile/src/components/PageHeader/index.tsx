@@ -16,9 +16,10 @@ import {  FontAwesome } from '@expo/vector-icons';
 interface PageHeaderProps{
     title: string;
     headerRight?: ReactNode;
+    subtitle?: string;
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({ title, headerRight ,children })=> {
+const PageHeader: React.FC<PageHeaderProps> = ({ title, subtitle, headerRight ,children })=> {
     const { navigate } = useNavigation();
 
     function handleGoback(){
@@ -26,15 +27,15 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, headerRight ,children })
     }
 
     return (
-    <View style={styles.container}>
-        <View style={styles.topBar}>
-                   
-        </View>
-       
+    <View style={styles.container}>      
         <View style={styles.header}>
         <Text style={styles.title}>{title}</Text>
         {headerRight}
         </View>
+        <View style={styles.subtitleContainer}>
+        <Text style={styles.subtitle}>{subtitle}</Text>
+        </View>
+       
         {children}
     </View>)
 }

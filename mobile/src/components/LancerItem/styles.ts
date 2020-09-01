@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#474553',
         borderWidth: 1,
         height: 360,
-        width: 280,
+        width: 320,
         borderColor: '#1e1716',
         borderRadius: 8,
         overflow: 'hidden',
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
 
     },
     
-    priceValue:{
+    cost:{
         fontFamily: 'Raleway_700Bold',
         color: '#f4f2da',
         fontSize: 16,

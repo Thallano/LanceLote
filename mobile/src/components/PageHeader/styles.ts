@@ -13,30 +13,36 @@ const styles = StyleSheet.create({
         marginTop: -30
     },
     
-    topBar:{
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-    },
-
     header: {
         flexDirection: 'row',
         alignItems: 'center',
+        alignContent: 'center',
         justifyContent: 'space-between',
-        marginBottom: -5,
+        marginTop: 35,
+        marginBottom: -35
     },
 
     title:{
-        
         fontFamily: 'Raleway_700Bold',
         color: '#F4F2DA',
         fontSize: 24,
         marginRight: 10,
         lineHeight: 32,
-        maxWidth: 160,
-        marginVertical: 40        
+        maxWidth: 120,
     },
 
+    subtitleContainer:{
+        
+    },
+
+    subtitle:{
+        fontFamily: 'Poppins_400Regular',
+        color: '#f4f2da',
+        fontSize: 13,
+        marginRight: 10,
+        lineHeight: 32,
+        marginTop: 32,
+    },
 
 });
 

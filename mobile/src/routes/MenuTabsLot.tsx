@@ -1,14 +1,14 @@
 import React from 'react';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Entypo, FontAwesome} from '@expo/vector-icons';
-import Lance from '../pages/Lance';
+import { FontAwesome} from '@expo/vector-icons';
+
 import Lot from '../pages/Lot';
 import Lotados from '../pages/Lotados';
 
 const {Navigator, Screen} = createBottomTabNavigator ();
 
-function MenuTabs() {
+function MenuTabsLot() {
     return (
         <Navigator 
             tabBarOptions={{
@@ -76,4 +76,4 @@ function MenuTabs() {
     );
 }
 
-export default MenuTabs;
+export default MenuTabsLot;
