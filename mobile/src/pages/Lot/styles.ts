@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#14181C',
         marginTop: 80,
         marginLeft: 20,
-        elevation: 2
+        elevation: 0
     },
 
     description:{

@@ -28,8 +28,6 @@ function Lanced (){
             }
         })
         setUsersId(response.data)
-        console.log("executou")
-        
     } 
     
     const [service, setServiceId] = useState([]);
@@ -46,12 +44,12 @@ function Lanced (){
         }).catch(() => {
             alert('Erro ao deletar serviço');
         })
-
+        useEffect(() => {
+            handleServiceSubmit()
+        },[service])
     }
 
-    useEffect(() => {
-        handleServiceSubmit()
-    },[service])
+   
 
 const RightAction = ( progression: any, dragX: any ) => {
     
@@ -64,7 +62,7 @@ const RightAction = ( progression: any, dragX: any ) => {
                     
                 <Animated.View  style={{ transform: [{scale}]}}> 
                         <View style={styles.removeService}>
-                        <Ionicons  name="ios-trash" size={30} color="#FF514B" style={styles.iconServiceRemove} 
+                        <Ionicons  name="ios-trash" size={55} color="#FF514B" style={styles.iconServiceRemove} 
                         
                         onPress={()=>{
                             setServiceId(usersid.id)
@@ -144,7 +142,7 @@ function handleSwpOpen( ){
                     <View style={styles.userServicesContainer}>
                         <View style={styles.headerService}>
                             <Text style={styles.serviceText}>{usersid.service}</Text>
-                            <MaterialIcons  name="keyboard-arrow-left" size={24} color="#F4F2DA" />
+                            <MaterialCommunityIcons name="gesture-swipe-left" size={24} color="#F4F2DA" />
                         </View>
                         <Text style={styles.descriptionText}>{usersid.description}</Text>
                         <View style={styles.bottomContainer}>

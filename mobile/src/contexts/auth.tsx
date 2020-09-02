@@ -23,8 +23,6 @@ export const AuthProvider: React.FC = ({children} ) =>  {
             /*Passar para multiget */
             const storagedUser = await AsyncStorage.getItem('@RNAuth:user');
             const storagedToken = await AsyncStorage.getItem('@RNAuth:token');
-            console.log(storagedUser)
-            console.log(storagedToken)
             if (storagedUser && storagedToken) {
 
                 api.defaults.headers.Authorization = `Bearer ${storagedToken}`;

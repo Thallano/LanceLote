@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {View, Text, TextInput, ScrollView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { FontAwesome, MaterialCommunityIcons} from '@expo/vector-icons';
@@ -8,8 +8,10 @@ import api from '../../services/api';
 import PageHeader from '../../components/PageHeader';
 
 import styles from './styles';
+import AsyncStorage from '@react-native-community/async-storage';
 
 function Lance (){
+    const [ loginIdPass, setLoginIdPass ] = useState([]);
 
     const [user_id, setUser] = useState('');
     const [service, setService] = useState('');
@@ -17,9 +19,21 @@ function Lance (){
     const [modality, setModality] = useState('');
     const [cost, setCost] = useState('');
     
+    function loadLogin ( ){
+        AsyncStorage.getItem('login').then(response =>{
+            if (response){
+                const loginId = JSON.parse(response);
+                setLoginIdPass(loginId);
+            }
+        });
+    }
+    
+    useEffect (()=> {
+        loadLogin();
+    },[])
+
     async function handleServiceSubmit( ){
         if( service == '' || user_id == '' || description == '' || cost == '' || modality == '' ){
-            console.log(user_id, service, description, modality, cost)
             alert('Preencha todos campos do serviço');
         } else {
         const response = await api.post('services', {
@@ -43,7 +57,7 @@ function Lance (){
         <PageHeader 
         title="Lançar"
         subtitle="Aqui você vai lançar seus serviços"
-        headerRight={<Text></Text>}
+        headerRight={<Text style={styles.label}>Seu ID: {loginIdPass}</Text>}
         ></PageHeader>
         
         <View style={styles.container}>

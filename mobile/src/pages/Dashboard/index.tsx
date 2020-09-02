@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
@@ -9,9 +9,12 @@ import styles from './styles';
 import intrologo from '../../../assets/intrologo.png';
 
 import AuthContext from '../../contexts/auth';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 function Dashboard (){
+    const [ loginIdPass, setLoginIdPass ] = useState([]);
+
     const { navigate } = useNavigation();
     const { signOut } = useContext(AuthContext);
 
@@ -26,15 +29,27 @@ function Dashboard (){
     function handleLogout() {
         signOut();
     };
-
-
+    
+    function loadLogin ( ){
+        AsyncStorage.getItem('login').then(response =>{
+            if (response){
+                const loginId = JSON.parse(response);
+                setLoginIdPass(loginId);
+            }
+        });
+    }
+    
+    useEffect (()=> {
+        loadLogin();
+    },[])
+    
     return (
         <>
         
         <View style={styles.container}>
         <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-                {/*<Text style ={styles.loginButtonText}>LOGAR</Text> */}
-                <FontAwesome name="sign-out" size={24} color="#4b97ff" />
+                <FontAwesome name="power-off" size={24} color="#4b97ff" />  
+                <Text style ={styles.userIDText}>Seu ID: {loginIdPass}</Text>
         </TouchableOpacity>
             <View style={styles.containerLogo}>
                 <Image source={intrologo} style={styles.logoContainer} />

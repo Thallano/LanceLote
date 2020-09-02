@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         justifyContent: 'space-between',
         marginTop: 35,
-        marginBottom: -35
+        marginBottom: 5
     },
 
     title:{
@@ -40,8 +40,7 @@ const styles = StyleSheet.create({
         color: '#f4f2da',
         fontSize: 13,
         marginRight: 10,
-        lineHeight: 32,
-        marginTop: 32,
+        marginTop: 5,
     },
 
 });

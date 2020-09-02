@@ -10,30 +10,9 @@ import PageHeader from '../../components/PageHeader';
 import LancerItem, {Lancer} from '../../components/LancerItem';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
-import AsyncStorate from '@react-native-community/async-storage';
-
 function handleRateOnPress ( ){
 
 }
-
-/*async function handleRemoveLoter ( ){
-    const [isLoted, setIsLoted] = useState(loted);
-    const lotados = await AsyncStorage.getItem('lotados');
-
-    let lotadosArray = [];
-
-    if (lotados){
-        lotadosArray = JSON.parse(lotados);
-    }
-
-    if (isLoted){
-        const lotadosIndex = lotadosArray.findIndex((lancerItem: Lancer) => {
-            return lancerItem.id === lancer.id;
-        });
-
-        lotadosArray.splice(lotadosIndex, 1)
-    }
-}*/
 
 const RightAction = ( progression: any, dragX: any ) => {
 
@@ -125,7 +104,6 @@ function loadLotados(){
             })}
         
             </ScrollView>
-            
          
         </View>
         </>

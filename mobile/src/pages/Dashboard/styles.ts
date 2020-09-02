@@ -11,9 +11,16 @@ const styles = StyleSheet.create({
     logoutButton:{
         marginTop: "35%",
         borderRadius: 8,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         padding: 15,
-        width: '18%',
-          
+    },
+
+    userIDText:{
+        fontFamily: 'Poppins_600SemiBold',
+        color: '#F4F2DA',
+        fontSize: 18,
+        marginRight: 10,
     },
 
     headerIntro:{

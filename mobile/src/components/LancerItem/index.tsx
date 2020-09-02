@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import {View, Image, Text, Linking, AsyncStorage } from 'react-native';
+import {View, Image, Text, Linking } from 'react-native';
 import logo from '../../../assets/logo.png';
 import styles from './styles';
 import { TouchableOpacity, ScrollView } from "react-native-gesture-handler";
 import { FontAwesome } from '@expo/vector-icons'; 
+
+import AsyncStorage from '@react-native-community/async-storage';
 
 export interface Lancer {
     id: number;
@@ -21,8 +23,7 @@ export interface LancerItemProps{
     loted: boolean;
 }
 
-
-const LancerItem: React.FC<LancerItemProps> = ({ lancer , loted}) =>  {
+const LancerItem: React.FC<LancerItemProps> = ({ lancer , loted }) =>  {
     
     const  [isLoted, setIsLoted] = useState(loted);
     

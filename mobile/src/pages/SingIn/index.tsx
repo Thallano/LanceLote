@@ -16,49 +16,47 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 const SingIn: React.FC = () => {
     const { signed, signIn } = useContext(AuthContext);
-   
+
+    const [loginIdPass, setLoginIdPass] = useState<any>([]);
+    
     const { navigate } = useNavigation();
   
     const [login , setLogin] = useState([]);
     const [email, setEmail]= useState('');
     const [password, setPassword] = useState('');
 
-    function handleSingUp ( ) {
-        navigate('SingUp');
-    };
+function handleSingUp ( ) {
+    navigate('SingUp');
+};
 
-    
-function handleLogin (){
-        
-        if (email && password != ''){       
-       
-        api.get('users',{
+async function handleLogin (){
+     
+        const response = await api.get('users', {
             params:{
                 email,
                 password 
         }
-        }).then (response => {
-            setLogin(response.data)
+        });
+        setLogin(response.data);
+        console.log(login);
+};
 
-            if(response.data == login) {
-                
-            } else if (response.data != login){
-            
-            } 
-        })} else {
-            Alert.alert("Usuário ou Senha errados/Ou Usuário não existe")   
-        }
-    };
+function handleLoginOn (){
+    const loginId = login.map((login: any) => {
+        return  login.id
+    })
+    setLoginIdPass(loginId)
+    AsyncStorage.setItem('login', JSON.stringify(loginIdPass));
+}
 
 useEffect (( ) => {
-    login.map((email, password) => {
+    handleLoginOn();
+    if (loginIdPass != ''){
         signIn();
-        const userStorage = AsyncStorage.getItem('login')
-        console.log("Fez a verificação")
-        console.log(userStorage)
-    })
-},)
-  
+    }
+},[login])
+
+
 return (
     <>
         

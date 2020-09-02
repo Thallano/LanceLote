@@ -2,14 +2,14 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     removeService:{
-        width: 60,
+        
         alignContent: 'center',
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
         borderRadius: 13,
         marginRight: 10,
-        marginTop: 80
+        marginTop: "100%"
     },
 
     iconServiceRemove:{
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     },
 
     searchForm: {
-        marginTop: 35,
+        marginTop: 45,
         flexDirection: 'row',
         alignContent: 'center',
         alignItems: 'center',
@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         justifyContent: 'space-between',
         flexDirection: 'row',
+        borderRadius: 15
     },
 
     modalityText:{

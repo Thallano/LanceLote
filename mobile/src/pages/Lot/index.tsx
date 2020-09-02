@@ -80,7 +80,7 @@ function Lot (){
             
              { isCaseVisible &&
                 <View style={styles.lotarLoading}>
-                <FontAwesome style={styles.caseIcon} name="briefcase" size={55} color="#474553" />
+                <FontAwesome style={styles.caseIcon} name="briefcase" size={45} color="#474553" />
                 <Text style={styles.caseText}>Lote um Serviço para aparecer aqui</Text>
                 </View>
             }
