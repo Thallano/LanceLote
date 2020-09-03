@@ -13,14 +13,14 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding: 15,
+       
     },
 
     userIDText:{
         fontFamily: 'Poppins_600SemiBold',
         color: '#F4F2DA',
         fontSize: 18,
-        marginRight: 10,
+        textAlign: 'right',
     },
 
     headerIntro:{

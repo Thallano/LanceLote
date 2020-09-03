@@ -48,10 +48,12 @@ function Dashboard (){
         <>
         
         <View style={styles.container}>
-        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-                <FontAwesome name="power-off" size={24} color="#4b97ff" />  
+            <View style={styles.logoutButton}>
+                <TouchableOpacity onPress={handleLogout}>
+                        <FontAwesome name="power-off" size={24} color="#4b97ff" />  
+                </TouchableOpacity>
                 <Text style ={styles.userIDText}>Seu ID: {loginIdPass}</Text>
-        </TouchableOpacity>
+            </View>
             <View style={styles.containerLogo}>
                 <Image source={intrologo} style={styles.logoContainer} />
             </View>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {View, Text, TextInput, ScrollView } from 'react-native';
+import {View, Text, TextInput, ScrollView, Alert } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { FontAwesome, MaterialCommunityIcons} from '@expo/vector-icons';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -36,7 +36,7 @@ function Lance (){
 
     async function handleServiceSubmit( ){
         if( service == '' || user_id == '' || description == '' || cost == '' || modality == '' ){
-            alert('Preencha todos campos do serviço');
+            Alert.alert('Preencha todos campos do serviço');
         } else {
         const response = await api.post('services', {
                 user_id,
@@ -45,11 +45,11 @@ function Lance (){
                 modality,
                 cost              
         }).then(() => {
-            alert('Serviço cadastrado com sucesso!');
+            Alert.alert('Serviço cadastrado com sucesso!');
             ('/');
             
         }).catch(() => {
-            alert('Erro no cadastro!');
+            Alert.alert('Erro no cadastro!');
         })
     }
     }
