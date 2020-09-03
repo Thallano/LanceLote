@@ -21,7 +21,7 @@ const SingIn: React.FC = () => {
     
     const { navigate } = useNavigation();
   
-    const [login , setLogin] = useState([]);
+    
     const [email, setEmail]= useState('');
     const [password, setPassword] = useState('');
 
@@ -30,32 +30,33 @@ function handleSingUp ( ) {
 };
 
 async function handleLogin (){
-     
-        const response = await api.get('users', {
-            params:{
-                email,
-                password 
-        }
-        });
-        setLogin(response.data);
-        console.log(login);
-};
-
-function handleLoginOn (){
-    const loginId = login.map((login: any) => {
-        return  login.id
-    })
-    setLoginIdPass(loginId)
-    AsyncStorage.setItem('login', JSON.stringify(loginIdPass));
+        if (email && password != ''){
+            const response = await api.get('users', {
+                params:{
+                    email,
+                    password 
+            }
+            });
+            if (response.data == ''){
+            Alert.alert("Usuário/Senha incorreto ou Usuário não existe")
+            }
+            const loginId = response.data.map((login: any) => {
+                return  login.id
+            })
+            console.log(loginId)
+            setLoginIdPass(loginId)
+            console.log(loginIdPass)
+            await AsyncStorage.setItem('login', JSON.stringify(loginId));
+    } else {
+        Alert.alert("Usuário/Senha incorreto ou Usuário não existe")
+    }
 }
 
-useEffect (( ) => {
-    handleLoginOn();
-    if (loginIdPass != ''){
+useEffect(() =>{
+    loginIdPass.map((id: any) =>{
         signIn();
-    }
-},[login])
-
+    })
+},[loginIdPass])
 
 return (
     <>

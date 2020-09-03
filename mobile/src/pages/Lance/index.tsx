@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import {View, Text, TextInput, ScrollView } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { FontAwesome, MaterialCommunityIcons} from '@expo/vector-icons';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import api from '../../services/api';
 
 import PageHeader from '../../components/PageHeader';
 
 import styles from './styles';
-import AsyncStorage from '@react-native-community/async-storage';
+
 
 function Lance (){
     const [ loginIdPass, setLoginIdPass ] = useState([]);
@@ -24,6 +25,7 @@ function Lance (){
             if (response){
                 const loginId = JSON.parse(response);
                 setLoginIdPass(loginId);
+                setUser(loginId);
             }
         });
     }
@@ -66,14 +68,14 @@ function Lance (){
         >
             <FontAwesome style={styles.gearIcon} name="gears" size={55} color="#4b97ff" />
             <View style={styles.searchForm}>
-                    <Text style={styles.label}>Id do Usuario</Text>
+                    {/*<Text style={styles.label}>Id do Usuario</Text>
                     <TextInput 
                         style={styles.input}
                         value={user_id}
                         onChangeText={text =>  setUser(text)}
                         placeholder="Confirme para nós o seu ID"
                         placeholderTextColor="#c1bccc" 
-                    />
+                   />*/}
 
                     <Text style={styles.label}>Serviço</Text>
                     <TextInput 

@@ -2,14 +2,13 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     removeService:{
-        
         alignContent: 'center',
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
         borderRadius: 13,
         marginRight: 10,
-        marginTop: "100%"
+        marginTop: "150%"
     },
 
     iconServiceRemove:{
@@ -23,51 +22,12 @@ const styles = StyleSheet.create({
         padding: 40,
     },
 
-    searchForm: {
-        marginTop: 45,
-        flexDirection: 'row',
-        alignContent: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-        elevation: 10,
-       
-    },
-
-    inputSearchFormContainer:{
-        padding: 10,
-    },
-
-    label: {
-        color: '#e7e4bc',
-        fontFamily: 'Poppins_400Regular'
-    },
-
-    input: {
-        height: 54,
-        backgroundColor: '#FFF',
-        borderRadius:  8,
-        paddingHorizontal: 16,
-        marginTop: 4,
-        marginBottom: 16,
-    },
-
-    buttonLanceContainer:{
-
-    },
-
-    buttonLance:{
-        backgroundColor: '#F4F2DA',
-        borderRadius: 8,
-        padding: 15,
-        marginTop: 10
-    },
-
     flatListContainer:{
         backgroundColor: '#14181C',
         fontFamily: 'Raleway_700Bold',
         color: '#14181C',
         fontSize: 16,
-        marginBottom: -50
+        marginTop: 30,
     },   
     
     userServicesContainer:{
@@ -77,8 +37,8 @@ const styles = StyleSheet.create({
         minHeight: 140,
         alignSelf: 'center',
         flexDirection: 'column',
-        marginTop: 10,
-        marginBottom: 20,
+        marginTop: 40,
+        marginBottom: 0,
         justifyContent: 'space-between',
         borderRadius: 12
     },
@@ -123,7 +83,6 @@ const styles = StyleSheet.create({
         color: '#f4f2da',
         fontSize: 16,
     },
-
 
     /*editService:{
         width: 60,

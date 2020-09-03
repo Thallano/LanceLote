@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, TextInput, Animated, FlatList } from 'react-native';
+import { View,  Text,  Animated, FlatList, Alert } from 'react-native';
 
 
-import {  MaterialCommunityIcons, Ionicons, MaterialIcons} from '@expo/vector-icons';
+import {  MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 
 import api from '../../services/api';
 
@@ -10,31 +10,49 @@ import PageHeader from '../../components/PageHeader';
 
 import styles from './styles';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-
+import AsyncStorage from '@react-native-community/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 
 
 function Lanced (){
-   
-/*const userLogin = AsyncStorage.getItem('userStorage');*/
-    
-    const [usersid, setUsersId] = useState<any>([]);
+
+    const [usersData, setUsersData] = useState<any>([]);
     const [user, setUserId] = useState('');
     
-    async function handleServiceSubmit(){
-        
-        const response = await api.get('listservicesbyuser', {
-            params:{
-                user
-            }
-        })
-        setUsersId(response.data)
-    } 
-    
-    const [service, setServiceId] = useState([]);
+function loadLogin () {
+    AsyncStorage.getItem('login').then(response =>{
+        if (response){
+            const loginId = JSON.parse(response);
+            setUserId(loginId);
+        }
+    });
+}
 
-    async function handleDelete(){
+useEffect(()=> {
+    loadLogin();
+},[])
+
+async function loadingUserServices(){
+    const response = await api.get('listservicesbyuser', {
+        params:{
+            user
+        }
+    })
+    setUsersData(response.data)
+}
+
+useEffect(() =>{
+    loadingUserServices();
+    console.log(user);
+},[user])
+
+  
+const [service, setServiceId] = useState([]);
+
+
+async function handleDelete(){
         
-        const response = await api.delete('services', {
+        await api.delete('services', {
                 params:{
                     service
                 }           
@@ -44,13 +62,10 @@ function Lanced (){
         }).catch(() => {
             alert('Erro ao deletar serviço');
         })
-        useEffect(() => {
-            handleServiceSubmit()
-        },[service])
-    }
+        loadLogin();
+}
 
    
-
 const RightAction = ( progression: any, dragX: any ) => {
     
         const scale = dragX.interpolate({
@@ -65,7 +80,7 @@ const RightAction = ( progression: any, dragX: any ) => {
                         <Ionicons  name="ios-trash" size={55} color="#FF514B" style={styles.iconServiceRemove} 
                         
                         onPress={()=>{
-                            setServiceId(usersid.id)
+                            setServiceId(usersData.id)
                             handleDelete();
                         }} />
                         </View>
@@ -74,7 +89,7 @@ const RightAction = ( progression: any, dragX: any ) => {
 }
 
 function handleSwpOpen( ){
-    alert("Você está prestes a excluír um serviço")
+    Alert.alert("Você está prestes a excluír um serviço")
 }
         
 /*const LeftAction = ( progression: any, dragX: any ) => {
@@ -103,57 +118,41 @@ function handleSwpOpen( ){
             ></PageHeader>
             
             <View style={styles.container}>
-                    <View style={styles.searchForm}>
-                        <View style={styles.inputSearchFormContainer}>
-                            <Text style={styles.label}>Id do Usuario</Text>
-                            <TextInput 
-                                style={styles.input}
-                                value={user}
-                                onChangeText={text =>  setUserId(text)}
-                                placeholder="Confirme para nós o seu ID"
-                                placeholderTextColor="#c1bccc" 
-                            />
-                        </View>
-                        <View style={styles.buttonLanceContainer}>
-                            <TouchableOpacity style={styles.buttonLance} 
-                                onPress={()=>{
-                                    handleServiceSubmit();
-                                }} >
-                                <MaterialCommunityIcons name="arrow-top-right-thick" size={26} color="#4b97ff" />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                        
-            <FlatList
-                data={usersid}
-                showsVerticalScrollIndicator={false}
-                style={styles.flatListContainer}
-                keyExtractor={usersid => String(usersid.id)}
-                renderItem={({item: usersid})  => (
-                
-                <Swipeable 
-                    renderRightActions={RightAction}
-                    onSwipeableRightOpen={()=>{
-                        setServiceId(usersid.id)
-                        handleSwpOpen();
+                    
+                <FlatList
+                    data={usersData}
+                    showsVerticalScrollIndicator={false}
+                    style={styles.flatListContainer}
+                    contentContainerStyle={{
+                        paddingBottom: 80,
                     }}
-                   /* renderLeftActions={LeftAction}*/
-                >
-                    <View style={styles.userServicesContainer}>
-                        <View style={styles.headerService}>
-                            <Text style={styles.serviceText}>{usersid.service}</Text>
-                            <MaterialCommunityIcons name="gesture-swipe-left" size={24} color="#F4F2DA" />
+                    keyExtractor={usersData => String(usersData.id)}
+                    renderItem={({item: usersData})  => (
+                    
+                    <Swipeable 
+                        renderRightActions={RightAction}
+                        /* renderLeftActions={LeftAction}*/
+                        onSwipeableRightOpen={()=>{
+                            setServiceId(usersData.id)
+                            handleSwpOpen();
+                        }}
+                    
+                    >
+                        <View style={styles.userServicesContainer}>
+                            <View style={styles.headerService}>
+                                <Text style={styles.serviceText}>{usersData.service}</Text>
+                                <MaterialCommunityIcons name="gesture-swipe-left" size={24} color="#F4F2DA" />
+                            </View>
+                            <Text style={styles.descriptionText}>{usersData.description}</Text>
+                            <View style={styles.bottomContainer}>
+                                <Text style={styles.modalityText}>{usersData.modality}</Text>
+                                <Text style={styles.costText}>R$ {usersData.cost},00</Text>
+                            </View>
                         </View>
-                        <Text style={styles.descriptionText}>{usersid.description}</Text>
-                        <View style={styles.bottomContainer}>
-                            <Text style={styles.modalityText}>{usersid.modality}</Text>
-                            <Text style={styles.costText}>R$ {usersid.cost},00</Text>
-                        </View>
-                    </View>
-                </Swipeable>
-                
-                )}
-            />
+                    </Swipeable>
+                    
+                    )}
+                />
             </View>
             </>
         )

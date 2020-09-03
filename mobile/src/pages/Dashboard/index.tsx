@@ -28,6 +28,7 @@ function Dashboard (){
 
     function handleLogout() {
         signOut();
+        AsyncStorage.clear();
     };
     
     function loadLogin ( ){
