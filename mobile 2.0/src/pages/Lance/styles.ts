@@ -34,51 +34,35 @@ const styles = StyleSheet.create({
     },
 
     searchForm: {
-        marginTop: 5,
+        marginTop: 0,
         justifyContent: 'center',
         alignContent: 'center',
         elevation: 5
     },
 
-    pickerContainer:{
-        backgroundColor: '#FFF',
-        borderRadius: 10,
-        height: 54,
-        width: "100%"
-    },
-
-    pickerStyle: {
-        color: '#474553',
-    },
-
-    pickerStyleModality:{
-        width: "100%",
-        color: '#474553'
-    },
-
-    pickerContainerModality:{
-        backgroundColor: '#FFF',
-        borderRadius: 10,
-        height: 54,
-        width: "100%",
-        marginBottom: 15,
-        marginTop: 5
-    },
-
     label: {
         color: '#e7e4bc',
-        fontFamily: 'Poppins_400Regular',
-        marginTop: 10
+        fontFamily: 'Poppins_400Regular'
     },
 
     inputGroup:{
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+        justifyContent: 'space-between'
     },
 
     inputBlock:{
         width: '48%',
+    },
+
+    inputFocused: {
+        height: 54,
+        backgroundColor: '#FFF',
+        borderRadius:  8,
+        paddingHorizontal: 16,
+        marginTop: 4,
+        marginBottom: 16,
+        borderColor: '#4b97ff',
+        borderWidth: 2
     },
 
     input: {

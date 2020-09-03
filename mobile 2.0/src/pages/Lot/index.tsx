@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
-import {View, Text, TextInput, Picker} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {View, Text, TextInput } from 'react-native';
 import {  ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { FontAwesome, Feather } from '@expo/vector-icons';
-import LancerItem, { Lancer } from '../../components/LancerItem';
 
 import AsyncStorage from '@react-native-community/async-storage';
 
-import PageHeader from '../../components/PageHeader';
-
 import styles from './styles';
-
+import PageHeader from '../../components/PageHeader';
+import LancerItem, { Lancer } from '../../components/LancerItem';
 
 import api from '../../services/api';
 
@@ -44,7 +42,7 @@ function Lot (){
                service 
             }
         })
-        console.log(service)
+        
         setIsFilterVisible(false);
         setIsCaseVisible(false);
         setLancers(response.data);
@@ -53,7 +51,7 @@ function Lot (){
     return (
         <>
         <PageHeader 
-            title="Lotar Serviço"
+            title="Lotar"
             headerRight={(
             <TouchableOpacity onPress={handleToggleFiltersVisible}>
                 <Feather name="filter" size={20} color="#F4F2DA" />
@@ -62,37 +60,18 @@ function Lot (){
     >
        { isFilterVisible && ( 
             <View style={styles.searchForm}>
-                {/*<Text style={styles.label}>Serviço</Text>*/}
-                <View style={styles.pickerContainer}>
-                <Picker
-                selectedValue={service}
-                style={styles.pickerStyle}
-                onValueChange={(itemValue, itemIndex) =>
-                    setService(itemValue)
-                }>
-                    <Picker.Item label="Artista" value="Artista" />
-                    <Picker.Item label="Artista Plástico" value="Artista Plástico" />
-                    <Picker.Item label="Bombeiro" value="Bombeiro" />
-                    <Picker.Item label="Babá" value="Babá" />
-                    <Picker.Item label="Barman" value="Barman" />
-                    <Picker.Item label="Desenvolvedor" value="Desenvolvedor" />
-                    <Picker.Item label="Designer" value="Designer" />
-                    <Picker.Item label="Designer-Gráfico" value="Designer-Gráfico" />
-                    <Picker.Item label="Encanador" value="Encanador" />
-                    <Picker.Item label="Eletricista" value="Eletricista" />
-                    <Picker.Item label="Funileiro" value="Funileiro" />
-                    <Picker.Item label="Garçom" value="Garçom" />
-                    <Picker.Item label="Padeiro" value="Padeiro" />
-                    <Picker.Item label="Pedreiro" value="Pedreiro" />
-                    <Picker.Item label="Pintor" value="Pintor" />
-                    <Picker.Item label="Servente de Pedreiro" value="Servente de Pedreiro" />
-                    <Picker.Item label="Serviços Gerais" value="Serviços Gerais" />
-                    <Picker.Item label="Carpinteiro" value="Carpinteiro" />
-                    <Picker.Item label="Marceneiro" value="Marceneiro" />
-                </Picker>
-                </View>
+                <Text style={styles.label}>Serviço</Text>
+                <TextInput 
+                    style={styles.input}
+                    value={service}
+                    onChangeText={text =>  setService(text)}
+                    placeholder="Qual serviço deseja lotar?"
+                    placeholderTextColor="#c1bccc"
+                />
+            
                 <TouchableOpacity style={styles.button} onPress={handleFiltersSubmit}>
                     <FontAwesome name="search" size={24} color="#14181C" />
+                    {/*<Text style ={styles.buttontext}>Lotar</Text>*/}
                 </TouchableOpacity>
             </View>
         )}

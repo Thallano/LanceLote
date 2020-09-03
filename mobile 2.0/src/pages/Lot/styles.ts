@@ -48,31 +48,48 @@ const styles = StyleSheet.create({
         marginTop: 90,
     },
 
-    searchForm: {
-        marginBottom: 10,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-
-    pickerContainer:{
-        backgroundColor: '#183858',
-        borderRadius: 10,
-        height: 54,
-        marginBottom: 10,
-        width: "75%"
-    },
-
-    pickerStyle: {
-        color: '#e7e4bc',
-    },
-
     button:{
+        width:'100%',
         backgroundColor: '#F4F2DA',
         borderRadius: 8,
-        padding: 15,
-        alignSelf: 'center',
-        alignContent: 'center',
+        padding: 24,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+
+    buttontext:{
+        fontFamily: 'Raleway_700Bold',
+        color: '#14181C',
+        fontSize: 16,
+    },
+
+    searchForm: {
+        marginBottom: 10,
+        elevation: 6,
+    },
+
+    label: {
+        color: '#e7e4bc',
+        fontFamily: 'Poppins_400Regular'
+    },
+
+    inputGroup:{
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+
+    inputBlock:{
+        width: '48%',
+    },
+
+    input: {
+        height: 54,
+        backgroundColor: '#FFF',
+        borderRadius:  8,
         justifyContent: 'center',
+        paddingHorizontal: 16,
+        marginTop: 4,
+        marginBottom: 16,
     },
 
 })

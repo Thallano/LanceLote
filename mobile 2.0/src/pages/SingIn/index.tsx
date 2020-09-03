@@ -37,15 +37,15 @@ async function handleLogin (){
                     password 
             }
             });
-
             if (response.data == ''){
             Alert.alert("Usuário/Senha incorreto ou Usuário não existe")
             }
-            
             const loginId = response.data.map((login: any) => {
                 return  login.id
             })
+            console.log(loginId)
             setLoginIdPass(loginId)
+            console.log(loginIdPass)
             await AsyncStorage.setItem('login', JSON.stringify(loginId));
     } else {
         Alert.alert("Usuário/Senha incorreto ou Usuário não existe")

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View,  Text,  Animated, FlatList, Alert } from 'react-native';
+
+
 import {  MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 
 import api from '../../services/api';
@@ -11,66 +13,56 @@ import Swipeable from 'react-native-gesture-handler/Swipeable';
 import AsyncStorage from '@react-native-community/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 
+
 function Lanced (){
 
     const [usersData, setUsersData] = useState<any>([]);
     const [user, setUserId] = useState('');
-    const [count, setCount] = useState(0);
-
-function catchuserId ( ){
-    AsyncStorage.getItem('login').then(response => {
+    
+function loadLogin () {
+    AsyncStorage.getItem('login').then(response =>{
         if (response){
             const loginId = JSON.parse(response);
             setUserId(loginId);
-            console.log("Executou 2")
-            console.log(user)
-            setCount(count +1)
         }
     });
 }
 
-useEffect (()=>{
-    if (count < 2){
-        catchuserId();
-        loadingUserServices();
-    } else {
-
-    }
-},[count])
-
-useFocusEffect (
-    React.useCallback(() => {
-        loadingUserServices();
-      }, [user])
-);
+useEffect(()=> {
+    loadLogin();
+},[])
 
 async function loadingUserServices(){
-    if (user != ''){
     const response = await api.get('listservicesbyuser', {
         params:{
             user
         }
     })
-    console.log("Executou 3")
     setUsersData(response.data)
-    }
-}  
- 
+}
+
+useEffect(() =>{
+    loadingUserServices();
+    console.log(user);
+},[user])
+
+  
 const [service, setServiceId] = useState([]);
 
-async function handleDelete(){  
+
+async function handleDelete(){
         
         await api.delete('services', {
                 params:{
                     service
                 }           
         }).then(() => {
-            Alert.alert('Serviço deletado com sucesso!');
+            alert('Serviço deletado com sucesso!');
             
         }).catch(() => {
             alert('Erro ao deletar serviço');
         })
-        setCount(count => 0)
+        loadLogin();
 }
 
    
@@ -154,7 +146,7 @@ function handleSwpOpen( ){
                             <Text style={styles.descriptionText}>{usersData.description}</Text>
                             <View style={styles.bottomContainer}>
                                 <Text style={styles.modalityText}>{usersData.modality}</Text>
-                                <Text style={styles.costText}>R$ {usersData.cost}</Text>
+                                <Text style={styles.costText}>R$ {usersData.cost},00</Text>
                             </View>
                         </View>
                     </Swipeable>

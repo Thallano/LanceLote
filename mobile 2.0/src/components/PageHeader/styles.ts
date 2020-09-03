@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         marginRight: 10,
         lineHeight: 32,
-        maxWidth: 190,
+        maxWidth: 120,
     },
 
     subtitleContainer:{

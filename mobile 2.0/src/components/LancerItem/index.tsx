@@ -86,7 +86,7 @@ const LancerItem: React.FC<LancerItemProps> = ({ lancer , loted }) =>  {
                 
                 <Text style={styles.modality}>{lancer.modality}</Text>
                
-                <Text style={styles.cost}>R$ {lancer.cost}</Text>
+                <Text style={styles.cost}>R$ {lancer.cost},00</Text>
             </View>
 
             <View style={styles.buttonsContainer}>

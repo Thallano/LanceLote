@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {View, Text, TextInput, ScrollView, Alert, Picker } from 'react-native';
+import {View, Text, TextInput, ScrollView, Alert } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { FontAwesome, MaterialCommunityIcons} from '@expo/vector-icons';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -57,8 +57,9 @@ function Lance (){
     return (
         <>
         <PageHeader 
-        title="Lançar Serviço"
+        title="Lançar"
         subtitle="Aqui você vai lançar seus serviços"
+        headerRight={<Text style={styles.label}>Seu ID: {loginIdPass}</Text>}
         ></PageHeader>
         
         <View style={styles.container}>
@@ -76,44 +77,15 @@ function Lance (){
                         placeholderTextColor="#c1bccc" 
                    />*/}
 
-                    <Text style={styles.label}>Qual serviço deseja Lançar?</Text>
-                    {/*<TextInput 
+                    <Text style={styles.label}>Serviço</Text>
+                    <TextInput 
                         style={styles.input}
                         value={service}
                         onChangeText={text =>  setService(text)}
                         placeholder="Qual serviço deseja Lançar?"
                         placeholderTextColor="#c1bccc"
                         
-                    />*/}
-                        <View style={styles.pickerContainer}>
-                        <Picker
-                        selectedValue={service}
-                        style={styles.pickerStyle}
-                        onValueChange={(itemValue, itemIndex) =>
-                            setService(itemValue)
-                        }>
-                            <Picker.Item label="Serviços Gerais" value="Serviços Gerais" />
-                            <Picker.Item label="Artista" value="Artista" />
-                            <Picker.Item label="Artista Plástico" value="Artista Plástico" />
-                            <Picker.Item label="Bombeiro" value="Bombeiro" />
-                            <Picker.Item label="Babá" value="Babá" />
-                            <Picker.Item label="Barman" value="Barman" />
-                            <Picker.Item label="Desenvolvedor" value="Desenvolvedor" />
-                            <Picker.Item label="Designer" value="Designer" />
-                            <Picker.Item label="Designer-Gráfico" value="Designer-Gráfico" />
-                            <Picker.Item label="Encanador" value="Encanador" />
-                            <Picker.Item label="Eletricista" value="Eletricista" />
-                            <Picker.Item label="Funileiro" value="Funileiro" />
-                            <Picker.Item label="Garçom" value="Garçom" />
-                            <Picker.Item label="Padeiro" value="Padeiro" />
-                            <Picker.Item label="Pedreiro" value="Pedreiro" />
-                            <Picker.Item label="Pintor" value="Pintor" />
-                            <Picker.Item label="Servente de Pedreiro" value="Servente de Pedreiro" />
-                            <Picker.Item label="Carpinteiro" value="Carpinteiro" />
-                            <Picker.Item label="Marceneiro" value="Marceneiro" />
-                            <Picker.Item label="Serviço não Listado" value="Serviço não Listado" />
-                        </Picker>
-                        </View>
+                    />
                     <Text style={styles.label}>Descrição</Text>
                     <TextInput 
                         style={styles.inputDescription}
@@ -126,34 +98,27 @@ function Lance (){
                 
                     <View style={styles.inputGroup}>
                         <View style={styles.inputBlock}>
-                            <Text style={styles.label}>Preço/Hora ou Diária?</Text>
-
-                            <View style={styles.pickerContainerModality}>
-                            <Picker
-                            selectedValue={modality}
-                            style={styles.pickerStyleModality}
-                            onValueChange={(itemValue, itemIndex) =>
-                                setModality(itemValue)
-                            }>
-                                <Picker.Item label="Preço/Hora" value="Preço" />
-                                <Picker.Item label="Dária" value="Dária" />
-                                <Picker.Item label="Por Serviço" value="Serviço Plástico" />
-                                <Picker.Item label="A Combinar" value="A Combinar" />
-                            </Picker>
-                            </View>
+                        <Text style={styles.label}>Preço/Hora ou Diária?</Text>
+                        <TextInput 
+                            style={styles.input}
+                            value={modality}
+                            onChangeText={text =>  setModality(text)}
+                            placeholder="Tipo de trabalho?"
+                            placeholderTextColor="#c1bccc"
+                         
+                        />
                         </View>
                     
                         <View style={styles.inputBlock}>
-                            <Text style={styles.label}>Valor do seu Serviço</Text>
-                            
-                            <TextInput 
-                                style={styles.input}
-                                value={cost}
-                                onChangeText={text =>  setCost(text)}
-                                placeholder="Qual o Valor?"
-                                placeholderTextColor="#c1bccc"
-                            
-                            />
+                        <Text style={styles.label}>Valor do seu Serviço</Text>
+                        <TextInput 
+                            style={styles.input}
+                            value={cost}
+                            onChangeText={text =>  setCost(text)}
+                            placeholder="Qual o Valor?"
+                            placeholderTextColor="#c1bccc"
+                           
+                        />
                         </View> 
                     </View>
             </View>
