@@ -12,6 +12,11 @@ const styles = StyleSheet.create({
         marginBottom: -80,
         marginTop: -30
     },
+
+    Arrow:{
+        marginTop: 15,
+        marginBottom: -10
+    },
     
     header: {
         flexDirection: 'row',

@@ -80,6 +80,13 @@ const styles = StyleSheet.create({
         fontSize: 15
     },
 
+    hidePassword:{
+        alignSelf: 'flex-end',
+        marginTop: -55,
+        marginRight: 15,
+        marginBottom: 25
+    },
+
     forgotPassword:{
         fontFamily: 'Poppins_400Regular',
         color: '#F4F2DA',
@@ -89,6 +96,8 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         fontSize: 12
     },
+
+    
 
     forgotPasswordLink:{
         fontFamily: 'Poppins_400Regular',

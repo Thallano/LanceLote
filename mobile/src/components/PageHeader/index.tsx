@@ -1,17 +1,11 @@
 import React, { ReactNode } from 'react';
 
-import backIcon from '../../assets/images/icons/back.png';
-import logoImg from '../../assets/images/logo.png';
-
 import styles from './styles';
 
-import { View, Image, Text } from 'react-native';
-import { BorderlessButton } from 'react-native-gesture-handler';
+import { View, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-
-import {  FontAwesome } from '@expo/vector-icons';
-
+import { FontAwesome } from '@expo/vector-icons';
 
 interface PageHeaderProps{
     title: string;
@@ -23,12 +17,15 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, subtitle, headerRight ,c
     const { navigate } = useNavigation();
 
     function handleGoback(){
-        navigate('Landing');
+        navigate('Dashboard');
     }
 
     return (
-    <View style={styles.container}>      
+    <View style={styles.container}>
+        
+        <FontAwesome name='long-arrow-left' size={20}  color='#F4F2DA' style={styles.Arrow} onPress={handleGoback}></FontAwesome>
         <View style={styles.header}>
+        
         <Text style={styles.title}>{title}</Text>
         {headerRight}
         </View>

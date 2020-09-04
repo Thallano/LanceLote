@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import {View, Image, Text, Linking } from 'react-native';
-import logo from '../../../assets/logo.png';
+
 import styles from './styles';
 import { TouchableOpacity, ScrollView } from "react-native-gesture-handler";
 import { FontAwesome } from '@expo/vector-icons'; 
+
+
+import logo from '../../../assets/workerimg.png';
 
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -16,6 +19,7 @@ export interface Lancer {
     service: string;
     whatsapp: string;
     modality: string;
+    user_id: string;
 }
 
 export interface LancerItemProps{

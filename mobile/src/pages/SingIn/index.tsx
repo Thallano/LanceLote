@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { View, Image, Text, TextInput, Alert } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import { FontAwesome } from '@expo/vector-icons'; 
+import { FontAwesome, Feather } from '@expo/vector-icons'; 
 import intrologo from '../../../assets/intrologo.png';
 
 import api from '../../services/api';
@@ -15,6 +15,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 
 const SingIn: React.FC = () => {
+    const [hidepassword, setHidePassword] = useState(true);
+
     const { signed, signIn } = useContext(AuthContext);
 
     const [loginIdPass, setLoginIdPass] = useState<any>([]);
@@ -27,6 +29,10 @@ const SingIn: React.FC = () => {
 
 function handleSingUp ( ) {
     navigate('SingUp');
+};
+
+function handleHidePassword ( ){
+    setHidePassword(!hidepassword)
 };
 
 async function handleLogin (){
@@ -84,11 +90,15 @@ return (
                     <TextInput 
                         style={styles.input}
                         value={password}
-                        secureTextEntry={true}
+                        secureTextEntry={hidepassword}
                         onChangeText={text =>  setPassword(text)}
                         placeholder="Senha"
                         placeholderTextColor="#c1bccc"
                     />
+                    { hidepassword
+                        ? <Feather name="eye-off" size={24} color="#4b97ff" onPress={handleHidePassword} style={styles.hidePassword}/>
+                        : <Feather name="eye" size={24} color="#4b97ff" onPress={handleHidePassword} style={styles.hidePassword}/>
+                    }
                 </View>
             <Text  style ={styles.forgotPassword}>*Esqueceu a <Text style ={styles.forgotPasswordLink}>senha?</Text></Text>
 

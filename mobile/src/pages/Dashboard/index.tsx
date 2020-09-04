@@ -18,6 +18,10 @@ function Dashboard (){
     const { navigate } = useNavigation();
     const { signOut } = useContext(AuthContext);
 
+    function handleProfileButton(){
+        navigate('ProfilePage');
+    }
+
     function handleLanceButton(){
         navigate('MenuTabsLance');
     }
@@ -52,7 +56,7 @@ function Dashboard (){
                 <TouchableOpacity onPress={handleLogout}>
                         <FontAwesome name="power-off" size={24} color="#4b97ff" />  
                 </TouchableOpacity>
-                <Text style ={styles.userIDText}>Seu ID: {loginIdPass}</Text>
+                <Text style ={styles.userIDText} onPress={handleProfileButton}>Seu ID: {loginIdPass}</Text>
             </View>
             <View style={styles.containerLogo}>
                 <Image source={intrologo} style={styles.logoContainer} />

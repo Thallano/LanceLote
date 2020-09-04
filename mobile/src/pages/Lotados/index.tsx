@@ -55,7 +55,7 @@ const LeftAction = ( progression: any, dragX: any ) => {
 
 function Lotados (){
    
-    const [lotados, setLotados] = useState([]);
+const [lotados, setLotados] = useState([]);
 
 function loadLotados(){
     AsyncStorage.getItem('lotados').then(response => {
@@ -65,10 +65,11 @@ function loadLotados(){
         }
     });
 }
-    useFocusEffect(() =>{
-        loadLotados();
-})
 
+useFocusEffect(() =>{
+    loadLotados();
+})
+console.log(lotados)
     return (
         <>
         <PageHeader 
@@ -95,7 +96,7 @@ function loadLotados(){
                     renderLeftActions={LeftAction}
                     >
                     <LancerItem 
-                        key={lancer.id}
+                        key={lancer.user_id}
                         lancer={lancer}
                         loted
                     />
