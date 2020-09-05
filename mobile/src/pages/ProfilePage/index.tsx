@@ -5,6 +5,7 @@ import styles from './styles';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import api from '../../services/api';
+
 import AsyncStorage from '@react-native-community/async-storage';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -44,13 +45,13 @@ return (
         <Text style={styles.bio}>Você pode me achar também em:</Text>
         <View style={styles.footerContacts}>
             <TouchableOpacity>
-            <FontAwesome name="instagram" size={24} color="#4b97ff" />
+            <FontAwesome name="instagram" size={40} color="#4b97ff" />
             </TouchableOpacity>
+            {/*<TouchableOpacity>
+            <FontAwesome name="linkedin" size={40} color="#4b97ff" />
+            </TouchableOpacity>*/}
             <TouchableOpacity>
-            <FontAwesome name="linkedin" size={24} color="#4b97ff" />
-            </TouchableOpacity>
-            <TouchableOpacity>
-            <FontAwesome name="facebook-f" size={24} color="#4b97ff" />
+            <FontAwesome name="facebook-f" size={40} color="#4b97ff" />
             </TouchableOpacity>
         </View>
 

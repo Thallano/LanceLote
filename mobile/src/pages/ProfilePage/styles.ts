@@ -50,11 +50,12 @@ const styles = StyleSheet.create({
         padding: 5,
         alignSelf: 'center',
         maxWidth: 280,
-        marginTop: -10
+        marginTop: -10,
+        backgroundColor: '#474553'
     },
 
     footerContacts:{
-        width: "65%",
+        width: "35%",
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',

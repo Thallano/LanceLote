@@ -2,12 +2,6 @@ import {Request, Response} from 'express';
 
 import db from '../database/connection';
 
-/*interface ServiceItem {
-    service: string;
-    modality: string;
-    cost: number;
-    description: string;
-} */
 
 export default class ServicesController {
     
@@ -36,9 +30,10 @@ export default class ServicesController {
             cost,
             modality,
             description,
+            rate,
             user_id
         } = request.body;
-        console.log(request.body)
+        
         const trx = await db.transaction();
     
         try {

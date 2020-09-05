@@ -7,6 +7,7 @@ export async function up(knex: Knex) {
         table.decimal('cost').notNullable();
         table.string('modality').notNullable();
         table.string('description').notNullable();
+        table.decimal('rate');
     
         table.integer('user_id')
             .notNullable()

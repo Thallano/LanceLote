@@ -5,6 +5,7 @@ import styles from './styles';
 import { TouchableOpacity, ScrollView } from "react-native-gesture-handler";
 import { FontAwesome } from '@expo/vector-icons'; 
 
+import { useNavigation } from '@react-navigation/native';
 
 import logo from '../../../assets/workerimg.png';
 
@@ -27,7 +28,11 @@ export interface LancerItemProps{
     loted: boolean;
 }
 
+
+
+
 const LancerItem: React.FC<LancerItemProps> = ({ lancer , loted }) =>  {
+    const { navigate } = useNavigation();
     
     const  [isLoted, setIsLoted] = useState(loted);
     
@@ -63,6 +68,10 @@ const LancerItem: React.FC<LancerItemProps> = ({ lancer , loted }) =>  {
         }
     }
    
+    function handleNavigateToProfile ( ){
+        navigate('ProfilePage')
+    }
+
     return (
     <View style={styles.container}>
         <View style={styles.upContainer}>
@@ -72,7 +81,7 @@ const LancerItem: React.FC<LancerItemProps> = ({ lancer , loted }) =>  {
                 source={logo}
             />
             <View style={styles.profileInfo}>
-                <Text style={styles.name}>{lancer.name}</Text>
+                <Text onPress={handleNavigateToProfile} style={styles.name}>{lancer.name}</Text>
                 <Text style={styles.service}>{lancer.service}</Text>
             </View>
         </View>

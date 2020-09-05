@@ -169,7 +169,7 @@ function Lance (){
                                 setModality(itemValue)
                             }>
                                 <Picker.Item label="Preço/Hora" value="Preço" />
-                                <Picker.Item label="Dária" value="Dária" />
+                                <Picker.Item label="Diária" value="Diária" />
                                 <Picker.Item label="Por Serviço" value="Serviço Plástico" />
                                 <Picker.Item label="A Combinar" value="A Combinar" />
                             </Picker>

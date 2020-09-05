@@ -96,7 +96,7 @@ console.log(lotados)
                     renderLeftActions={LeftAction}
                     >
                     <LancerItem 
-                        key={lancer.user_id}
+                        key={lancer.description}
                         lancer={lancer}
                         loted
                     />
