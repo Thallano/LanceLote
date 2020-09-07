@@ -5,7 +5,7 @@ import db from '../database/connection';
 
 export default class UserController {
     
-  async login(request: Request, response: Response) {
+    async login(request: Request, response: Response) {
         const login = request.query;
 
         const email = login.email as string;
@@ -33,9 +33,7 @@ export default class UserController {
             whatsapp,
             password,
         } = request.body;
-        
-        console.log(request.body)
-        
+               
         const id = crypto.randomBytes(3).toString('HEX');
         
         

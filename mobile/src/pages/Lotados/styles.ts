@@ -60,9 +60,99 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
 
+    rateContainer:{
+        backgroundColor: '#F4F2DA',
+        width: 140,
+        borderRadius: 12,
+        flexDirection: 'column',
+        alignSelf: 'center',
+        alignContent: 'center',
+        padding: 20,
+        marginRight: -20
+    },
+
+    rateContainerIcons:{
+        justifyContent: 'space-around',
+        alignItems: 'center'
+    },
+
+    containerRateConfirm:{
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 25,
+    },
+
     iconRateService:{
         alignSelf: 'center',
         padding: 6
+    },
+
+    rateContainerTextNumber:{
+        color: '#4b97ff',
+        fontFamily: 'Poppins_400Regular',
+    },
+
+    userServicesContainer:{
+        backgroundColor: '#474553',
+        padding: 25,
+        width: 280,
+        minHeight: 240,
+        alignSelf: 'center',
+        flexDirection: 'column',
+        marginTop: 40,
+        marginBottom: 10,
+        justifyContent: 'space-between',
+        borderRadius: 12
+    },
+    headerServiceRate:{
+        flexDirection: 'row',
+    },  
+    
+    headerService:{
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+
+    serviceTextRate:{
+        fontFamily: 'Poppins_400Regular',
+        color: '#f4f2da',
+        fontSize: 14,
+    },
+
+    serviceText:{
+        fontFamily: 'Raleway_700Bold',
+        color: '#f4f2da',
+        fontSize: 16,
+    },
+
+    descriptionText:{
+        fontFamily: 'Poppins_400Regular',
+        color: '#b19f81',
+        fontSize: 12,
+        marginTop: 0,
+        textAlign: 'left'
+    },
+
+    bottomContainer:{
+        backgroundColor: '#393843',
+        padding: 10,
+        alignContent: 'center',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        borderRadius: 15
+    },
+
+    modalityText:{
+        fontFamily: 'Poppins_400Regular',
+        color: '#b19f81',
+        fontSize: 14,
+        marginRight: 40,
+    },
+
+    costText:{
+        fontFamily: 'Raleway_700Bold',
+        color: '#f4f2da',
+        fontSize: 16,
     },
 })
 

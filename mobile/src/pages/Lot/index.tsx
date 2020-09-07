@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Picker } from 'react-native';
 import {  ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { FontAwesome, Feather } from '@expo/vector-icons';
@@ -13,23 +13,43 @@ import styles from './styles';
 import api from '../../services/api';
 
 function Lot (){
-    const [lotados, setLotados] = useState<number[]>([]);
+    
+    const [loted, setLoted] = useState<string[]>([]);
 
+    const [loginIdPass, setLoginIdPass] = useState([]);
+    
     const [isFilterVisible, setIsFilterVisible] = useState(false);
     const [isCaseVisible, setIsCaseVisible] = useState(true);
 
     const [lancers, setLancers] = useState([]);
     const [service, setService] = useState<string>('');
     
-    function loadLotados(){
+    useEffect(()=>{
         AsyncStorage.getItem('lotados').then(response => {
             if (response){
-                const lotedLancers = JSON.parse(response);
-                setLotados(lotedLancers);
+                const lotedServices = JSON.parse(response);
+                const lotedServicesId = lotedServices.map((lancer: Lancer) => {
+                    return lancer.idService;
+                })
+                setLoted(lotedServicesId);
+            }
+        });
+    },[]);
+
+    function loadLogin ( ){
+        AsyncStorage.getItem('login').then(response =>{
+            if (response){
+                const loginId = JSON.parse(response);
+                setLoginIdPass(loginId);
             }
         });
     }
     
+    useEffect (()=> {
+        loadLogin();
+    },[]);
+    
+        
     function handleToggleFiltersVisible( ) {
         setIsFilterVisible(!isFilterVisible);
     }
@@ -40,13 +60,14 @@ function Lot (){
     async function handleFiltersSubmit( ){
         const response = await api.get('services', {
             params:{
-               service 
+               service
             }
         })
         console.log(service)
         setIsFilterVisible(false);
         setIsCaseVisible(false);
         setLancers(response.data);
+        console.log(lancers)
     }
 
     return (
@@ -97,6 +118,7 @@ function Lot (){
                             <Picker.Item label="Entregador" value="Entregador" />
                             <Picker.Item label="Empregada" value="Empregada" />
                             <Picker.Item label="Eletricista" value="Eletricista" />
+                            <Picker.Item label="Frete" value="Frete" />
                             <Picker.Item label="Funileiro" value="Funileiro" />
                             <Picker.Item label="Garçom" value="Garçom" />
                             <Picker.Item label="Gesseiro" value="Gesseiro" />
@@ -151,8 +173,7 @@ function Lot (){
                     <LancerItem 
                     key={lancer.id}
                     lancer={lancer}
-                    
-                    loted={lotados.includes(lancer.id)}
+                    loted={loted.includes(lancer.idService)}
                     
                     /> 
                     

@@ -3,10 +3,10 @@ import {StyleSheet} from "react-native";
 const styles = StyleSheet.create({
     container:{
         backgroundColor: '#474553',
-        borderWidth: 1,
+        borderWidth: 3,
         height: 360,
         width: 300,
-        borderColor: '#1e1716',
+        borderColor: '#434251',
         borderRadius: 8,
         overflow: 'hidden',
         alignSelf: 'center',
@@ -37,11 +37,22 @@ const styles = StyleSheet.create({
         marginLeft: 16,
         
     },
+
     profileRate:{
         flexDirection: 'row',
         justifyContent: 'flex-end',
+        alignContent: 'center',
+        alignItems: 'center',
+        marginRight: 50,
+    },
+
+    rateText:{
+        fontFamily: 'Poppins_600SemiBold',
+        color: '#e0dfc4',
+        fontSize: 12,
         marginRight: 20,
-        marginTop: -10
+        marginLeft: 5,
+        alignSelf: 'flex-end',
     },
    
     name:{
@@ -54,13 +65,13 @@ const styles = StyleSheet.create({
     service:{
         fontFamily: 'Poppins_400Regular',
         color: '#b19f81',
-        fontSize: 12,
+        fontSize: 13,
     },
 
     description:{
         fontFamily: 'Poppins_400Regular',
         color: '#b19f81',
-        fontSize: 12,
+        fontSize: 13,
         marginTop: 0,
         padding: 20,
         textAlign: 'justify',
@@ -98,9 +109,9 @@ const styles = StyleSheet.create({
         marginTop: 15,
     },
     
-    lotarButton:{
-        backgroundColor: '#2b2a33',
-        width: 56,
+    loted:{
+        backgroundColor: '#1c1b26',
+        width: 75,
         height: 56,
         borderRadius: 8,
         justifyContent: 'center',
@@ -109,8 +120,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
 
-    lotado:{
-       
+    lot:{
+        backgroundColor: '#2b2a33',
+        width: 75,
+        height: 56,
+        borderRadius: 8,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 8,
+        flexDirection: 'row',
     },
 
     lotarTextButton:{

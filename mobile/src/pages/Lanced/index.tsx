@@ -22,8 +22,6 @@ function catchuserId ( ){
         if (response){
             const loginId = JSON.parse(response);
             setUserId(loginId);
-            console.log("Executou 2")
-            console.log(user)
             setCount(count +1)
         }
     });
@@ -51,11 +49,10 @@ async function loadingUserServices(){
             user
         }
     })
-    console.log("Executou 3")
     setUsersData(response.data)
     }
 }  
- 
+
 const [service, setServiceId] = useState([]);
 
 async function handleDelete(){  
@@ -134,15 +131,16 @@ function handleSwpOpen( ){
                     contentContainerStyle={{
                         paddingBottom: 80,
                     }}
-                    keyExtractor={usersData => String(usersData.id)}
+                    keyExtractor={usersData => String(usersData.idService)}
                     renderItem={({item: usersData})  => (
                     
                     <Swipeable 
                         renderRightActions={RightAction}
                         /* renderLeftActions={LeftAction}*/
                         onSwipeableRightOpen={()=>{
-                            setServiceId(usersData.id)
+                            setServiceId(usersData.idService)
                             handleSwpOpen();
+                            console.log(service)
                         }}
                     
                     >

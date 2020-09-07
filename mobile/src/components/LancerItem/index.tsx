@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {View, Image, Text, Linking } from 'react-native';
 
 import styles from './styles';
@@ -21,6 +21,8 @@ export interface Lancer {
     whatsapp: string;
     modality: string;
     user_id: string;
+    rate: number;
+    idService: string
 }
 
 export interface LancerItemProps{
@@ -28,41 +30,29 @@ export interface LancerItemProps{
     loted: boolean;
 }
 
-
-
-
 const LancerItem: React.FC<LancerItemProps> = ({ lancer , loted }) =>  {
     const { navigate } = useNavigation();
     
-    const  [isLoted, setIsLoted] = useState(loted);
-    
-    const [lotHandkShakeColor, setLotHandkShakeColor] = useState(0);
-    const color = [
-        '#474553',
-        '#4b97ff'
-    ];
+    const [isLoted, setIsLoted] = useState(loted);
 
-    function handleLotarServicePressed ( ) {
-        if ( lotHandkShakeColor == 0 ) {
-            setLotHandkShakeColor(lotHandkShakeColor => 1)
-        } else {
-            setLotHandkShakeColor(lotHandkShakeColor => 0)
-        }
+    function handleContactPressed ( ) {
+        Linking.openURL(`whatsapp://send?phone=55${lancer.whatsapp}&text=Oi%20te%20encontrei%20no%20LanceLote!%20Gostaria%20de%20saber%20sobre%20mais%20sobre%20seu%20serviço.`)
     }
 
-    async function handleContactPressed ( ) {
-        if(!isLoted) {
-            
-            const lotes = await AsyncStorage.getItem('lotados');
+    async function handleLotarServicePressed ( ) {
+        const lotes = await AsyncStorage.getItem('lotados');
 
-            let lotesArray = [];
+        let lotesArray = [];
             
-            if(lotes){
-                lotesArray = JSON.parse(lotes);
-            }
+        if(lotes){
+            lotesArray = JSON.parse(lotes);
+        }
 
+        if(isLoted) {
+                        
+        } else {
             lotesArray.push(lancer);
-
+            
             setIsLoted(true);
             await AsyncStorage.setItem('lotados', JSON.stringify(lotesArray));
         }
@@ -86,8 +76,13 @@ const LancerItem: React.FC<LancerItemProps> = ({ lancer , loted }) =>  {
             </View>
         </View>
         <View style={styles.profileRate}>
-        <FontAwesome name="star" size={10} color="#F4F2DA" /><FontAwesome name="star" size={10} color="#F4F2DA" /><FontAwesome name="star" size={10} color="#F4F2DA" /><FontAwesome name="star" size={10} color="#F4F2DA" /><FontAwesome name="star-o" size={10} color="#F4F2DA" />
+                <FontAwesome name="star" size={12} color="#F4F2DA" />
+               {/* <FontAwesome name="star" size={12} color="#F4F2DA" />
+                <FontAwesome name="star" size={12} color="#F4F2DA" />
+                <FontAwesome name="star" size={12} color="#F4F2DA" />
+                <FontAwesome name="star" size={12} color="#F4F2DA" />*/}
         </View>
+                <Text style={styles.rateText}>Avaliação: {lancer.rate}</Text>
         <ScrollView
             showsVerticalScrollIndicator={false}    
         >
@@ -103,12 +98,20 @@ const LancerItem: React.FC<LancerItemProps> = ({ lancer , loted }) =>  {
             </View>
 
             <View style={styles.buttonsContainer}>
-               
-                <TouchableOpacity style={[styles.lotarButton, styles.lotado]} onPress={handleLotarServicePressed}>
-                    <FontAwesome name="handshake-o" size={24} color={color[lotHandkShakeColor]} /> 
-                    {/*<Text style={styles.lotarTextButton}>Lotar Serviço</Text>*/}
-                </TouchableOpacity>
 
+                <TouchableOpacity onPress={handleLotarServicePressed}
+                    style={
+                    isLoted
+                     ? styles.loted
+                     : styles.lot
+                    }
+                >
+                    { isLoted
+                        ? <FontAwesome name="handshake-o" size={24} color='#4b97ff' /> 
+                        : <FontAwesome name="handshake-o" size={24} color='#474553' /> 
+                    }
+                </TouchableOpacity>
+               
                 <TouchableOpacity onPress={handleContactPressed} style={styles.contactButton}>
                     <Text style={styles.contactButtonText}>Entrar em contato</Text>
                     <FontAwesome name="whatsapp" size={24} style={styles.whatsappIcon} />

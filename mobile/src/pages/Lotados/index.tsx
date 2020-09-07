@@ -1,61 +1,35 @@
-import React, { useState } from 'react';
-import {useFocusEffect} from '@react-navigation/native';
-import {View, Animated, AsyncStorage } from 'react-native';
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
+import React, { useState, useEffect } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+import {View, Animated, AsyncStorage, Text, Alert, Picker, FlatList} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import styles from './styles';
 
 import PageHeader from '../../components/PageHeader';
 
-import LancerItem, {Lancer} from '../../components/LancerItem';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
+import api from '../../services/api';
 
-function handleRateOnPress ( ){
-
-}
-
-const RightAction = ( progression: any, dragX: any ) => {
-
-const scale = dragX.interpolate({
-            inputRange: [-75 , 0],
-            outputRange: [1 , 0],
-            extrapolate: 'clamp',      
-    })
-    return (
-            
-        <Animated.View style={{ transform: [{scale}]}}> 
-                <View style={styles.removeService}>
-                <Ionicons  name="ios-trash" size={30} color="#14181C" style={styles.iconServiceRemove} />
-                </View>
-        </Animated.View>    
-    )
-}
-
-const LeftAction = ( progression: any, dragX: any ) => {
-    const scale = dragX.interpolate({
-            inputRange: [0, 75],
-            outputRange: [0 , 1],
-            extrapolate: 'clamp',
-    })
-    return (
-            
-        <Animated.View style={{ transform: [{scale}]}}> 
-                <View style={styles.rateService}>
-                <TouchableOpacity onPress={handleRateOnPress}>
-                <FontAwesome name="star" size={20} color="#F4F2DA" style={styles.iconRateService}  />
-                <FontAwesome name="star" size={20} color="#F4F2DA" style={styles.iconRateService} />
-                <FontAwesome name="star" size={20} color="#F4F2DA" style={styles.iconRateService} />
-                <FontAwesome name="star" size={20} color="#F4F2DA" style={styles.iconRateService} />
-                <FontAwesome name="star-o" size={20} color="#F4F2DA" style={styles.iconRateService} />
-                </TouchableOpacity>
-                </View>
-        </Animated.View>    
-    )
-}
 
 function Lotados (){
-   
-const [lotados, setLotados] = useState([]);
+
+/*const [startpressedName, setStarPressedName] = useState();
+const [startpressedColor, setStarPressedColor] = useState();*/
+
+const [lotados, setLotados] = useState<any>([]);
+
+/*const [rateValue, setRateValue] = useState();*/
+
+const [starPressed, setStarPressed] = useState(false);
+
+const [service, setService] = useState<any>();
+const [rate, setRate] = useState(0);
+
+const [start1, setStart1] = useState(false);
+const [start2, setStart2] = useState(false);
+const [start3, setStart3] = useState(false);
+const [start4, setStart4] = useState(false);
+const [start5, setStart5] = useState(false);
 
 function loadLotados(){
     AsyncStorage.getItem('lotados').then(response => {
@@ -66,10 +40,206 @@ function loadLotados(){
     });
 }
 
-useFocusEffect(() =>{
+useEffect(() =>{
     loadLotados();
-})
-console.log(lotados)
+    
+},[])   
+
+const RightAction = ( progression: any, dragX: any ) => {
+
+    const scale = dragX.interpolate({
+                inputRange: [-75 , 0],
+                outputRange: [1 , 0],
+                extrapolate: 'clamp',      
+        })
+        return (
+                
+            <Animated.View style={{ transform: [{scale}]}}> 
+                    <View style={styles.removeService}>
+                    <Ionicons  name="ios-trash" size={30} color="#14181C" style={styles.iconServiceRemove} />
+                    </View>
+            </Animated.View>    
+        )
+    }
+    
+const LeftAction = ( progression: any, dragX: any ) => {
+        const scale = dragX.interpolate({
+                inputRange: [0, 75],
+                outputRange: [0 , 1],
+                extrapolate: 'clamp',
+        })
+        return (
+                
+            <Animated.View style={{ transform: [{scale}]}}> 
+                                                        
+                <View style={styles.rateContainer}> 
+                    <View style={styles.rateContainerIcons}>
+                        { starPressed && start1 == true
+                        ? <TouchableOpacity>
+                            <FontAwesome name="star" size={25} color="#4b97ff" 
+                            onPress={()=>{
+                                setStarPressed(!starPressed)
+                                setRate(0)
+                                setStart1(false)
+                                setStart2(false)
+                                setStart3(false)
+                                setStart4(false)
+                                setStart5(false)
+                            }} 
+                            />
+                            </TouchableOpacity>
+                        : <TouchableOpacity>
+                            <FontAwesome name="star-o" size={25} color="#4b97ff" 
+                            onPress={()=>{
+                                setStarPressed(!starPressed)
+                                setRate(1)
+                                setStart1(true)
+                            }} 
+                            />
+                            </TouchableOpacity>
+                        }
+
+                        { starPressed && start2 == true
+                        ? <TouchableOpacity>
+                            <FontAwesome name="star" size={25} color="#4b97ff" 
+                            onPress={()=>{
+                                setStarPressed(!starPressed)
+                                setRate(0)
+                                setStart1(false)
+                                setStart2(false)
+                                setStart3(false)
+                                setStart4(false)
+                                setStart5(false)
+                            }} 
+                            />
+                            </TouchableOpacity>
+                        : <TouchableOpacity>
+                            <FontAwesome name="star-o" size={25} color="#4b97ff" 
+                            onPress={()=>{
+                                setStarPressed(!starPressed)
+                                setRate(2)
+                                setStart1(true)
+                                setStart2(true)
+                            }} 
+                            />
+                            </TouchableOpacity>
+                        }
+
+                        { starPressed && start3 == true
+                        ? <TouchableOpacity>
+                            <FontAwesome name="star" size={25} color="#4b97ff" 
+                            onPress={()=>{
+                                setStarPressed(!starPressed)
+                                setRate(0)
+                                setStart1(false)
+                                setStart2(false)
+                                setStart3(false)
+                                setStart4(false)
+                                setStart5(false)
+                            }} 
+                            />
+                            </TouchableOpacity>
+                        : <TouchableOpacity>
+                            <FontAwesome name="star-o" size={25} color="#4b97ff" 
+                            onPress={()=>{
+                                setStarPressed(!starPressed)
+                                setRate(3)
+                                setStart1(true)
+                                setStart2(true)
+                                setStart3(true)
+                            }} 
+                            />
+                            </TouchableOpacity>
+                        }
+
+                        { starPressed && start4 == true
+                        ? <TouchableOpacity>
+                            <FontAwesome name="star" size={25} color="#4b97ff" 
+                            onPress={()=>{
+                                setStarPressed(!starPressed)
+                                setRate(0)
+                                setStart1(false)
+                                setStart2(false)
+                                setStart3(false)
+                                setStart4(false)
+                                setStart5(false)
+                            }} 
+                            />
+                            </TouchableOpacity>
+                        : <TouchableOpacity>
+                            <FontAwesome name="star-o" size={25} color="#4b97ff" 
+                            onPress={()=>{
+                                setStarPressed(!starPressed)
+                                setRate(4)
+                                setStart1(true)
+                                setStart2(true)
+                                setStart3(true)
+                                setStart4(true)
+                            }} 
+                            />
+                            </TouchableOpacity>
+                        }
+                        
+                        { starPressed && start5 == true
+                        ? <TouchableOpacity>
+                            <FontAwesome name="star" size={25} color="#4b97ff" 
+                            onPress={()=>{
+                                setStarPressed(!starPressed)
+                                setRate(0)
+                                setStart1(false)
+                                setStart2(false)
+                                setStart3(false)
+                                setStart4(false)
+                                setStart5(false)
+                            }} 
+                            />
+                            </TouchableOpacity>
+                        : <TouchableOpacity>
+                            <FontAwesome name="star-o" size={25} color="#4b97ff" 
+                            onPress={()=>{
+                                setStarPressed(!starPressed)
+                                setRate(5)
+                                setStart1(true)
+                                setStart2(true)
+                                setStart3(true)
+                                setStart4(true)
+                                setStart5(true)
+                            }} 
+                            />
+                            </TouchableOpacity>
+                        }
+                        
+                        
+                    </View>
+                    { starPressed &&
+                        <TouchableOpacity style={styles.containerRateConfirm} onPress={onRated}>
+                            <FontAwesome name="check" size={25} color="#4b97ff"  />
+                            <Text style={styles.rateContainerTextNumber}>Avaliar</Text>
+                        </TouchableOpacity>
+                    }                                  
+                </View>        
+            </Animated.View>    
+        )
+}
+
+async function onRated ( ){
+        
+    const response =  await api.put('services',{
+        service,
+        rate
+    }).then(() => {
+        Alert.alert('Serviço Avaliado!');
+        ('/');
+        
+    }).catch(() => {
+        Alert.alert('Erro ao avaliar o serviço, tende de novo!');
+    })        
+}
+
+function handleDelit ( ){
+
+}
+
     return (
         <>
         <PageHeader 
@@ -83,28 +253,41 @@ console.log(lotados)
        
         </PageHeader>
         <View style={styles.bottomLancersContainer}>
-            <ScrollView
-                style={styles.containerItens}
-                showsVerticalScrollIndicator= {false}
-                horizontal={false}
-            >
-            
-            {lotados.map((lancer: Lancer) =>{
-                return(
-                    <Swipeable 
-                    renderRightActions={RightAction}
-                    renderLeftActions={LeftAction}
-                    >
-                    <LancerItem 
-                        key={lancer.description}
-                        lancer={lancer}
-                        loted
-                    />
-                    </Swipeable>
-                )
-            })}
-        
-            </ScrollView>
+                <FlatList
+                    data={lotados}
+                    showsVerticalScrollIndicator={false}
+                    style={styles.containerItens}
+                    contentContainerStyle={{
+                        paddingBottom: 80,
+                    }}
+                    keyExtractor={lotados => String(lotados.idService)}
+                    renderItem={({item: lotados})  => (
+                        <>
+                        <Swipeable 
+                        renderLeftActions={LeftAction}
+                        onSwipeableLeftOpen={()=>{
+                            setService(lotados.idService)
+                        }}
+                        >  
+                            <View style={styles.userServicesContainer}>
+                                <View style={styles.headerServiceRate}>
+                                    <MaterialCommunityIcons name="gesture-swipe-right" size={24} color="#F4F2DA" />
+                                    <Text style={styles.serviceTextRate}>Avalie</Text>
+                                </View>
+                                <View style={styles.headerService}>
+                                    <Text style={styles.serviceText}>{lotados.name}</Text>
+                                    <Text style={styles.serviceText}>{lotados.service}</Text>
+                                </View>
+                                <Text style={styles.descriptionText}>{lotados.description}</Text>
+                                <View style={styles.bottomContainer} >
+                                    <Text style={styles.modalityText}>{lotados.modality}</Text>
+                                    <Text  style={styles.costText}>R$ {lotados.cost}</Text>
+                                </View>
+                            </View>    
+                        </Swipeable>
+                        </>
+                     )}
+                />
          
         </View>
         </>

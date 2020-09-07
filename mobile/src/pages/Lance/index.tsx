@@ -15,10 +15,13 @@ function Lance (){
     const [ loginIdPass, setLoginIdPass ] = useState([]);
 
     const [user_id, setUser] = useState('');
-    const [service, setService] = useState('');
+    const [service, setService] = useState("Serviços Gerais");
     const [description, setDescription] = useState('');
     const [modality, setModality] = useState('');
     const [cost, setCost] = useState('');
+    const [rate, setRate] = useState(0);
+    const [loted, setLoted] = useState(0);
+    const [ratetotal, setRatetotal] = useState(0);
     
     function loadLogin ( ){
         AsyncStorage.getItem('login').then(response =>{
@@ -43,7 +46,10 @@ function Lance (){
                 service,
                 description,
                 modality,
-                cost              
+                cost,
+                rate,
+                loted,
+                ratetotal             
         }).then(() => {
             Alert.alert('Serviço cadastrado com sucesso!');
             ('/');
@@ -119,6 +125,7 @@ function Lance (){
                             <Picker.Item label="Entregador" value="Entregador" />
                             <Picker.Item label="Empregada" value="Empregada" />
                             <Picker.Item label="Eletricista" value="Eletricista" />
+                            <Picker.Item label="Frete" value="Frete" />
                             <Picker.Item label="Funileiro" value="Funileiro" />
                             <Picker.Item label="Garçom" value="Garçom" />
                             <Picker.Item label="Gesseiro" value="Gesseiro" />
@@ -170,7 +177,7 @@ function Lance (){
                             }>
                                 <Picker.Item label="Preço/Hora" value="Preço" />
                                 <Picker.Item label="Diária" value="Diária" />
-                                <Picker.Item label="Por Serviço" value="Serviço Plástico" />
+                                <Picker.Item label="Por Serviço" value="Por Serviço" />
                                 <Picker.Item label="A Combinar" value="A Combinar" />
                             </Picker>
                             </View>

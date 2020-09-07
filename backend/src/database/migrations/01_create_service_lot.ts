@@ -2,13 +2,15 @@ import Knex from 'knex';
 
 export async function up(knex: Knex) {
     return knex.schema.createTable('services', table => {
-        table.increments('id').primary();
+        table.string('idService').primary();
         table.string('service').notNullable();
         table.decimal('cost').notNullable();
         table.string('modality').notNullable();
         table.string('description').notNullable();
-        table.decimal('rate');
-    
+        table.decimal('rate').notNullable();
+        table.decimal('loted').notNullable();
+        table.decimal('ratetotal').notNullable();
+
         table.integer('user_id')
             .notNullable()
             .references('id')
