@@ -107,11 +107,13 @@ export default class ServicesController {
 
         const media = (ratetotal)/(loted+1)
 
+        const mediaint = media.toFixed(2)
+
         const increment = loted+1
                 
         try {
             
-            await db('services').where('services.idService', '=', service).update({'rate': media ,'loted': increment, "ratetotal": ratetotal});
+            await db('services').where('services.idService', '=', service).update({'rate': mediaint ,'loted': increment, "ratetotal": ratetotal});
     
             return response.status(201).send();
 
