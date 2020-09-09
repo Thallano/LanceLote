@@ -175,7 +175,7 @@ function Lance (){
                             onValueChange={(itemValue, itemIndex) =>
                                 setModality(itemValue)
                             }>
-                                <Picker.Item label="Preço/Hora" value="Preço" />
+                                <Picker.Item label="Preço/Hora" value="Preço/Hora" />
                                 <Picker.Item label="Diária" value="Diária" />
                                 <Picker.Item label="Por Serviço" value="Por Serviço" />
                                 <Picker.Item label="A Combinar" value="A Combinar" />

@@ -49,9 +49,25 @@ const styles = StyleSheet.create({
         padding: 6
     },
 
+    reviewContainer:{
+        justifyContent: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+
+    inputReview: {
+        height: 90,
+        backgroundColor: '#FFF',
+        padding: 10,
+        borderRadius:  8,
+        marginTop: 20,
+        paddingHorizontal: 16,
+        textAlign: 'left',
+        textAlignVertical: 'top',
+    },
+
     rateService:{
         width: 60,
-        height: 200,
         alignContent: 'center',
         justifyContent: 'center',
         alignItems: 'center',
@@ -62,24 +78,25 @@ const styles = StyleSheet.create({
 
     rateContainer:{
         backgroundColor: '#F4F2DA',
-        width: 140,
+        width: 160,
         borderRadius: 12,
-        flexDirection: 'column',
+        flexDirection: 'row',
         alignSelf: 'center',
         alignContent: 'center',
-        padding: 20,
-        marginRight: -20
+        justifyContent: 'center',
+        padding: 15,
     },
 
     rateContainerIcons:{
         justifyContent: 'space-around',
-        alignItems: 'center'
+        flexDirection: 'row',
+        alignItems: 'center',
     },
 
     containerRateConfirm:{
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 25,
+        marginTop: 5,
     },
 
     iconRateService:{

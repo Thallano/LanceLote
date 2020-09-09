@@ -89,11 +89,15 @@ export default class ServicesController {
         const {
             rate,
             service,
+            user_id,
+            review,
+            rated
         } = request.body;
         console.log(request.body)
         
         const lot = await db('services')
                             .where('services.idService', '=', service)
+                            /*.join('loted', 'services.user_id', '=', 'users.id')*/
                             .select('loted', 'rate', 'ratetotal') as any;
        
         const ratetotalarray = parseInt(lot.map(function(item: any){
@@ -107,14 +111,15 @@ export default class ServicesController {
 
         const media = (ratetotal)/(loted+1)
 
-        const mediaint = media.toFixed(2)
+        const mediaint = media.toFixed(1)
 
         const increment = loted+1
                 
         try {
             
             await db('services').where('services.idService', '=', service).update({'rate': mediaint ,'loted': increment, "ratetotal": ratetotal});
-    
+            await db('loted').insert({'rated': rated ,'review': review, "idservice": service, "user_id": user_id});
+
             return response.status(201).send();
 
         } catch ( err ) {

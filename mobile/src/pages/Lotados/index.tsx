@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import {View, Animated, AsyncStorage, Text, Alert, Picker, FlatList} from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
 import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import styles from './styles';
 
@@ -13,23 +13,36 @@ import api from '../../services/api';
 
 function Lotados (){
 
-/*const [startpressedName, setStarPressedName] = useState();
-const [startpressedColor, setStarPressedColor] = useState();*/
-
 const [lotados, setLotados] = useState<any>([]);
-
-/*const [rateValue, setRateValue] = useState();*/
 
 const [starPressed, setStarPressed] = useState(false);
 
 const [service, setService] = useState<any>();
 const [rate, setRate] = useState(0);
+const [user_id, setUserId] = useState();
+const [review, setReview] = useState('');
+const [rated, setRated] = useState(0);
 
 const [start1, setStart1] = useState(false);
 const [start2, setStart2] = useState(false);
 const [start3, setStart3] = useState(false);
 const [start4, setStart4] = useState(false);
 const [start5, setStart5] = useState(false);
+
+const [rateCommit, setRateCommit] = useState(false);
+
+function loadLogin ( ){
+    AsyncStorage.getItem('login').then(response =>{
+        if (response){
+            const loginId = JSON.parse(response);
+            setUserId(loginId);
+        }
+    });
+}
+
+useEffect (()=> {
+    loadLogin();
+},[])
 
 function loadLotados(){
     AsyncStorage.getItem('lotados').then(response => {
@@ -43,7 +56,24 @@ function loadLotados(){
 useEffect(() =>{
     loadLotados();
     
-},[])   
+},[loadLotados])   
+
+async function onRated ( ) {
+    
+    const response =  await api.put('services',{
+        rate, /* ok */
+        service, /* ok */
+        user_id, /* ok */
+        review, /* ok */
+        rated   /* ok */
+    }).then(() => {
+        Alert.alert('Serviço Avaliado!');
+        ('/');
+        
+    }).catch(() => {
+        Alert.alert('Erro ao avaliar o serviço, tende de novo!');
+    })   
+}
 
 const RightAction = ( progression: any, dragX: any ) => {
 
@@ -207,40 +237,57 @@ const LeftAction = ( progression: any, dragX: any ) => {
                             }} 
                             />
                             </TouchableOpacity>
-                        }
-                        
+                        } 
                         
                     </View>
-                    { starPressed &&
-                        <TouchableOpacity style={styles.containerRateConfirm} onPress={onRated}>
-                            <FontAwesome name="check" size={25} color="#4b97ff"  />
-                            <Text style={styles.rateContainerTextNumber}>Avaliar</Text>
-                        </TouchableOpacity>
-                    }                                  
-                </View>        
+
+                                                 
+                </View>
+                
+                            <View style={styles.reviewContainer}>
+                            <TextInput 
+                                style={styles.inputReview}
+                                value={review}
+                                onChangeText={text =>  setReview(text)}
+                                placeholder="Faça um comentário sobre o serviço"
+                                placeholderTextColor="#c1bccc"
+                                multiline
+                            
+                            />
+                            { starPressed &&
+                            <TouchableOpacity style={styles.containerRateConfirm} onPress={()=>{
+                                onRated()
+                                splitServiceFromAS()
+                                setRated(1)
+                                }}>
+                                <FontAwesome name="check" size={25} color="#4b97ff"  />
+                                <Text style={styles.rateContainerTextNumber}>Avaliar</Text>
+                            </TouchableOpacity>
+                             }  
+                            </View>
+                         
             </Animated.View>    
         )
 }
 
-async function onRated ( ){
+async function splitServiceFromAS (){
+    const lotes = await AsyncStorage.getItem('lotados');
+
+    let lotesArray = [{}];
         
-    const response =  await api.put('services',{
-        service,
-        rate
-    }).then(() => {
-        Alert.alert('Serviço Avaliado!');
-        ('/');
-        
-    }).catch(() => {
-        Alert.alert('Erro ao avaliar o serviço, tende de novo!');
-    })        
+    if(lotes){
+        lotesArray = JSON.parse(lotes);
+    }
+    const lotadosIndex = lotesArray.findIndex((lotesArray: any)=>{
+        return lotesArray.idService === service;
+    })
+
+    lotesArray.splice(lotadosIndex, 1);
+    await AsyncStorage.setItem('lotados', JSON.stringify(lotesArray));
 }
 
-function handleDelit ( ){
 
-}
-
-    return (
+return (
         <>
         <PageHeader 
             title="Serviços Lotados"

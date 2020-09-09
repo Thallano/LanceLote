@@ -10,6 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 import logo from '../../../assets/workerimg.png';
 
 import AsyncStorage from '@react-native-community/async-storage';
+import api from "../../services/api";
 
 export interface Lancer {
     id: number;
@@ -38,7 +39,7 @@ const LancerItem: React.FC<LancerItemProps> = ({ lancer , loted }) =>  {
     function handleContactPressed ( ) {
         Linking.openURL(`whatsapp://send?phone=55${lancer.whatsapp}&text=Oi%20te%20encontrei%20no%20LanceLote!%20Gostaria%20de%20saber%20sobre%20mais%20sobre%20seu%20serviço.`)
     }
-
+    
     async function handleLotarServicePressed ( ) {
         const lotes = await AsyncStorage.getItem('lotados');
 
