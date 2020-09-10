@@ -22,7 +22,7 @@ function Lot (){
     const [isCaseVisible, setIsCaseVisible] = useState(true);
 
     const [lancers, setLancers] = useState([]);
-    const [service, setService] = useState<string>('');
+    const [service, setService] = useState<string>("Serviços Gerais");
     
     useEffect(()=>{
         AsyncStorage.getItem('lotados').then(response => {

@@ -28,11 +28,11 @@ export interface Lancer {
     idService: string;
 }
 
-export interface ProfileItemProps{
+export interface ServiceProfileProps{
     lancer: Lancer
 }
 
-const ProfileItem: React.FC<ProfileItemProps> = ({lancer}) =>  {
+const ServiceProfile: React.FC<ServiceProfileProps> = ({lancer}) =>  {
     
            
     return (
@@ -42,8 +42,10 @@ const ProfileItem: React.FC<ProfileItemProps> = ({lancer}) =>  {
                         <View style={styles.userServicesContainer}>
                                 <View style={styles.headerService}>
                                     <Text style={styles.serviceText}>{lancer.review_name}</Text>
-                                        <FontAwesome name="star" size={12} color="#F4F2DA" />
-                                    <Text style={styles.descriptionText}>{lancer.rated}</Text>
+                                    <View style={styles.rightCorner}>
+                                        <FontAwesome name="star" size={14} color="#F4F2DA" />
+                                        <Text style={styles.ratedNumber}>{lancer.rated}</Text>
+                                    </View>
                                 </View>
                                 <View style={styles.bottomContainer}>
                                     <Text style={styles.modalityText}>{lancer.review}</Text>
@@ -55,4 +57,4 @@ const ProfileItem: React.FC<ProfileItemProps> = ({lancer}) =>  {
     )
 }
 
-export default ProfileItem;
+export default ServiceProfile;

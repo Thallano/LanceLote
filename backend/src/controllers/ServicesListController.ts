@@ -32,7 +32,6 @@ export default class ServicesListController {
 
         const service = serviceId.service as string;
         console.log(service)
-        
         try{
       
             const reviewWithIdsNote = await db('loted')
@@ -41,6 +40,7 @@ export default class ServicesListController {
             .select(['loted.*']);
             console.log(reviewWithIdsNote)
             return response.json(reviewWithIdsNote);
+            
         } catch (err) {
     
             return response.status(400).json({

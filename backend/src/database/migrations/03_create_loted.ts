@@ -3,7 +3,7 @@ import Knex from 'knex';
 export async function up(knex: Knex) {
     return knex.schema.createTable('loted', table => {
         table.increments('id').primary();
-        table.boolean('rated').notNullable();
+        table.integer('rated').notNullable();
         table.string('review').notNullable();
 
         table.integer('idService')

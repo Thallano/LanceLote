@@ -5,6 +5,9 @@ export async function up(knex: Knex) {
         table.string('id').primary();
         table.string('name').notNullable();
         table.string('email').notNullable();
+        table.string('bio').notNullable();
+        table.string('instagram').notNullable();
+        table.string('web').notNullable();
         table.string('whatsapp').notNullable();
         table.string('password').notNullable();
     });

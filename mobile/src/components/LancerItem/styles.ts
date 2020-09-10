@@ -3,11 +3,11 @@ import {StyleSheet} from "react-native";
 const styles = StyleSheet.create({
     container:{
         backgroundColor: '#474553',
-        borderWidth: 3,
-        height: 360,
+        borderWidth: 5,
+        height: 340,
         width: 280,
         borderColor: '#434251',
-        borderRadius: 8,
+        borderRadius: 12,
         overflow: 'hidden',
         alignSelf: 'center',
         flexDirection: 'column',

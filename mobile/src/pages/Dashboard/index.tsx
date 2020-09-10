@@ -19,7 +19,7 @@ function Dashboard (){
     const { signOut } = useContext(AuthContext);
 
     function handleProfileButton(){
-        navigate('ProfileServicePage');
+        navigate('ProfilePage');
     }
 
     function handleLanceButton(){

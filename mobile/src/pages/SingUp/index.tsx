@@ -14,7 +14,9 @@ const SingUp: React.FC = () => {
     const [passwordCheck, setPasswordCheck] = useState('');
     const [email, setEmail] = useState('');
     const [whatsapp, setWhatsapp] = useState('');
-
+    const [bio, setBio] = useState('');
+    const [instagram, setInstagram] = useState('');
+    const [web, setWeb] = useState('');
     
 
     async function handleUserSubmit ( ) {
@@ -26,6 +28,9 @@ const SingUp: React.FC = () => {
                 name,
                 password,
                 whatsapp,
+                bio,
+                instagram,
+                web
             }).then(() => {
                 alert('Cadastro realizado com sucesso!');
                 ('/');

@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     flatlistContainer:{
     
     },
-      
+
     image:{
         borderRadius: 32,
         height: 100,
@@ -52,13 +52,15 @@ const styles = StyleSheet.create({
         fontFamily: 'Raleway_900Black',
         color: '#F4F2DA',
         fontSize: 18,
-        marginTop: 20,
+        marginTop: -120,
+        marginBottom: 100,
         backgroundColor: '#14181C',
-        elevation: 3,
         width: 200,
         height: 30,
-        textAlign: 'center'
+        textAlign: 'center',
+        alignSelf: 'center'
     },
+
     iconEditBio:{
         alignSelf: 'flex-end',
     },
@@ -67,10 +69,22 @@ const styles = StyleSheet.create({
         fontFamily: 'Poppins_600SemiBold',
         color: '#F4F2DA',
         fontSize: 14,
-        textAlign: 'justify',
+        textAlign: 'center',
         padding: 20
     },
-
+    
+    inputLinks:{ 
+        height: 52,
+        width: "80%",
+        backgroundColor: '#FFF',
+        padding: 10,
+        borderRadius:  8,
+        marginTop: 4,
+        marginBottom: 16,
+        textAlign: 'left',
+        textAlignVertical: 'top',
+    },
+      
     footer:{
         borderRadius: 10,
         borderColor: '#F4F2DA',
@@ -78,15 +92,14 @@ const styles = StyleSheet.create({
         padding: 5,
         alignSelf: 'center',
         maxWidth: 280,
-        marginTop: -10,
-        backgroundColor: '#474553'
+        marginTop: 10,
     },
 
     footerContacts:{
-        width: "35%",
+        width: "90%",
+        alignContent: 'center',
         alignItems: 'center',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+        marginBottom: 35
     },
     
 

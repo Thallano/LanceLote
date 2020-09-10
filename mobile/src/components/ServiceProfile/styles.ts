@@ -27,13 +27,19 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
 
-    descriptionText:{
-        fontFamily: 'Poppins_400Regular',
-        color: '#b19f81',
-        fontSize: 12,
-        marginTop: 0,
-        textAlign: 'left'
+    rightCorner:{
+        flexDirection: 'row',
+        alignContent: 'center',
+        justifyContent: 'center',
     },
+
+    ratedNumber:{
+        fontFamily: 'Poppins_400Regular',
+        color: '#f4f2da',
+        fontSize: 14,
+        marginLeft: 5
+    },
+
     bottomContainer:{
         backgroundColor: '#393843',
         padding: 10,

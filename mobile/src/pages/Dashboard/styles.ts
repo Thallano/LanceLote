@@ -17,7 +17,9 @@ const styles = StyleSheet.create({
 
     profileContainer:{
         borderRadius: 12,
-        borderWidth: 2,
+        borderRightWidth: 2,
+        borderLeftWidth: 2,
+        borderBottomWidth: 2,
         borderColor: '#95F776',
         padding: 5,
         alignItems: 'center',

@@ -24,7 +24,6 @@ export default class UserController {
         return response.json(users);
     }
 
-    
     async createUser(request: Request, response: Response) {
         
         const {
@@ -32,6 +31,9 @@ export default class UserController {
             email,
             whatsapp,
             password,
+            bio,
+            instagram,
+            web
         } = request.body;
                
         const id = crypto.randomBytes(3).toString('HEX');
@@ -46,6 +48,9 @@ export default class UserController {
                 email,  
                 whatsapp,
                 password,
+                bio,
+                instagram,
+                web
             });
 
             await trx.commit();
@@ -60,5 +65,25 @@ export default class UserController {
             })
         }
     }
-
+    
+    async updateUser(request: Request, response: Response) {
+        const {
+            bio,
+            instagram,
+            web,
+            user_id
+        } = request.body;
+        
+        try {
+            await db('users').where('users.user.id', '=', user_id).update({'bio': bio ,'instagram': instagram, "web": web});
+            console.log(request.body)
+            return response.status(201).send();
+        } catch ( err ) {
+            console.log(request.body)
+            return response.status(400).json({
+                error: 'Unexpected error while rating the service'
+            })
+        }
+        }
+        
 }

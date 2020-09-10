@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import styles from './styles';
-import ProfileItem, { Lancer } from '../../components/ProfileItem';
+import ServiceProfile, { Lancer } from '../../components/ServiceProfile';
 import api from '../../services/api';
 import { ScrollView } from 'react-native-gesture-handler';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 
 import {  MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
+import logo from '../../../assets/workerimg.png';
+
 
 const ProfileServicePage: React.FC = () => {
 
@@ -72,7 +74,10 @@ return (
                     <View style={styles.container}>
                             <View style={styles.header}>
                                 <TouchableOpacity onPress={loadReview}> 
-                                <MaterialCommunityIcons name="worker" size={90} color="#F4F2DA"  />
+                                    <Image
+                                    style={styles.avatar}
+                                    source={logo}
+                                    />
                                 </TouchableOpacity>
                            
                                 <Text style={styles.userName}>{service}</Text>
@@ -86,14 +91,14 @@ return (
                                     <FontAwesome name="instagram" size={40} color="#4b97ff" />
                                 </TouchableOpacity>
                                 <TouchableOpacity>
-                                    <FontAwesome name="facebook-f" size={40} color="#4b97ff" />
+                                    <FontAwesome name="home" size={40} color="#4b97ff" />
                                 </TouchableOpacity>
                             </View>
                         <View style={styles.reviewContainer}>
                     
                         { usersData.map((lancer: Lancer) =>{
                             return (
-                                <ProfileItem 
+                                <ServiceProfile 
                                     lancer={lancer}
                                     key={lancer.user_id}
                                 />

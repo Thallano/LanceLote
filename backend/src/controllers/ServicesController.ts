@@ -21,7 +21,6 @@ export default class ServicesController {
             .where('services.service', '=', service)
             .join('users', 'services.user_id', '=', 'users.id')
             .select(['services.*', 'users.*']);
-        console.log(services)
         return response.json(services);
     }
         
@@ -119,7 +118,6 @@ export default class ServicesController {
                             .where('idService', '=', service)
                             .where('user_id', '=', user_id)
                             .select('idService', 'user_id') as any;
-        console.log(userRate)
         if (userRate != ''){
             return response.status(400).json({
                 error: 'Você já avaliou esse serviço!'
@@ -128,7 +126,7 @@ export default class ServicesController {
         try {
             
             await db('services').where('services.idService', '=', service).update({'rate': mediaint ,'loted': increment, "ratetotal": ratetotal});
-            await db('loted').insert({'rated': rated ,'review': review, "idservice": service, "user_id": user_id, "review_name": review_name});
+            await db('loted').insert({'rated': rate ,'review': review, "idservice": service, "user_id": user_id, "review_name": review_name});
 
             return response.status(201).send();
 

@@ -25,6 +25,7 @@ routes.delete('/services', servicesControllers.deleteService);
 
 routes.get('/users', userController.login);
 routes.post('/users', userController.createUser);
+routes.put('/users', userController.updateUser);
 
 routes.get('/lots', lotsController.index);
 routes.post('/lots', lotsController.create);
