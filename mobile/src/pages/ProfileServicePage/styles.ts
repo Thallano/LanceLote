@@ -1,11 +1,17 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-    container:{
+    containerTotal:{
         backgroundColor: '#14181C',
         flex: 1,
         alignItems: 'center'
     },
+
+    container:{
+        backgroundColor: '#14181C',
+        flex: 1,
+        alignItems: 'center'
+    }, 
 
     header:{
         marginTop: '25%',
@@ -13,6 +19,20 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
 
+    reviewContainer:{
+        marginBottom: 190,
+        flex: 1
+    },
+
+    bottomContainerTotal:{
+        flex: 1,
+        padding: 10,
+    },
+
+    flatlistContainer:{
+    
+    },
+      
     image:{
         borderRadius: 32,
         height: 100,

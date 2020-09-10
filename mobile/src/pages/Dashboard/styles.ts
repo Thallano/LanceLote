@@ -9,23 +9,30 @@ const styles = StyleSheet.create({
     },
 
     logoutButton:{
-        marginTop: "35%",
+        marginTop: 150,
         borderRadius: 8,
         flexDirection: 'row',
-        justifyContent: 'space-between',
-       
+        justifyContent: 'space-between',     
+    },
+
+    profileContainer:{
+        borderRadius: 12,
+        borderWidth: 2,
+        borderColor: '#95F776',
+        padding: 5,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
 
     userIDText:{
         fontFamily: 'Poppins_600SemiBold',
         color: '#F4F2DA',
         fontSize: 18,
-        textAlign: 'right',
+        textAlign: 'center',
     },
 
     headerIntro:{
         justifyContent: 'space-between',
-        marginBottom: 20
     },
     
     coffee:{ 
@@ -46,7 +53,7 @@ const styles = StyleSheet.create({
     },
 
     containerLogo:{
-        padding: 20,
+        padding: 10,
     },
     
     logoContainer:{
@@ -54,20 +61,20 @@ const styles = StyleSheet.create({
         width: '40%',
         resizeMode: 'contain',
         alignSelf: 'center',
-        marginTop: 40
+        marginTop: 20
     },
 
     buttonsContainerLot:{
         flexDirection:'row',
         alignSelf: 'flex-start',
-        marginBottom: 85,
+        marginBottom: 100,
         /*transform: [{ rotate: '15deg'}],*/
     },
 
     buttonsContainerLance:{
         flexDirection:'row',
         marginBottom: -60,
-        marginTop: 110,
+        marginTop: 90,
         alignSelf: 'flex-end',
         /*transform: [{ rotate: '15deg'}],*/
     },

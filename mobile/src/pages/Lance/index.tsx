@@ -17,7 +17,7 @@ function Lance (){
     const [user_id, setUser] = useState('');
     const [service, setService] = useState("Serviços Gerais");
     const [description, setDescription] = useState('');
-    const [modality, setModality] = useState('');
+    const [modality, setModality] = useState("Preço/Hora");
     const [cost, setCost] = useState('');
     const [rate, setRate] = useState(0);
     const [loted, setLoted] = useState(0);

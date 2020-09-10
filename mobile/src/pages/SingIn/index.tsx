@@ -20,7 +20,8 @@ const SingIn: React.FC = () => {
     const { signed, signIn } = useContext(AuthContext);
 
     const [loginIdPass, setLoginIdPass] = useState<any>([]);
-    
+    const [namePass, setNamePass] = useState<any>([]);
+
     const { navigate } = useNavigation();
   
     
@@ -49,20 +50,25 @@ async function handleLogin (){
             }
             
             const loginId = response.data.map((login: any) => {
-                return  login.id
+                return login.id
+            })
+            const nameId = response.data.map((login: any)=>{
+                return login.name
             })
             setLoginIdPass(loginId)
+            setNamePass(nameId)
             await AsyncStorage.setItem('login', JSON.stringify(loginId));
+            await AsyncStorage.setItem('loginName', JSON.stringify(nameId));
     } else {
         Alert.alert("Usuário/Senha incorreto ou Usuário não existe")
     }
 }
 
 useEffect(() =>{
-    loginIdPass.map((id: any) =>{
+    namePass.map((name: any) =>{
         signIn();
     })
-},[loginIdPass])
+},[namePass])
 
 return (
     <>

@@ -16,6 +16,7 @@ const userController = new UserController();
 
 routes.get('/listservices', servicesListController.list);
 routes.get('/listservicesbyuser', servicesListController.listbyuser);
+routes.get('/listreview', servicesListController.listReview);
 
 routes.get('/services', servicesControllers.index);
 routes.post('/services', servicesControllers.createService);

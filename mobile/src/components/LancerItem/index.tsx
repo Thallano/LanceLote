@@ -59,8 +59,19 @@ const LancerItem: React.FC<LancerItemProps> = ({ lancer , loted }) =>  {
         }
     }
    
-    function handleNavigateToProfile ( ){
-        navigate('ProfilePage')
+    async function handleServicePressed ( ){
+        
+        let idServicePressed = [];
+
+        idServicePressed.push(lancer.idService);
+       
+        await AsyncStorage.setItem('idService', JSON.stringify(idServicePressed));
+        
+        navigateToServiceProfile();
+    }
+
+    function navigateToServiceProfile(){
+        navigate('ProfileServicePage')
     }
 
     return (
@@ -72,7 +83,9 @@ const LancerItem: React.FC<LancerItemProps> = ({ lancer , loted }) =>  {
                 source={logo}
             />
             <View style={styles.profileInfo}>
-                <Text onPress={handleNavigateToProfile} style={styles.name}>{lancer.name}</Text>
+                <Text onPress={()=>
+                    {handleServicePressed();
+                    }} style={styles.name}>{lancer.name}</Text>
                 <Text style={styles.service}>{lancer.service}</Text>
             </View>
         </View>

@@ -22,6 +22,7 @@ const [rate, setRate] = useState(0);
 const [user_id, setUserId] = useState();
 const [review, setReview] = useState('');
 const [rated, setRated] = useState(0);
+const [ review_name  , setReviewName] = useState();
 
 const [start1, setStart1] = useState(false);
 const [start2, setStart2] = useState(false);
@@ -38,11 +39,17 @@ function loadLogin ( ){
             setUserId(loginId);
         }
     });
+    AsyncStorage.getItem('loginName').then(response =>{
+        if (response){
+            const loginName = JSON.parse(response);
+            setReviewName(loginName);
+        }
+    });
 }
 
-useEffect (()=> {
+useEffect (()=>{
     loadLogin();
-},[])
+},[user_id]);
 
 function loadLotados(){
     AsyncStorage.getItem('lotados').then(response => {
@@ -65,13 +72,14 @@ async function onRated ( ) {
         service, /* ok */
         user_id, /* ok */
         review, /* ok */
-        rated   /* ok */
+        rated, /* ok */
+        review_name  
     }).then(() => {
         Alert.alert('Serviço Avaliado!');
         ('/');
         
     }).catch(() => {
-        Alert.alert('Erro ao avaliar o serviço, tende de novo!');
+        Alert.alert('Você já avaliou este serviço!');
     })   
 }
 

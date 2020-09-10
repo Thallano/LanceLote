@@ -1,46 +1,19 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-    removeService:{
-        alignContent: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'center',
-        borderRadius: 13,
-        marginRight: 10,
-        marginTop: "150%"
-    },
-
-    iconServiceRemove:{
-        alignSelf: 'center',
-        padding: 6
-    },
-    
     container:{
         backgroundColor: '#14181C',
         flex: 1,
-        padding: 40,
+        alignItems: 'center'
     },
-
-    flatListContainer:{
-        backgroundColor: '#14181C',
-        fontFamily: 'Raleway_700Bold',
-        color: '#14181C',
-        fontSize: 16,
-        marginTop: 30,
-    },   
     
     userServicesContainer:{
         backgroundColor: '#474553',
-        padding: 10,
         width: 280,
-        minHeight: 140,
         alignSelf: 'center',
-        flexDirection: 'column',
-        marginTop: 40,
-        marginBottom: 0,
-        justifyContent: 'space-between',
-        borderRadius: 12
+        borderRadius: 12,
+        padding: 10,
+        marginBottom: 20
     },
     
     headerService:{
@@ -51,7 +24,7 @@ const styles = StyleSheet.create({
     serviceText:{
         fontFamily: 'Raleway_700Bold',
         color: '#f4f2da',
-        fontSize: 20,
+        fontSize: 16,
     },
 
     descriptionText:{
@@ -61,9 +34,6 @@ const styles = StyleSheet.create({
         marginTop: 0,
         textAlign: 'left'
     },
-
-    
-
     bottomContainer:{
         backgroundColor: '#393843',
         padding: 10,
@@ -85,22 +55,6 @@ const styles = StyleSheet.create({
         color: '#f4f2da',
         fontSize: 16,
     },
-
-    /*editService:{
-        width: 60,
-        marginTop: 80,
-        alignContent: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'center',
-        borderRadius: 13,
-        marginRight: 10,
-    },
-
-    iconRateService:{
-        alignSelf: 'center',
-        padding: 6
-    },*/
 
 })
 

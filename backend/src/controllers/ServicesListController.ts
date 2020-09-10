@@ -27,4 +27,27 @@ export default class ServicesListController {
         return response.json(userids);
     }
 
+    async listReview(request: Request, response: Response){
+        const serviceId = request.query;
+
+        const service = serviceId.service as string;
+        console.log(service)
+        
+        try{
+      
+            const reviewWithIdsNote = await db('loted')
+            .where('loted.idService', '=', service)
+            .join('services', 'services.idService', 'loted.idService')
+            .select(['loted.*']);
+            console.log(reviewWithIdsNote)
+            return response.json(reviewWithIdsNote);
+        } catch (err) {
+    
+            return response.status(400).json({
+                error: 'Unexpected error while creating new service'
+            })
+        }
+        
+    }
+
 }

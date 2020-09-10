@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#474553',
         borderWidth: 3,
         height: 360,
-        width: 300,
+        width: 280,
         borderColor: '#434251',
         borderRadius: 8,
         overflow: 'hidden',
@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
 
     profileInfo:{
         marginLeft: 16,
-        
     },
 
     profileRate:{
@@ -44,6 +43,7 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         alignItems: 'center',
         marginRight: 50,
+        marginTop: -5
     },
 
     rateText:{

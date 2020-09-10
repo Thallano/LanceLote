@@ -20,6 +20,13 @@ export async function up(knex: Knex) {
             .onUpdate('CASCADE')
             .onDelete('CASCADE');
 
+        table.integer('review_name')
+            .notNullable()
+            .references('name')
+            .inTable('users')
+            .onUpdate('CASCADE')
+            .onDelete('CASCADE');
+
         table.timestamp('created_at')
             .defaultTo(knex.raw('CURRENT_TIMESTAMP'))
             .notNullable();

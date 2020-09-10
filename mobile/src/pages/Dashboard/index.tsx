@@ -3,7 +3,7 @@ import { View, Image, Text, TouchableOpacity } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
-import { Ionicons, FontAwesome, Feather} from '@expo/vector-icons';
+import { Ionicons, FontAwesome, Feather, MaterialCommunityIcons} from '@expo/vector-icons';
 
 import styles from './styles';
 import intrologo from '../../../assets/intrologo.png';
@@ -19,7 +19,7 @@ function Dashboard (){
     const { signOut } = useContext(AuthContext);
 
     function handleProfileButton(){
-        navigate('ProfilePage');
+        navigate('ProfileServicePage');
     }
 
     function handleLanceButton(){
@@ -36,7 +36,7 @@ function Dashboard (){
     };
     
     function loadLogin ( ){
-        AsyncStorage.getItem('login').then(response =>{
+        AsyncStorage.getItem('loginName').then(response =>{
             if (response){
                 const loginId = JSON.parse(response);
                 setLoginIdPass(loginId);
@@ -46,7 +46,7 @@ function Dashboard (){
     
     useEffect (()=> {
         loadLogin();
-    },[])
+    },[loginIdPass])
     
     return (
         <>
@@ -56,7 +56,11 @@ function Dashboard (){
                 <TouchableOpacity onPress={handleLogout}>
                         <FontAwesome name="power-off" size={24} color="#4b97ff" />  
                 </TouchableOpacity>
-                <Text style ={styles.userIDText} onPress={handleProfileButton}>Seu ID: {loginIdPass}</Text>
+                <TouchableOpacity style={styles.profileContainer} onPress={handleProfileButton}>
+                    <MaterialCommunityIcons name="worker" size={40} color="#F4F2DA"  />
+                    <Text style ={styles.userIDText} >{loginIdPass}</Text>
+                </TouchableOpacity>
+              
             </View>
             <View style={styles.containerLogo}>
                 <Image source={intrologo} style={styles.logoContainer} />

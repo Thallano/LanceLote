@@ -91,10 +91,10 @@ export default class ServicesController {
             service,
             user_id,
             review,
-            rated
+            rated,
+            review_name
         } = request.body;
-        console.log(request.body)
-        
+                
         const lot = await db('services')
                             .where('services.idService', '=', service)
                             /*.join('loted', 'services.user_id', '=', 'users.id')*/
@@ -114,11 +114,21 @@ export default class ServicesController {
         const mediaint = media.toFixed(1)
 
         const increment = loted+1
-                
+
+        const userRate = await db('loted')
+                            .where('idService', '=', service)
+                            .where('user_id', '=', user_id)
+                            .select('idService', 'user_id') as any;
+        console.log(userRate)
+        if (userRate != ''){
+            return response.status(400).json({
+                error: 'Você já avaliou esse serviço!'
+            })
+        } else {
         try {
             
             await db('services').where('services.idService', '=', service).update({'rate': mediaint ,'loted': increment, "ratetotal": ratetotal});
-            await db('loted').insert({'rated': rated ,'review': review, "idservice": service, "user_id": user_id});
+            await db('loted').insert({'rated': rated ,'review': review, "idservice": service, "user_id": user_id, "review_name": review_name});
 
             return response.status(201).send();
 
@@ -128,6 +138,6 @@ export default class ServicesController {
                 error: 'Unexpected error while rating the service'
             })
         }
-        
+        }
     }
 }
