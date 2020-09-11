@@ -52,7 +52,7 @@ async function handleLogin (){
             const loginId = response.data.map((login: any) => {
                 return login.id
             })
-            const nameId = response.data.map((login: any)=>{
+            const nameId = response.data.map((login: any)=> {
                 return login.name
             })
             setLoginIdPass(loginId)

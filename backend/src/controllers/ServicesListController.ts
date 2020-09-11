@@ -31,13 +31,13 @@ export default class ServicesListController {
         const serviceId = request.query;
 
         const service = serviceId.service as string;
-        console.log(service)
         try{
       
             const reviewWithIdsNote = await db('loted')
             .where('loted.idService', '=', service)
-            .join('services', 'services.idService', 'loted.idService')
-            .select(['loted.*']);
+            .join('services', 'services.idService', '=', 'loted.idService')
+            .join('users', 'users.id', '=', 'loted.user_id')
+            .select(['loted.*', 'services.service', 'users.name']);
             console.log(reviewWithIdsNote)
             return response.json(reviewWithIdsNote);
             

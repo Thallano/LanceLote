@@ -75,33 +75,32 @@ const LancerItem: React.FC<LancerItemProps> = ({ lancer , loted }) =>  {
     }
 
     return (
+    
     <View style={styles.container}>
         <View style={styles.upContainer}>
-        <View style={styles.profile}>
-            <Image
-                style={styles.avatar}
-                source={logo}
-            />
-            <View style={styles.profileInfo}>
-                <Text onPress={()=>
-                    {handleServicePressed();
-                    }} style={styles.name}>{lancer.name}</Text>
-                <Text style={styles.service}>{lancer.service}</Text>
-            </View>
-        </View>
-        <View style={styles.profileRate}>
-                <FontAwesome name="star" size={12} color="#F4F2DA" />
-               {/* <FontAwesome name="star" size={12} color="#F4F2DA" />
-                <FontAwesome name="star" size={12} color="#F4F2DA" />
-                <FontAwesome name="star" size={12} color="#F4F2DA" />
-                <FontAwesome name="star" size={12} color="#F4F2DA" />*/}
-        </View>
-                <Text style={styles.rateText}>Avaliação: {lancer.rate}</Text>
-        <ScrollView
-            showsVerticalScrollIndicator={false}    
-        >
-        <Text style={styles.description}>{lancer.description}</Text>
-        </ScrollView>
+            <TouchableOpacity onPress={()=>
+            {handleServicePressed();
+            }} >
+                <View style={styles.profile}>
+                    <Image
+                    style={styles.avatar}
+                    source={logo}
+                    />
+                    <View style={styles.profileInfo}>
+                        <Text style={styles.name}>{lancer.name}</Text>
+                        <Text style={styles.service}>{lancer.service}</Text>
+                    </View>
+                </View>
+                <View style={styles.profileRate}>
+                    <FontAwesome name="star" size={12} color="#F4F2DA" />
+                </View>
+                    <Text style={styles.rateText}>Avaliação: {lancer.rate}</Text>
+                <ScrollView
+                showsVerticalScrollIndicator={false}    
+                >
+                    <Text style={styles.description}>{lancer.description}</Text>
+                </ScrollView>
+            </TouchableOpacity>
         </View>
         <View style={styles.footer}>
             <View style={styles.priceContainer}>
@@ -133,6 +132,7 @@ const LancerItem: React.FC<LancerItemProps> = ({ lancer , loted }) =>  {
             </View>
         </View>
     </View>
+   
     )
 }
 

@@ -26,6 +26,7 @@ export interface Lancer {
     ratetotal: number;
     user_id: string;
     idService: string;
+    name: string;
 }
 
 export interface ServiceProfileProps{

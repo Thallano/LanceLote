@@ -14,40 +14,27 @@ const ProfileServicePage: React.FC = () => {
 
 const [ usersData, setUsersData ] = useState<any>([{}]);
 const [ service, setService] = useState('');
-const [ serviceIdConv, setServiceIdConv] = useState<string>();
-const [ lancer, setLancer] = useState(false);
-const [ name, setName] = useState();
+const [ serviceName, setServiceName] = useState<string>();
+const [ name, setName] = useState('');
+const [ count, setCount ] = useState (0);
+
 
 async function loadLogin ( ){
     await AsyncStorage.getItem('idService').then(response =>{
         if (response){
             const serviceAId = JSON.parse(response);
             setService(serviceAId[0]);
-            /*const serviceConv = JSON.stringify(serviceIdConv)
-            console.log(serviceIdConv)
-            setService(serviceConv)*/
             loadReview();
-            setLancer(true)
+            
         }
     });
 }
 
 useEffect (()=> {
+    
     loadLogin();
-},[lancer])
-
-/*async function loadProfile(){
-    if (serviceId != ''){
-    const response = await api.get('listservicesbyuser', {
-        params:{
-            serviceId
-        }
-    })
-    setUsersData(response.data)
-    setLancer(true)
-    console.log(usersData)
-    }
-}*/
+    
+},[service])
 
 async function loadReview(){
     if (service != ''){
@@ -57,9 +44,17 @@ async function loadReview(){
             }
         })
         setUsersData(response.data)
-        setName(usersData.idService)
-        console.log(response.data)
+        usersData.map((lancer: Lancer) =>{
+            return setName(lancer.name)     
+        })
+
+        usersData.map((lancer: Lancer) =>{
+            return setServiceName(lancer.service)     
+        })
+       
     }
+    
+    console.log('executou')
 }
 
 return (
@@ -80,10 +75,10 @@ return (
                                     />
                                 </TouchableOpacity>
                            
-                                <Text style={styles.userName}>{service}</Text>
+                                <Text style={styles.userName}>{name}</Text>
                             </View>
                             <View style={styles.footer}>
-                                <Text style={styles.bio}>A nostalgia da suposta presença da "Coisa" que teria nos salvado do desamparo.</Text>
+                                <Text style={styles.service}>{serviceName}</Text>
                             </View >
                                 <Text style={styles.bio}>Você pode me achar também em:</Text>
                             <View style={styles.footerContacts}>

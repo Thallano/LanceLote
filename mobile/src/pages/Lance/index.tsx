@@ -2,17 +2,20 @@ import React, { useState, useEffect } from 'react';
 import {View, Text, TextInput, ScrollView, Alert, Picker } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { FontAwesome, MaterialCommunityIcons} from '@expo/vector-icons';
-import AsyncStorage from '@react-native-community/async-storage';
+import { useNavigation } from '@react-navigation/native';
 
 import api from '../../services/api';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import PageHeader from '../../components/PageHeader';
-
 import styles from './styles';
+
 
 
 function Lance (){
     const [ loginIdPass, setLoginIdPass ] = useState([]);
+    
+    const { navigate } = useNavigation();
 
     const [user_id, setUser] = useState('');
     const [service, setService] = useState("Serviços Gerais");
@@ -52,11 +55,11 @@ function Lance (){
                 ratetotal             
         }).then(() => {
             Alert.alert('Serviço cadastrado com sucesso!');
-            ('/');
-            
+            navigate('Lanced');            
         }).catch(() => {
             Alert.alert('Erro no cadastro!');
         })
+
     }
     }
     

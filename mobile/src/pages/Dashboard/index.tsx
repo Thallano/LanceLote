@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
-
 import { useNavigation } from '@react-navigation/native';
-
 import { Ionicons, FontAwesome, Feather, MaterialCommunityIcons} from '@expo/vector-icons';
 
 import styles from './styles';
@@ -13,10 +11,11 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 
 function Dashboard (){
-    const [ loginIdPass, setLoginIdPass ] = useState([]);
-
-    const { navigate } = useNavigation();
     const { signOut } = useContext(AuthContext);
+    const { navigate } = useNavigation();
+
+    const [ loginIdPass, setLoginIdPass ] = useState([]);
+    const [count, setCount ] = useState(0);
 
     function handleProfileButton(){
         navigate('ProfilePage');
@@ -40,13 +39,16 @@ function Dashboard (){
             if (response){
                 const loginId = JSON.parse(response);
                 setLoginIdPass(loginId);
+                setCount(count +1)
             }
         });
     }
     
     useEffect (()=> {
+        if (count < 3 ){
         loadLogin();
-    },[loginIdPass])
+        }
+    },[count])
     
     return (
         <>

@@ -25,11 +25,16 @@ const [rated, setRated] = useState(0);
 const [ review_name  , setReviewName] = useState();
 
 const [start1, setStart1] = useState(false);
-const [start2, setStart2] = useState(false);
-const [start3, setStart3] = useState(false);
-const [start4, setStart4] = useState(false);
-const [start5, setStart5] = useState(false);
 
+const star = [
+    {review: '1'},
+    {review: '2'},
+    {review: '3'},
+    {review: '4'},
+    {review: '5'}
+]
+
+const [ isReviewVisible , setReviewVisible ] = useState(false);
 const [rateCommit, setRateCommit] = useState(false);
 
 function loadLogin ( ){
@@ -49,7 +54,11 @@ function loadLogin ( ){
 
 useEffect (()=>{
     loadLogin();
-},[user_id]);
+},[]);
+
+useEffect(() =>{
+    loadLotados();
+},[])  
 
 function loadLotados(){
     AsyncStorage.getItem('lotados').then(response => {
@@ -60,11 +69,8 @@ function loadLotados(){
     });
 }
 
-useEffect(() =>{
-    loadLotados();
-    
-},[loadLotados])   
-
+console.log(user_id)
+console.log(loadLotados)
 async function onRated ( ) {
     
     const response =  await api.put('services',{
@@ -82,23 +88,6 @@ async function onRated ( ) {
         Alert.alert('Você já avaliou este serviço!');
     })   
 }
-
-const RightAction = ( progression: any, dragX: any ) => {
-
-    const scale = dragX.interpolate({
-                inputRange: [-75 , 0],
-                outputRange: [1 , 0],
-                extrapolate: 'clamp',      
-        })
-        return (
-                
-            <Animated.View style={{ transform: [{scale}]}}> 
-                    <View style={styles.removeService}>
-                    <Ionicons  name="ios-trash" size={30} color="#14181C" style={styles.iconServiceRemove} />
-                    </View>
-            </Animated.View>    
-        )
-    }
     
 const LeftAction = ( progression: any, dragX: any ) => {
         const scale = dragX.interpolate({
@@ -251,8 +240,9 @@ const LeftAction = ( progression: any, dragX: any ) => {
 
                                                  
                 </View>
-                
+                        { starPressed &&
                             <View style={styles.reviewContainer}>
+                           
                             <TextInput 
                                 style={styles.inputReview}
                                 value={review}
@@ -262,7 +252,7 @@ const LeftAction = ( progression: any, dragX: any ) => {
                                 multiline
                             
                             />
-                            { starPressed &&
+                            
                             <TouchableOpacity style={styles.containerRateConfirm} onPress={()=>{
                                 onRated()
                                 splitServiceFromAS()
@@ -271,12 +261,13 @@ const LeftAction = ( progression: any, dragX: any ) => {
                                 <FontAwesome name="check" size={25} color="#4b97ff"  />
                                 <Text style={styles.rateContainerTextNumber}>Avaliar</Text>
                             </TouchableOpacity>
-                             }  
+                             
                             </View>
-                         
+                        }   
             </Animated.View>    
         )
 }
+
 
 async function splitServiceFromAS (){
     const lotes = await AsyncStorage.getItem('lotados');
@@ -318,20 +309,76 @@ return (
                     keyExtractor={lotados => String(lotados.idService)}
                     renderItem={({item: lotados})  => (
                         <>
-                        <Swipeable 
-                        renderLeftActions={LeftAction}
-                        onSwipeableLeftOpen={()=>{
-                            setService(lotados.idService)
-                        }}
-                        >  
-                            <View style={styles.userServicesContainer}>
-                                <View style={styles.headerServiceRate}>
-                                    <MaterialCommunityIcons name="gesture-swipe-right" size={24} color="#F4F2DA" />
-                                    <Text style={styles.serviceTextRate}>Avalie</Text>
+                                    { starPressed &&
+                                        <View style={styles.reviewContainer}>
+
+                                        <TextInput 
+                                        style={styles.inputReview}
+                                        value={review}
+                                        onChangeText={text =>  setReview(text)}
+                                        placeholder="Faça um comentário sobre o serviço"
+                                        placeholderTextColor="#c1bccc"
+                                        multiline
+
+                                        />
+
+                                            <TouchableOpacity style={styles.containerRateConfirm} onPress={()=>{
+                                            onRated()
+                                            splitServiceFromAS()
+                                            setRated(1)
+                                            }}>
+                                                <FontAwesome name="check" size={25} color="#4b97ff"  />
+                                                <Text style={styles.rateContainerTextNumber}>Avaliar</Text>
+                                            </TouchableOpacity>
+
+                                        </View>
+                                    }   
+                                    <View style={styles.rateContainer}>
+                                        
+                                        <View style={styles.rateContainerIcons}>
+                                            <FlatList 
+                                                data={star}
+                                                horizontal={true}
+                                                keyExtractor={star => String(star.review)}
+                                                renderItem={({index: star}) => (
+                                                    
+                                                 
+                                                        <TouchableOpacity>
+                                                        { starPressed 
+                                                            ? <FontAwesome name="star" size={25} color="#4b97ff" 
+                                                            onPress={()=>{
+                                                            setStarPressed(false)
+                                                            setRate(0)
+                                                            setStart1(false)
+                                                            }} 
+                                                            />
+                                                            : <FontAwesome name="star-o" size={25} color="#4b97ff" 
+                                                            onPress={()=>{
+                                                            setStarPressed(true)
+                                                            setRate(1)
+                                                            setStart1(false)
+                                                            }} 
+                                                            />
+                                                        }
+                                                        </TouchableOpacity>
+                                                       
+                                                    
+                                            )
+                                            }                                                  
+                                            />
+                                        </View>
                                 </View>
+                          
+                            <View style={styles.userServicesContainer}>
+                               
+                                    <View style={styles.headerServiceRate}>
+                                        <FontAwesome name="hand-o-up" size={24} color="#F4F2DA" />
+                                        <Text style={styles.serviceTextRate}>Avalie</Text>
+                                    </View>
+                                
                                 <View style={styles.headerService}>
                                     <Text style={styles.serviceText}>{lotados.name}</Text>
-                                    <Text style={styles.serviceText}>{lotados.service}</Text>
+                                    <Text style={styles.serviceTextSubtitle}>{lotados.service}</Text>
                                 </View>
                                 <Text style={styles.descriptionText}>{lotados.description}</Text>
                                 <View style={styles.bottomContainer} >
@@ -339,7 +386,7 @@ return (
                                     <Text  style={styles.costText}>R$ {lotados.cost}</Text>
                                 </View>
                             </View>    
-                        </Swipeable>
+                       
                         </>
                      )}
                 />

@@ -77,14 +77,16 @@ const styles = StyleSheet.create({
     },
 
     rateContainer:{
-        backgroundColor: '#F4F2DA',
         width: 160,
-        borderRadius: 12,
+        borderRadius: 15,
+        borderWidth: 5,
+        borderColor: '#F4F2DA',
         flexDirection: 'row',
         alignSelf: 'center',
         alignContent: 'center',
         justifyContent: 'center',
         padding: 15,
+        marginBottom: -50,
     },
 
     rateContainerIcons:{
@@ -97,11 +99,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 5,
+        marginLeft: 320
     },
 
     iconRateService:{
         alignSelf: 'center',
-        padding: 6
+        padding: 6,
     },
 
     rateContainerTextNumber:{
@@ -121,13 +124,16 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         borderRadius: 12
     },
+
     headerServiceRate:{
-        flexDirection: 'row',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
         marginBottom: 5
     },  
     
     headerService:{
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'space-between'
     },
 
@@ -135,12 +141,19 @@ const styles = StyleSheet.create({
         fontFamily: 'Poppins_400Regular',
         color: '#f4f2da',
         fontSize: 14,
+        marginLeft: 10
     },
 
     serviceText:{
         fontFamily: 'Raleway_700Bold',
         color: '#f4f2da',
         fontSize: 16,
+    },
+
+    serviceTextSubtitle:{
+        fontFamily: 'Poppins_400Regular',
+        color: '#b19f81',
+        fontSize: 14,
     },
 
     descriptionText:{

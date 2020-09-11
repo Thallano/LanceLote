@@ -2,7 +2,7 @@ import {StyleSheet} from "react-native";
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor: '#474553',
+      
         borderWidth: 5,
         height: 340,
         width: 280,
@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     
     upContainer:{
         flex: 1,
+        backgroundColor: '#474553',
     },
 
     profile:{
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Raleway_700Bold',
         color: '#f4f2da',
         fontSize: 20,
-        maxWidth: 200,
+        maxWidth: 190,
     },
 
     service:{

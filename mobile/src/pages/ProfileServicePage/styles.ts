@@ -52,15 +52,24 @@ const styles = StyleSheet.create({
         fontFamily: 'Raleway_900Black',
         color: '#F4F2DA',
         fontSize: 18,
-        marginTop: 20,
+        marginTop: 15,
         backgroundColor: '#14181C',
-        elevation: 3,
+        elevation: 1,
         width: 200,
-        height: 30,
+        height: 32,
         textAlign: 'center'
     },
+
     iconEditBio:{
         alignSelf: 'flex-end',
+    },
+
+    service:{
+        fontFamily: 'Poppins_600SemiBold',
+        color: '#F4F2DA',
+        fontSize: 22,
+        textAlign: 'justify',
+        padding: 20
     },
 
     bio:{
@@ -79,7 +88,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         maxWidth: 280,
         marginTop: -10,
-        backgroundColor: '#474553'
+        /*backgroundColor: '#474553'*/
     },
 
     footerContacts:{
