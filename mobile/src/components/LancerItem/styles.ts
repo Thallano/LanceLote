@@ -2,10 +2,9 @@ import {StyleSheet} from "react-native";
 
 const styles = StyleSheet.create({
     container:{
-      
-        borderWidth: 5,
         height: 340,
         width: 280,
+        borderWidth: 5,
         borderColor: '#434251',
         borderRadius: 12,
         overflow: 'hidden',

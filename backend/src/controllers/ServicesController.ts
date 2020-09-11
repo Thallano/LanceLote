@@ -90,10 +90,9 @@ export default class ServicesController {
             service,
             user_id,
             review,
-            rated,
             review_name
         } = request.body;
-                
+        console.log(request.body)
         const lot = await db('services')
                             .where('services.idService', '=', service)
                             /*.join('loted', 'services.user_id', '=', 'users.id')*/

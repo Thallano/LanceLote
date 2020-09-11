@@ -6,49 +6,20 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
-    title:{
-        fontFamily: 'Raleway_700Bold',
-        color: '#FFF',
-        fontSize: 32,
-        lineHeight: 37,
-    },
-
     bottomLancersContainer:{
         backgroundColor: '#14181C',
         flex: 1,
         marginTop: 0,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        
     },
 
     containerItens:{
         backgroundColor: '#14181C',
         marginTop: 100,
     },
-
-    label: {
-        color: '#e7e4bc',
-        fontFamily: 'Poppins_400Regular',
-    },
-
-    removeService:{
-        backgroundColor: '#4b97ff',
-        width: 60,
-        height: 130,
-        alignContent: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'center',
-        borderRadius: 13,
-        marginRight: 10,
-        marginTop: 80
-    },
-
-    iconServiceRemove:{
-        alignSelf: 'center',
-        padding: 6
-    },
-
+    
     reviewContainer:{
         justifyContent: 'center',
         flexDirection: 'column',
@@ -79,7 +50,8 @@ const styles = StyleSheet.create({
     rateContainer:{
         width: 160,
         borderRadius: 15,
-        borderWidth: 5,
+        borderWidth: 3,
+        backgroundColor: '#F4F2DA',
         borderColor: '#F4F2DA',
         flexDirection: 'row',
         alignSelf: 'center',
@@ -122,7 +94,9 @@ const styles = StyleSheet.create({
         marginTop: 40,
         marginBottom: 10,
         justifyContent: 'space-between',
-        borderRadius: 12
+        borderRadius: 12,
+        borderWidth: 5,
+        borderColor: '#434251',
     },
 
     headerServiceRate:{

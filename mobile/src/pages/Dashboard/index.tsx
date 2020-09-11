@@ -15,7 +15,9 @@ function Dashboard (){
     const { navigate } = useNavigation();
 
     const [ loginIdPass, setLoginIdPass ] = useState([]);
-    const [count, setCount ] = useState(0);
+
+    const [reload, setReload ] = useState(false);
+    const [loginCatched, setloginCatched] = useState();
 
     function handleProfileButton(){
         navigate('ProfilePage');
@@ -39,16 +41,17 @@ function Dashboard (){
             if (response){
                 const loginId = JSON.parse(response);
                 setLoginIdPass(loginId);
-                setCount(count +1)
+                setReload(true)
             }
         });
     }
     
     useEffect (()=> {
-        if (count < 3 ){
+        if (reload == false){
         loadLogin();
+        console.log("executou")
         }
-    },[count])
+    },[reload])
     
     return (
         <>
@@ -70,7 +73,7 @@ function Dashboard (){
             <View style={styles.headerIntro}>
                     <Text style={styles.titleBold}>
                     <Feather name="coffee" style={styles.coffee} size={25}/>   Seja Bem-vindo!{'\n'}
-                        <Text style={styles.title}>Essa é a sua plataforma de serviços</Text>
+                        <Text style={styles.title}>Essa é a sua plataforma de serviços!</Text>
                     </Text>
             </View>   
            
@@ -79,7 +82,8 @@ function Dashboard (){
             <TouchableOpacity style={[styles.button, styles.lanceButtonContainer]} onPress={handleLanceButton}>
                     <Text style={styles.lanceServiceTextButton}>LANÇAR</Text>
                     <FontAwesome name="gears" size={32} color="#14181C" />
-                    <Ionicons name="ios-arrow-up" size={32} color="#14181C" />
+                    <Feather name="arrow-up-right" size={50} color="#14181C" />
+                    {/*<Ionicons name="ios-arrow-up" size={32} color="#14181C" />*/}
             </TouchableOpacity>
                 
             </View>
@@ -88,7 +92,8 @@ function Dashboard (){
                 <TouchableOpacity style={[styles.button, styles.lotButtonContainer]} onPress={handleLotButton}>
                     <Text style={styles.lotServiceTextButton}>LOTAR</Text>
                     <FontAwesome name="handshake-o" size={32} color="#14181C" />
-                    <Ionicons name="ios-arrow-down" size={32} color="#14181C" />
+                    <Feather name="arrow-down-left" size={50} color="#14181C" />
+                    {/*<Ionicons name="ios-arrow-down" size={32} color="#14181C" />*/}
                 </TouchableOpacity>
                
             </View>

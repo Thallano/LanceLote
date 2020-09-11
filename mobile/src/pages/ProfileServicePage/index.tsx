@@ -8,6 +8,7 @@ import { View, Text, TouchableOpacity, Image } from 'react-native';
 
 import {  MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 import logo from '../../../assets/workerimg.png';
+import { useFocusEffect } from '@react-navigation/native';
 
 
 const ProfileServicePage: React.FC = () => {
@@ -16,7 +17,8 @@ const [ usersData, setUsersData ] = useState<any>([{}]);
 const [ service, setService] = useState('');
 const [ serviceName, setServiceName] = useState<string>();
 const [ name, setName] = useState('');
-const [ count, setCount ] = useState (0);
+const [ servCatch, setServCatch] = useState (false);
+const [ reload, setReload] = useState(false);
 
 
 async function loadLogin ( ){
@@ -24,36 +26,42 @@ async function loadLogin ( ){
         if (response){
             const serviceAId = JSON.parse(response);
             setService(serviceAId[0]);
-            loadReview();
-            
+            setReload(true)
         }
     });
 }
 
+useFocusEffect (
+    React.useCallback(() => {
+        loadLogin();
+      }, [reload])
+);
+
 useEffect (()=> {
-    
-    loadLogin();
-    
-},[service])
+    if (servCatch == false){
+        loadReview();
+    }
+},)
+
 
 async function loadReview(){
-    if (service != ''){
-        const response = await api.get('listreview', {
-            params:{
-                service
-            }
-        })
-        setUsersData(response.data)
-        usersData.map((lancer: Lancer) =>{
-            return setName(lancer.name)     
-        })
 
-        usersData.map((lancer: Lancer) =>{
-            return setServiceName(lancer.service)     
-        })
-       
+    const response = await api.get('listreview', {
+        params:{
+            service
+        }
+    })
+    setUsersData(response.data)
+    usersData.map((lancer: Lancer) =>{
+        return setName(lancer.name)     
+    })
+
+    usersData.map((lancer: Lancer) =>{
+        return setServiceName(lancer.service)     
+    })
+    if (name != ''){
+        setServCatch(true)
     }
-    
     console.log('executou')
 }
 

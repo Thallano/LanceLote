@@ -11,8 +11,8 @@ const styles = StyleSheet.create({
     logoutButton:{
         marginTop: 150,
         borderRadius: 8,
-        flexDirection: 'row',
-        justifyContent: 'space-between',     
+        flexDirection: 'column',
+        alignItems: 'center'     
     },
 
     profileContainer:{
@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
         borderColor: '#95F776',
         padding: 5,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginTop: 10
     },
 
     userIDText:{

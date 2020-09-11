@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
-import {View, Animated, AsyncStorage, Text, Alert, Picker, FlatList} from 'react-native';
+import {View, AsyncStorage, Text, Alert, FlatList} from 'react-native';
 import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
-import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import styles from './styles';
 
 import PageHeader from '../../components/PageHeader';
 
-import Swipeable from 'react-native-gesture-handler/Swipeable';
 import api from '../../services/api';
 
 
@@ -21,44 +20,41 @@ const [service, setService] = useState<any>();
 const [rate, setRate] = useState(0);
 const [user_id, setUserId] = useState();
 const [review, setReview] = useState('');
-const [rated, setRated] = useState(0);
+const [reload, setReload] = useState(false);
+
 const [ review_name  , setReviewName] = useState();
 
-const [start1, setStart1] = useState(false);
+const [starIcon, setStarIcon] = useState<number>(0);
 
 const star = [
-    {review: '1'},
-    {review: '2'},
-    {review: '3'},
-    {review: '4'},
-    {review: '5'}
+    {review: 1},
+    {review: 2},
+    {review: 3},
+    {review: 4},
+    {review: 5}
 ]
-
-const [ isReviewVisible , setReviewVisible ] = useState(false);
-const [rateCommit, setRateCommit] = useState(false);
 
 function loadLogin ( ){
     AsyncStorage.getItem('login').then(response =>{
         if (response){
             const loginId = JSON.parse(response);
-            setUserId(loginId);
+            setUserId(loginId[0]);
         }
     });
     AsyncStorage.getItem('loginName').then(response =>{
         if (response){
             const loginName = JSON.parse(response);
-            setReviewName(loginName);
+            setReviewName(loginName[0]);
         }
     });
 }
 
-useEffect (()=>{
-    loadLogin();
-},[]);
-
-useEffect(() =>{
-    loadLotados();
-},[])  
+useFocusEffect (
+    React.useCallback(() => {
+        loadLogin();
+        loadLotados();
+      }, [reload])
+);
 
 function loadLotados(){
     AsyncStorage.getItem('lotados').then(response => {
@@ -69,8 +65,12 @@ function loadLotados(){
     });
 }
 
+/*console.log(service)
+console.log(rate)
 console.log(user_id)
-console.log(loadLotados)
+console.log(review)
+console.log(review_name)*/
+
 async function onRated ( ) {
     
     const response =  await api.put('services',{
@@ -78,196 +78,15 @@ async function onRated ( ) {
         service, /* ok */
         user_id, /* ok */
         review, /* ok */
-        rated, /* ok */
-        review_name  
+        review_name  /* ok*/
     }).then(() => {
         Alert.alert('Serviço Avaliado!');
-        ('/');
-        
+        setReload(!reload)
     }).catch(() => {
         Alert.alert('Você já avaliou este serviço!');
+        setReload(!reload)
     })   
 }
-    
-const LeftAction = ( progression: any, dragX: any ) => {
-        const scale = dragX.interpolate({
-                inputRange: [0, 75],
-                outputRange: [0 , 1],
-                extrapolate: 'clamp',
-        })
-        return (
-                
-            <Animated.View style={{ transform: [{scale}]}}> 
-                                                        
-                <View style={styles.rateContainer}> 
-                    <View style={styles.rateContainerIcons}>
-                        { starPressed && start1 == true
-                        ? <TouchableOpacity>
-                            <FontAwesome name="star" size={25} color="#4b97ff" 
-                            onPress={()=>{
-                                setStarPressed(!starPressed)
-                                setRate(0)
-                                setStart1(false)
-                                setStart2(false)
-                                setStart3(false)
-                                setStart4(false)
-                                setStart5(false)
-                            }} 
-                            />
-                            </TouchableOpacity>
-                        : <TouchableOpacity>
-                            <FontAwesome name="star-o" size={25} color="#4b97ff" 
-                            onPress={()=>{
-                                setStarPressed(!starPressed)
-                                setRate(1)
-                                setStart1(true)
-                            }} 
-                            />
-                            </TouchableOpacity>
-                        }
-
-                        { starPressed && start2 == true
-                        ? <TouchableOpacity>
-                            <FontAwesome name="star" size={25} color="#4b97ff" 
-                            onPress={()=>{
-                                setStarPressed(!starPressed)
-                                setRate(0)
-                                setStart1(false)
-                                setStart2(false)
-                                setStart3(false)
-                                setStart4(false)
-                                setStart5(false)
-                            }} 
-                            />
-                            </TouchableOpacity>
-                        : <TouchableOpacity>
-                            <FontAwesome name="star-o" size={25} color="#4b97ff" 
-                            onPress={()=>{
-                                setStarPressed(!starPressed)
-                                setRate(2)
-                                setStart1(true)
-                                setStart2(true)
-                            }} 
-                            />
-                            </TouchableOpacity>
-                        }
-
-                        { starPressed && start3 == true
-                        ? <TouchableOpacity>
-                            <FontAwesome name="star" size={25} color="#4b97ff" 
-                            onPress={()=>{
-                                setStarPressed(!starPressed)
-                                setRate(0)
-                                setStart1(false)
-                                setStart2(false)
-                                setStart3(false)
-                                setStart4(false)
-                                setStart5(false)
-                            }} 
-                            />
-                            </TouchableOpacity>
-                        : <TouchableOpacity>
-                            <FontAwesome name="star-o" size={25} color="#4b97ff" 
-                            onPress={()=>{
-                                setStarPressed(!starPressed)
-                                setRate(3)
-                                setStart1(true)
-                                setStart2(true)
-                                setStart3(true)
-                            }} 
-                            />
-                            </TouchableOpacity>
-                        }
-
-                        { starPressed && start4 == true
-                        ? <TouchableOpacity>
-                            <FontAwesome name="star" size={25} color="#4b97ff" 
-                            onPress={()=>{
-                                setStarPressed(!starPressed)
-                                setRate(0)
-                                setStart1(false)
-                                setStart2(false)
-                                setStart3(false)
-                                setStart4(false)
-                                setStart5(false)
-                            }} 
-                            />
-                            </TouchableOpacity>
-                        : <TouchableOpacity>
-                            <FontAwesome name="star-o" size={25} color="#4b97ff" 
-                            onPress={()=>{
-                                setStarPressed(!starPressed)
-                                setRate(4)
-                                setStart1(true)
-                                setStart2(true)
-                                setStart3(true)
-                                setStart4(true)
-                            }} 
-                            />
-                            </TouchableOpacity>
-                        }
-                        
-                        { starPressed && start5 == true
-                        ? <TouchableOpacity>
-                            <FontAwesome name="star" size={25} color="#4b97ff" 
-                            onPress={()=>{
-                                setStarPressed(!starPressed)
-                                setRate(0)
-                                setStart1(false)
-                                setStart2(false)
-                                setStart3(false)
-                                setStart4(false)
-                                setStart5(false)
-                            }} 
-                            />
-                            </TouchableOpacity>
-                        : <TouchableOpacity>
-                            <FontAwesome name="star-o" size={25} color="#4b97ff" 
-                            onPress={()=>{
-                                setStarPressed(!starPressed)
-                                setRate(5)
-                                setStart1(true)
-                                setStart2(true)
-                                setStart3(true)
-                                setStart4(true)
-                                setStart5(true)
-                            }} 
-                            />
-                            </TouchableOpacity>
-                        } 
-                        
-                    </View>
-
-                                                 
-                </View>
-                        { starPressed &&
-                            <View style={styles.reviewContainer}>
-                           
-                            <TextInput 
-                                style={styles.inputReview}
-                                value={review}
-                                onChangeText={text =>  setReview(text)}
-                                placeholder="Faça um comentário sobre o serviço"
-                                placeholderTextColor="#c1bccc"
-                                multiline
-                            
-                            />
-                            
-                            <TouchableOpacity style={styles.containerRateConfirm} onPress={()=>{
-                                onRated()
-                                splitServiceFromAS()
-                                setRated(1)
-                                }}>
-                                <FontAwesome name="check" size={25} color="#4b97ff"  />
-                                <Text style={styles.rateContainerTextNumber}>Avaliar</Text>
-                            </TouchableOpacity>
-                             
-                            </View>
-                        }   
-            </Animated.View>    
-        )
-}
-
 
 async function splitServiceFromAS (){
     const lotes = await AsyncStorage.getItem('lotados');
@@ -310,8 +129,9 @@ return (
                     renderItem={({item: lotados})  => (
                         <>
                                     { starPressed &&
+                                    
                                         <View style={styles.reviewContainer}>
-
+                                               
                                         <TextInput 
                                         style={styles.inputReview}
                                         value={review}
@@ -325,12 +145,11 @@ return (
                                             <TouchableOpacity style={styles.containerRateConfirm} onPress={()=>{
                                             onRated()
                                             splitServiceFromAS()
-                                            setRated(1)
                                             }}>
                                                 <FontAwesome name="check" size={25} color="#4b97ff"  />
-                                                <Text style={styles.rateContainerTextNumber}>Avaliar</Text>
+                                                
                                             </TouchableOpacity>
-
+                                            {setService(lotados.idService)}
                                         </View>
                                     }   
                                     <View style={styles.rateContainer}>
@@ -340,27 +159,28 @@ return (
                                                 data={star}
                                                 horizontal={true}
                                                 keyExtractor={star => String(star.review)}
-                                                renderItem={({index: star}) => (
+                                                renderItem={({item}) => (
                                                     
-                                                 
-                                                        <TouchableOpacity>
-                                                        { starPressed 
+                                                        <TouchableOpacity 
+                                                            >
+                                                        { starPressed && starIcon >= item.review 
                                                             ? <FontAwesome name="star" size={25} color="#4b97ff" 
                                                             onPress={()=>{
-                                                            setStarPressed(false)
                                                             setRate(0)
-                                                            setStart1(false)
+                                                            setStarPressed(false)
                                                             }} 
                                                             />
                                                             : <FontAwesome name="star-o" size={25} color="#4b97ff" 
                                                             onPress={()=>{
+                                                            setRate(item.review)
+                                                            setStarIcon(item.review)
                                                             setStarPressed(true)
-                                                            setRate(1)
-                                                            setStart1(false)
                                                             }} 
                                                             />
                                                         }
+                                                        
                                                         </TouchableOpacity>
+                                                        
                                                        
                                                     
                                             )
@@ -372,7 +192,9 @@ return (
                             <View style={styles.userServicesContainer}>
                                
                                     <View style={styles.headerServiceRate}>
-                                        <FontAwesome name="hand-o-up" size={24} color="#F4F2DA" />
+                                        <FontAwesome name="hand-o-up" size={24} color="#F4F2DA" onPress={()=>{
+                                            
+                                        }}/>
                                         <Text style={styles.serviceTextRate}>Avalie</Text>
                                     </View>
                                 
