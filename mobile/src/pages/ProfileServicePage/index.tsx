@@ -4,22 +4,25 @@ import styles from './styles';
 import ServiceProfile, { Lancer } from '../../components/ServiceProfile';
 import api from '../../services/api';
 import { ScrollView } from 'react-native-gesture-handler';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Linking } from 'react-native';
 
-import {  MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
+import {  FontAwesome } from '@expo/vector-icons';
 import logo from '../../../assets/workerimg.png';
 import { useFocusEffect } from '@react-navigation/native';
 
 
 const ProfileServicePage: React.FC = () => {
 
+
+const [ userName, setuserName] = useState<any>([{}]);
 const [ usersData, setUsersData ] = useState<any>([{}]);
 const [ service, setService] = useState('');
 const [ serviceName, setServiceName] = useState<string>();
+const [ serviceInstagram, setServiceInstagram] = useState<string>();
+const [ serviceWeb, setServiceWeb] = useState<string>();
 const [ name, setName] = useState('');
-const [ servCatch, setServCatch] = useState (false);
+const [ servCatch, setServCatch] = useState(false);
 const [ reload, setReload] = useState(false);
-
 
 async function loadLogin ( ){
     await AsyncStorage.getItem('idService').then(response =>{
@@ -27,42 +30,65 @@ async function loadLogin ( ){
             const serviceAId = JSON.parse(response);
             setService(serviceAId[0]);
             setReload(true)
+            console.log("Executou 0")
         }
     });
 }
 
 useFocusEffect (
     React.useCallback(() => {
-        loadLogin();
+        loadLogin()
       }, [reload])
 );
 
 useEffect (()=> {
     if (servCatch == false){
-        loadReview();
+        loadReview()
+        loadUserbyService()
     }
-},)
-
+},[reload])
 
 async function loadReview(){
-
     const response = await api.get('listreview', {
         params:{
             service
         }
     })
     setUsersData(response.data)
-    usersData.map((lancer: Lancer) =>{
-        return setName(lancer.name)     
+}
+
+async function loadUserbyService(){
+    const response = await api.get('listServiceUser', {
+        params:{
+            service
+        }
     })
 
-    usersData.map((lancer: Lancer) =>{
+    setuserName(response.data)
+
+    userName.map((lancer: Lancer) =>{
+        return setName(lancer.name)     
+    })
+    userName.map((lancer: Lancer) =>{
         return setServiceName(lancer.service)     
     })
-    if (name != ''){
-        setServCatch(true)
-    }
-    console.log('executou')
+    userName.map((lancer: Lancer) =>{
+        return setServiceInstagram(lancer.instagram)     
+    }) 
+    userName.map((lancer: Lancer) =>{
+        return setServiceWeb(lancer.web)     
+    }) 
+    console.log(response.data)
+}
+
+function instagramPressed(){   
+    /*<WebView source={{ uri: `${serviceInstagram}` }} style={{ marginTop: 20 }} />*/
+    Linking.openURL(`${serviceInstagram}`)
+}
+
+function webPressed(){       
+    /*<WebView source={{ uri: `${serviceInstagram}` }} style={{ marginTop: 20 }} />*/
+    Linking.openURL(`${serviceWeb}`)
 }
 
 return (
@@ -90,10 +116,14 @@ return (
                             </View >
                                 <Text style={styles.bio}>Você pode me achar também em:</Text>
                             <View style={styles.footerContacts}>
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={()=> {
+                                    instagramPressed()        
+                                }}>
                                     <FontAwesome name="instagram" size={40} color="#4b97ff" />
                                 </TouchableOpacity>
-                                <TouchableOpacity>
+                                <TouchableOpacity  onPress={()=> {
+                                    webPressed()        
+                                }}>
                                     <FontAwesome name="home" size={40} color="#4b97ff" />
                                 </TouchableOpacity>
                             </View>

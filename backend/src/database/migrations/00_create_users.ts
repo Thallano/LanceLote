@@ -8,7 +8,6 @@ export async function up(knex: Knex) {
         table.string('bio').notNullable();
         table.string('instagram').notNullable();
         table.string('web').notNullable();
-        table.string('whatsapp').notNullable();
         table.string('password').notNullable();
     });
 }

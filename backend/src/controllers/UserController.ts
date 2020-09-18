@@ -29,7 +29,6 @@ export default class UserController {
         const {
             name,
             email,
-            whatsapp,
             password,
             bio,
             instagram,
@@ -46,7 +45,6 @@ export default class UserController {
                 id,
                 name,
                 email,  
-                whatsapp,
                 password,
                 bio,
                 instagram,
@@ -75,7 +73,7 @@ export default class UserController {
         } = request.body;
         
         try {
-            await db('users').where('users.user.id', '=', user_id).update({'bio': bio ,'instagram': instagram, "web": web});
+            await db('users').where('users.id', '=', user_id).update({'bio': bio ,'instagram': instagram, "web": web});
             console.log(request.body)
             return response.status(201).send();
         } catch ( err ) {

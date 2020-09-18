@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {View, Image, Text, Linking } from 'react-native';
 
 import styles from './styles';
@@ -10,7 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 import logo from '../../../assets/workerimg.png';
 
 import AsyncStorage from '@react-native-community/async-storage';
-import api from "../../services/api";
+
 
 export interface Lancer {
     id: number;
@@ -95,12 +95,13 @@ const LancerItem: React.FC<LancerItemProps> = ({ lancer , loted }) =>  {
                     <FontAwesome name="star" size={12} color="#F4F2DA" />
                 </View>
                     <Text style={styles.rateText}>Avaliação: {lancer.rate}</Text>
+            </TouchableOpacity>
                 <ScrollView
                 showsVerticalScrollIndicator={false}    
                 >
                     <Text style={styles.description}>{lancer.description}</Text>
                 </ScrollView>
-            </TouchableOpacity>
+            
         </View>
         <View style={styles.footer}>
             <View style={styles.priceContainer}>

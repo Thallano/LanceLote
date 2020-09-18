@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import styles from './styles';
-import ServiceProfile, { Lancer } from '../../components/ServiceProfile';
+
 import api from '../../services/api';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 
-import {  MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import logo from '../../../assets/workerimg.png';
 import { Alert } from 'react-native';
 
@@ -15,9 +15,9 @@ const ProfileServicePage: React.FC = () => {
 
 const [ user_id, setUser_id ] = useState<any>([{}]);
 const [ name, setName] = useState();
-const [ instagram, setInstagram] = useState('instagram');
-const [ web, setWeb] = useState('web');
-const [ bio, setBio] = useState('bio');
+const [ instagram, setInstagram] = useState('');
+const [ web, setWeb] = useState('');
+const [ bio, setBio] = useState('');
 
 async function loadLogin ( ){
     AsyncStorage.getItem('login').then(response =>{
@@ -33,7 +33,7 @@ async function loadLogin ( ){
         }
     });
 }
-
+console.log(user_id)
 useEffect (()=> {
     loadLogin();
 },[])
@@ -46,8 +46,6 @@ async function submitInstagram(){
         user_id     
 }).then(() => {
     Alert.alert('Perfil Atualizado!');
-    ('/');
-    
 }).catch(() => {
     Alert.alert('Link Inválido');
 })
@@ -61,8 +59,6 @@ async function submitWeb(){
         user_id          
 }).then(() => {
     Alert.alert('Perfil Atualizado!');
-    ('/');
-    
 }).catch(() => {
     Alert.alert('Link Inválido');
 })
@@ -90,6 +86,7 @@ return (
                             <View style={styles.footer}>
                                 <Text style={styles.bio}>A nostalgia da suposta presença da "Coisa" que teria nos salvado do desamparo.</Text>
                                 <Text style={styles.userName}>{name}</Text>
+                                <FontAwesome name="edit" size={25} color="#4b97ff" />
                             </View >
                                 <Text style={styles.bio}>Adicione outros links para pessoas lhe encontrarem!</Text>
                             <View style={styles.footerContacts}>
@@ -101,8 +98,8 @@ return (
                                         placeholder="Insira aqui o Link do Seu Instagram"
                                         placeholderTextColor="#c1bccc"
                                     />
-                                <TouchableOpacity style={{alignSelf: 'flex-end'}}>
-                                    <FontAwesome name="check" size={25} color="#4b97ff" onPress={submitInstagram}/>
+                                <TouchableOpacity style={styles.checkIcon}>
+                                    <FontAwesome name="edit" size={25} color="#4b97ff" onPress={submitInstagram}/>
                                 </TouchableOpacity>
                                
                             </View>
@@ -116,8 +113,8 @@ return (
                                         placeholderTextColor="#c1bccc"
                                     />
                               
-                                    <TouchableOpacity style={{alignSelf: 'flex-end'}}>
-                                            <FontAwesome name="check" size={25} color="#4b97ff" onPress={submitWeb}/>
+                                    <TouchableOpacity style={styles.checkIcon}>
+                                            <FontAwesome name="edit" size={25} color="#4b97ff" onPress={submitWeb}/>
                                     </TouchableOpacity>
                             </View>
                     </View>

@@ -102,6 +102,10 @@ const styles = StyleSheet.create({
         marginBottom: 35
     },
     
+    checkIcon:{
+        alignSelf: 'flex-end',
+        marginTop: -60
+    }, 
 
 })
 

@@ -25,6 +25,7 @@ function Lance (){
     const [rate, setRate] = useState(0);
     const [loted, setLoted] = useState(0);
     const [ratetotal, setRatetotal] = useState(0);
+    const [whatsapp, setWhatsapp] = useState('');
     
     function loadLogin ( ){
         AsyncStorage.getItem('login').then(response =>{
@@ -52,7 +53,8 @@ function Lance (){
                 cost,
                 rate,
                 loted,
-                ratetotal             
+                ratetotal,
+                whatsapp    
         }).then(() => {
             Alert.alert('Serviço cadastrado com sucesso!');
             navigate('Lanced');            
@@ -197,8 +199,21 @@ function Lance (){
                                 placeholderTextColor="#c1bccc"
                             
                             />
-                        </View> 
+                        </View>
+                        
                     </View>
+                    <View style={styles.inputBlock}>
+                            <Text style={styles.label}>Whatsapp</Text>
+                            
+                            <TextInput 
+                                style={styles.input}
+                                value={whatsapp}
+                                onChangeText={text =>  setWhatsapp(text)}
+                                placeholder="(86)99999-9999"
+                                placeholderTextColor="#c1bccc"
+                            
+                            />
+                    </View> 
             </View>
             <TouchableOpacity style={styles.buttonLance} onPress={handleServiceSubmit}>
                 <Text style={styles.buttontext}>Quero Lançar um Serviço</Text>

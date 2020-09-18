@@ -50,4 +50,27 @@ export default class ServicesListController {
         
     }
 
+    async listServiceUser(request: Request, response: Response){
+        const serviceId = request.query;
+        console.log(request.query)
+        const service = serviceId.service as string;
+
+        try{
+      
+            const reviewWithIdsNote = await db('services')
+            .where('services.idService', '=', service)
+            .join('users', 'users.id', '=', 'services.user_id')
+            .select(['services.service', 'users.name', 'users.instagram', 'users.web']);
+            
+            return response.json(reviewWithIdsNote);
+            
+        } catch (err) {
+    
+            return response.status(400).json({
+                error: 'Unexpected error while creating new service'
+            })
+        }
+        
+    }
+
 }

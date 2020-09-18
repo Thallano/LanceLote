@@ -10,6 +10,7 @@ export async function up(knex: Knex) {
         table.decimal('rate').notNullable();
         table.decimal('loted').notNullable();
         table.decimal('ratetotal').notNullable();
+        table.string('whatsapp').notNullable();
 
         table.integer('user_id')
             .notNullable()

@@ -10,7 +10,7 @@ export default class ServicesController {
         const filters = request.query;
 
         const service = filters.service as string;
-        
+        console.log(service)
         if (!filters.service){
             return response.status(400).json({
                 error: 'Missing filters to search services'
@@ -21,7 +21,9 @@ export default class ServicesController {
             .where('services.service', '=', service)
             .join('users', 'services.user_id', '=', 'users.id')
             .select(['services.*', 'users.*']);
+            console.log(services)
         return response.json(services);
+        
     }
         
     async createService(request: Request, response: Response) {
@@ -34,7 +36,8 @@ export default class ServicesController {
             user_id,
             rate,
             loted,
-            ratetotal
+            ratetotal,
+            whatsapp
         } = request.body;
     
         const idService = crypto.randomBytes(2).toString('HEX');
@@ -52,7 +55,8 @@ export default class ServicesController {
                 user_id,
                 rate,
                 loted,
-                ratetotal
+                ratetotal,
+                whatsapp
             })        
 
             await trx.commit();
@@ -93,6 +97,7 @@ export default class ServicesController {
             review_name
         } = request.body;
         console.log(request.body)
+        
         const lot = await db('services')
                             .where('services.idService', '=', service)
                             /*.join('loted', 'services.user_id', '=', 'users.id')*/

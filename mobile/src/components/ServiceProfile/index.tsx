@@ -27,6 +27,8 @@ export interface Lancer {
     user_id: string;
     idService: string;
     name: string;
+    instagram: string;
+    web: string;
 }
 
 export interface ServiceProfileProps{

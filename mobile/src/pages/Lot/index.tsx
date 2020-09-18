@@ -63,11 +63,9 @@ function Lot (){
                service
             }
         })
-        console.log(service)
         setIsFilterVisible(false);
         setIsCaseVisible(false);
         setLancers(response.data);
-        console.log(lancers)
     }
 
     return (

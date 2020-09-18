@@ -22,7 +22,7 @@ const SingUp: React.FC = () => {
     async function handleUserSubmit ( ) {
         if (password != passwordCheck ) {
             alert("Senhas não coincidem")
-        } else if( email && name && password && whatsapp != '' ){
+        } else if( email && name && password != '' ){
             const response = await api.post('users', {
                 email,
                 name,
@@ -32,10 +32,10 @@ const SingUp: React.FC = () => {
                 instagram,
                 web
             }).then(() => {
-                alert('Cadastro realizado com sucesso!');
+                Alert.alert('Cadastro realizado com sucesso!');
                 ('/');
             }).catch(() => {
-                alert('Erro no cadastro!');
+                Alert.alert('Erro no cadastro!');
             })
             
         } else {
@@ -106,7 +106,7 @@ return (
                     />
                 </View>
 
-                <View style={styles.inputBlock}>
+                {/*<View style={styles.inputBlock}>
                     <Text style={styles.label}>Whatsapp</Text>
                     <TextInput 
                         style={styles.input}
@@ -117,7 +117,7 @@ return (
                         placeholderTextColor="#c1bccc"
                         dataDetectorTypes='phoneNumber'
                     />
-                </View>
+                </View>*/}
                 </View>
                                              
             <TouchableOpacity style={styles.submitButton} onPress={handleUserSubmit}>
